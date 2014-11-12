@@ -1,0 +1,844 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1C56E12F46E1A73093692F87 /* OAIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C56E9AD08CF2F90147ED7C1 /* OAIdentity.m */; };
+		1C56E4411AD1D2FEDE5CFEE3 /* OAIdentity.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1C56EAF0A89F083D85420CB9 /* OAIdentity.h */; };
+		1C56E92CF60427CCE893FCB9 /* OAUserParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C56E4AA51BC83CAC336B439 /* OAUserParser.m */; };
+		1C56EB4FB4E7BD8361D5C72F /* OALog.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C56E29784F99AC0341C5FF4 /* OALog.m */; };
+		1C56EB66BD63B4A880FB48DE /* OATwitterLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C56EA31173DF0A11D865557 /* OATwitterLogin.m */; };
+		1C56EC6AD00C110BBDC64E9A /* OAuth+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C56E9D08CDA366F50D315D3 /* OAuth+Additions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1C56EC8EF4498F9585C1A78D /* OAMessagePostResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C56ED169291222079CA3D4A /* OAMessagePostResult.m */; };
+		1C56ECC6F360753F89ADE0A1 /* OANetworkActivityIndicatorControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C56E770F10B3CA9BD1340F0 /* OANetworkActivityIndicatorControl.m */; };
+		1C56ECDA08A26675C256AE29 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C56EECA77F933D0442AA62C /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1C56ED7FEAD586B7222976BE /* OAServerApiMessagePost.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C56E747CAEB1A60B0F66127 /* OAServerApiMessagePost.m */; };
+		1C56EDBC6F83301FE30C8C30 /* OAServerApiUsersLoginNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C56EFDC73AF1A2B22BC8369 /* OAServerApiUsersLoginNative.m */; };
+		1C56EEA9C47A6A6C26A27102 /* OAuthCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C56E2CCF2E6DE68BF5136A4 /* OAuthCore.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1C56EEB7B250359A63EC0188 /* OAError.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1EDF4CC71963FD7300C014EB /* OAError.h */; };
+		1C56EEBF2C0A40EE5CF3FF19 /* TWTSignedRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C56E7B35EE5510A1268D120 /* TWTSignedRequest.m */; };
+		1C56EF6225BF5506294371CD /* TWTAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C56E74180A680EF96103FC2 /* TWTAPIManager.m */; };
+		1E315A161969E0AD00B66501 /* button-login-amazon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68431965FEA30002CC92 /* button-login-amazon.png */; };
+		1E315A171969E0AD00B66501 /* button-login-blogger.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68441965FEA30002CC92 /* button-login-blogger.png */; };
+		1E315A181969E0AD00B66501 /* button-login-devianart.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68451965FEA30002CC92 /* button-login-devianart.png */; };
+		1E315A191969E0AD00B66501 /* button-login-facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68461965FEA30002CC92 /* button-login-facebook.png */; };
+		1E315A1A1969E0AD00B66501 /* button-login-foursquare.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68471965FEA30002CC92 /* button-login-foursquare.png */; };
+		1E315A1B1969E0AD00B66501 /* button-login-google.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68481965FEA30002CC92 /* button-login-google.png */; };
+		1E315A1C1969E0AD00B66501 /* button-login-instagram.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68491965FEA30002CC92 /* button-login-instagram.png */; };
+		1E315A1D1969E0AD00B66501 /* button-login-linkedin.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA684A1965FEA30002CC92 /* button-login-linkedin.png */; };
+		1E315A1E1969E0AD00B66501 /* button-login-livejournal.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA684B1965FEA30002CC92 /* button-login-livejournal.png */; };
+		1E315A1F1969E0AD00B66501 /* button-login-mailru.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA684C1965FEA30002CC92 /* button-login-mailru.png */; };
+		1E315A201969E0AD00B66501 /* button-login-msn.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA684D1965FEA30002CC92 /* button-login-msn.png */; };
+		1E315A211969E0AD00B66501 /* button-login-myspace.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA684E1965FEA30002CC92 /* button-login-myspace.png */; };
+		1E315A221969E0AD00B66501 /* button-login-odnoklassniki.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA684F1965FEA30002CC92 /* button-login-odnoklassniki.png */; };
+		1E315A231969E0AD00B66501 /* button-login-openid.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68501965FEA30002CC92 /* button-login-openid.png */; };
+		1E315A241969E0AD00B66501 /* button-login-paypal.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68511965FEA30002CC92 /* button-login-paypal.png */; };
+		1E315A251969E0AD00B66501 /* button-login-reddit.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68521965FEA30002CC92 /* button-login-reddit.png */; };
+		1E315A261969E0AD00B66501 /* button-login-stackexchange.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68531965FEA30002CC92 /* button-login-stackexchange.png */; };
+		1E315A271969E0AD00B66501 /* button-login-steam.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68541965FEA30002CC92 /* button-login-steam.png */; };
+		1E315A281969E0AD00B66501 /* button-login-twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68551965FEA30002CC92 /* button-login-twitter.png */; };
+		1E315A291969E0AD00B66501 /* button-login-vimeo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68561965FEA30002CC92 /* button-login-vimeo.png */; };
+		1E315A2A1969E0AD00B66501 /* button-login-vkontakte.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68571965FEA30002CC92 /* button-login-vkontakte.png */; };
+		1E315A2B1969E0AD00B66501 /* button-login-windowslive.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68581965FEA30002CC92 /* button-login-windowslive.png */; };
+		1E315A2C1969E0AD00B66501 /* button-login-wordpress.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68591965FEA30002CC92 /* button-login-wordpress.png */; };
+		1E315A2D1969E0AD00B66501 /* button-login-yahoo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA685A1965FEA30002CC92 /* button-login-yahoo.png */; };
+		1E315A2E1969E0AD00B66501 /* button-login-youtube.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA685B1965FEA30002CC92 /* button-login-youtube.png */; };
+		1E315A351969E29D00B66501 /* button-login-disqus.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E315A311969E29D00B66501 /* button-login-disqus.png */; };
+		1E315A361969E29D00B66501 /* button-login-github.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E315A321969E29D00B66501 /* button-login-github.png */; };
+		1E315A371969E29D00B66501 /* button-login-skyrock.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E315A331969E29D00B66501 /* button-login-skyrock.png */; };
+		1E315A381969E29D00B66501 /* button-login-twitch.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E315A341969E29D00B66501 /* button-login-twitch.png */; };
+		1E315A3B1969E33B00B66501 /* button-login-disqus.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E315A311969E29D00B66501 /* button-login-disqus.png */; };
+		1E315A3C1969E33B00B66501 /* button-login-github.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E315A321969E29D00B66501 /* button-login-github.png */; };
+		1E315A3D1969E33B00B66501 /* button-login-skyrock.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E315A331969E29D00B66501 /* button-login-skyrock.png */; };
+		1E315A3E1969E33B00B66501 /* button-login-twitch.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E315A341969E29D00B66501 /* button-login-twitch.png */; };
+		1E32995B1961AAE1008896A8 /* OneAll.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1E32995A1961AAE1008896A8 /* OneAll.h */; };
+		1E3299761961AB36008896A8 /* OAManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3299721961AB36008896A8 /* OAManager.m */; };
+		1E32997F1961AC90008896A8 /* OAManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1E3299711961AB36008896A8 /* OAManager.h */; };
+		1E3299861961B26D008896A8 /* OAWebLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3299841961B26D008896A8 /* OAWebLoginViewController.m */; };
+		1E3299871961B3AC008896A8 /* button-close.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1E3299781961AB3F008896A8 /* button-close.png */; };
+		1E3299881961B3AC008896A8 /* button-close@2x.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1E3299791961AB3F008896A8 /* button-close@2x.png */; };
+		1E32998C1961B5D8008896A8 /* OASettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E32998B1961B5D8008896A8 /* OASettings.m */; };
+		1E32998F1961B6BC008896A8 /* OAException.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E32998E1961B6BC008896A8 /* OAException.m */; };
+		1E3299911961C664008896A8 /* button-close.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E3299781961AB3F008896A8 /* button-close.png */; };
+		1E3299921961C664008896A8 /* button-close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E3299791961AB3F008896A8 /* button-close@2x.png */; };
+		1E32999F1961C7CF008896A8 /* OAWebLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E32999E1961C7CF008896A8 /* OAWebLoginViewController.xib */; };
+		1E329A131961E2A2008896A8 /* OABundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E329A121961E2A2008896A8 /* OABundle.m */; };
+		1E426A1B19E56769005BD882 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E426A1A19E56769005BD882 /* Social.framework */; };
+		1E426A1D19E56770005BD882 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E426A1C19E56770005BD882 /* Accounts.framework */; };
+		1E53CF7819648C2B00E04D68 /* OAUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E53CF7719648C2B00E04D68 /* OAUser.m */; };
+		1E53CF7919648C4800E04D68 /* OAUser.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1E53CF7619648C2B00E04D68 /* OAUser.h */; };
+		1E89495D1961E91500B3880A /* OAWebLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E32999E1961C7CF008896A8 /* OAWebLoginViewController.xib */; };
+		1E89495E1961E91500B3880A /* button-close.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E3299781961AB3F008896A8 /* button-close.png */; };
+		1E89495F1961E91500B3880A /* button-close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E3299791961AB3F008896A8 /* button-close@2x.png */; };
+		1EC701F31976737B00E9768E /* OAMessagePostResult.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1C56E9A91F45F7C0122FA766 /* OAMessagePostResult.h */; };
+		1ECA683E1965F71A0002CC92 /* OALoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ECA683C1965F71A0002CC92 /* OALoginViewController.m */; };
+		1ECA683F1965F71A0002CC92 /* OALoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA683D1965F71A0002CC92 /* OALoginViewController.xib */; };
+		1ECA68421965F8430002CC92 /* OALoginViewProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ECA68411965F8430002CC92 /* OALoginViewProvider.m */; };
+		1ECA685C1965FEA30002CC92 /* button-login-amazon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68431965FEA30002CC92 /* button-login-amazon.png */; };
+		1ECA685D1965FEA30002CC92 /* button-login-blogger.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68441965FEA30002CC92 /* button-login-blogger.png */; };
+		1ECA685E1965FEA30002CC92 /* button-login-devianart.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68451965FEA30002CC92 /* button-login-devianart.png */; };
+		1ECA685F1965FEA30002CC92 /* button-login-facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68461965FEA30002CC92 /* button-login-facebook.png */; };
+		1ECA68601965FEA30002CC92 /* button-login-foursquare.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68471965FEA30002CC92 /* button-login-foursquare.png */; };
+		1ECA68611965FEA30002CC92 /* button-login-google.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68481965FEA30002CC92 /* button-login-google.png */; };
+		1ECA68621965FEA30002CC92 /* button-login-instagram.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68491965FEA30002CC92 /* button-login-instagram.png */; };
+		1ECA68631965FEA30002CC92 /* button-login-linkedin.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA684A1965FEA30002CC92 /* button-login-linkedin.png */; };
+		1ECA68641965FEA30002CC92 /* button-login-livejournal.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA684B1965FEA30002CC92 /* button-login-livejournal.png */; };
+		1ECA68651965FEA30002CC92 /* button-login-mailru.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA684C1965FEA30002CC92 /* button-login-mailru.png */; };
+		1ECA68661965FEA30002CC92 /* button-login-msn.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA684D1965FEA30002CC92 /* button-login-msn.png */; };
+		1ECA68671965FEA30002CC92 /* button-login-myspace.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA684E1965FEA30002CC92 /* button-login-myspace.png */; };
+		1ECA68681965FEA30002CC92 /* button-login-odnoklassniki.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA684F1965FEA30002CC92 /* button-login-odnoklassniki.png */; };
+		1ECA68691965FEA30002CC92 /* button-login-openid.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68501965FEA30002CC92 /* button-login-openid.png */; };
+		1ECA686A1965FEA30002CC92 /* button-login-paypal.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68511965FEA30002CC92 /* button-login-paypal.png */; };
+		1ECA686B1965FEA30002CC92 /* button-login-reddit.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68521965FEA30002CC92 /* button-login-reddit.png */; };
+		1ECA686C1965FEA30002CC92 /* button-login-stackexchange.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68531965FEA30002CC92 /* button-login-stackexchange.png */; };
+		1ECA686D1965FEA30002CC92 /* button-login-steam.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68541965FEA30002CC92 /* button-login-steam.png */; };
+		1ECA686E1965FEA30002CC92 /* button-login-twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68551965FEA30002CC92 /* button-login-twitter.png */; };
+		1ECA686F1965FEA30002CC92 /* button-login-vimeo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68561965FEA30002CC92 /* button-login-vimeo.png */; };
+		1ECA68701965FEA30002CC92 /* button-login-vkontakte.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68571965FEA30002CC92 /* button-login-vkontakte.png */; };
+		1ECA68711965FEA30002CC92 /* button-login-windowslive.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68581965FEA30002CC92 /* button-login-windowslive.png */; };
+		1ECA68721965FEA30002CC92 /* button-login-wordpress.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA68591965FEA30002CC92 /* button-login-wordpress.png */; };
+		1ECA68731965FEA30002CC92 /* button-login-yahoo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA685A1965FEA30002CC92 /* button-login-yahoo.png */; };
+		1ECA68741965FEA30002CC92 /* button-login-youtube.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA685B1965FEA30002CC92 /* button-login-youtube.png */; };
+		1ECA68751966011F0002CC92 /* OALoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA683D1965F71A0002CC92 /* OALoginViewController.xib */; };
+		1EDF4CBB1963D4AA00C014EB /* OAProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EDF4CBA1963D4AA00C014EB /* OAProvider.m */; };
+		1EDF4CBE1963D7DE00C014EB /* OAException.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1E32998D1961B6BC008896A8 /* OAException.h */; };
+		1EDF4CBF1963D7DE00C014EB /* OAProvider.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1EDF4CB91963D4AA00C014EB /* OAProvider.h */; };
+		1EDF4CC61963F4C300C014EB /* OAGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EDF4CC51963F4C300C014EB /* OAGlobals.m */; };
+		1EDF4CC91963FD7F00C014EB /* OAError.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EDF4CC81963FD7F00C014EB /* OAError.m */; };
+		1EDF4CCC1964029500C014EB /* OAServerApiConnectionGet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EDF4CCB1964029500C014EB /* OAServerApiConnectionGet.m */; };
+		1EDF4CCF196402F200C014EB /* OAServerApiBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EDF4CCE196402F200C014EB /* OAServerApiBase.m */; };
+		1EDF4CD2196403F000C014EB /* NSString+ULREncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EDF4CD1196403F000C014EB /* NSString+ULREncode.m */; };
+		1EFE9ABC19953241002BEE89 /* OAFacebookLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EFE9ABB19953241002BEE89 /* OAFacebookLogin.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1EA2CFB01A0832DA00B538D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1E32994F1961AAE0008896A8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1E3299FF1961D37E008896A8;
+			remoteInfo = OneAllResources;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1E3299551961AAE0008896A8 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				1EC701F31976737B00E9768E /* OAMessagePostResult.h in CopyFiles */,
+				1E53CF7919648C4800E04D68 /* OAUser.h in CopyFiles */,
+				1EDF4CBE1963D7DE00C014EB /* OAException.h in CopyFiles */,
+				1EDF4CBF1963D7DE00C014EB /* OAProvider.h in CopyFiles */,
+				1E3299871961B3AC008896A8 /* button-close.png in CopyFiles */,
+				1E3299881961B3AC008896A8 /* button-close@2x.png in CopyFiles */,
+				1E32997F1961AC90008896A8 /* OAManager.h in CopyFiles */,
+				1E32995B1961AAE1008896A8 /* OneAll.h in CopyFiles */,
+				1C56EEB7B250359A63EC0188 /* OAError.h in CopyFiles */,
+				1C56E4411AD1D2FEDE5CFEE3 /* OAIdentity.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1C56E100B35FC17395DFE082 /* OAuthCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthCore.h; sourceTree = "<group>"; };
+		1C56E110FA94C637CD102E74 /* OAUserParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAUserParser.h; sourceTree = "<group>"; };
+		1C56E1848C826DA2AA14B033 /* TWTViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTViewController.m; sourceTree = "<group>"; };
+		1C56E1FB98CC088B35363235 /* OAServerApiMessagePost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAServerApiMessagePost.h; sourceTree = "<group>"; };
+		1C56E29784F99AC0341C5FF4 /* OALog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OALog.m; sourceTree = "<group>"; };
+		1C56E2CCF2E6DE68BF5136A4 /* OAuthCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthCore.m; sourceTree = "<group>"; };
+		1C56E4AA51BC83CAC336B439 /* OAUserParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAUserParser.m; sourceTree = "<group>"; };
+		1C56E6513FF73AEDD86C2A51 /* OAServerApiUsersLoginNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAServerApiUsersLoginNative.h; sourceTree = "<group>"; };
+		1C56E6A08AC95DE088127D78 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		1C56E74180A680EF96103FC2 /* TWTAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTAPIManager.m; sourceTree = "<group>"; };
+		1C56E747CAEB1A60B0F66127 /* OAServerApiMessagePost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAServerApiMessagePost.m; sourceTree = "<group>"; };
+		1C56E770F10B3CA9BD1340F0 /* OANetworkActivityIndicatorControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OANetworkActivityIndicatorControl.m; sourceTree = "<group>"; };
+		1C56E7B35EE5510A1268D120 /* TWTSignedRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTSignedRequest.m; sourceTree = "<group>"; };
+		1C56E7FA2C2568AC283EAB47 /* TWTAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTAPIManager.h; sourceTree = "<group>"; };
+		1C56E934A4E82F425B471B8D /* OATwitterLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OATwitterLogin.h; sourceTree = "<group>"; };
+		1C56E9A91F45F7C0122FA766 /* OAMessagePostResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAMessagePostResult.h; sourceTree = "<group>"; };
+		1C56E9AD08CF2F90147ED7C1 /* OAIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAIdentity.m; sourceTree = "<group>"; };
+		1C56E9D08CDA366F50D315D3 /* OAuth+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OAuth+Additions.m"; sourceTree = "<group>"; };
+		1C56E9E5976B01A1448A7C84 /* OAuth+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OAuth+Additions.h"; sourceTree = "<group>"; };
+		1C56EA31173DF0A11D865557 /* OATwitterLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OATwitterLogin.m; sourceTree = "<group>"; };
+		1C56EAF0A89F083D85420CB9 /* OAIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAIdentity.h; sourceTree = "<group>"; };
+		1C56EBE458DF4324D1E70449 /* TWTViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTViewController.h; sourceTree = "<group>"; };
+		1C56ED169291222079CA3D4A /* OAMessagePostResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAMessagePostResult.m; sourceTree = "<group>"; };
+		1C56ED8C430E53EBD65D2ED4 /* TWTSignedRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTSignedRequest.h; sourceTree = "<group>"; };
+		1C56EEA6E9BDE5F3244E0F3C /* OANetworkActivityIndicatorControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OANetworkActivityIndicatorControl.h; sourceTree = "<group>"; };
+		1C56EECA77F933D0442AA62C /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		1C56EFDC73AF1A2B22BC8369 /* OAServerApiUsersLoginNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAServerApiUsersLoginNative.m; sourceTree = "<group>"; };
+		1E315A311969E29D00B66501 /* button-login-disqus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-disqus.png"; path = "../../OneAll/OneAll/resources/button-login-disqus.png"; sourceTree = "<group>"; };
+		1E315A321969E29D00B66501 /* button-login-github.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-github.png"; path = "../../OneAll/OneAll/resources/button-login-github.png"; sourceTree = "<group>"; };
+		1E315A331969E29D00B66501 /* button-login-skyrock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-skyrock.png"; path = "../../OneAll/OneAll/resources/button-login-skyrock.png"; sourceTree = "<group>"; };
+		1E315A341969E29D00B66501 /* button-login-twitch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-twitch.png"; path = "../../OneAll/OneAll/resources/button-login-twitch.png"; sourceTree = "<group>"; };
+		1E3299571961AAE1008896A8 /* libOneAll.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOneAll.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E32995A1961AAE1008896A8 /* OneAll.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneAll.h; sourceTree = "<group>"; };
+		1E3299711961AB36008896A8 /* OAManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAManager.h; sourceTree = "<group>"; };
+		1E3299721961AB36008896A8 /* OAManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAManager.m; sourceTree = "<group>"; };
+		1E3299781961AB3F008896A8 /* button-close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-close.png"; path = "resources/button-close.png"; sourceTree = "<group>"; };
+		1E3299791961AB3F008896A8 /* button-close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-close@2x.png"; path = "resources/button-close@2x.png"; sourceTree = "<group>"; };
+		1E3299831961B26D008896A8 /* OAWebLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAWebLoginViewController.h; path = ../../OneAll/OneAll/OAWebLoginViewController.h; sourceTree = "<group>"; };
+		1E3299841961B26D008896A8 /* OAWebLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAWebLoginViewController.m; path = ../../OneAll/OneAll/OAWebLoginViewController.m; sourceTree = "<group>"; };
+		1E32998A1961B5D8008896A8 /* OASettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OASettings.h; path = ../../OneAll/OneAll/OASettings.h; sourceTree = "<group>"; };
+		1E32998B1961B5D8008896A8 /* OASettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OASettings.m; path = ../../OneAll/OneAll/OASettings.m; sourceTree = "<group>"; };
+		1E32998D1961B6BC008896A8 /* OAException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAException.h; path = ../../OneAll/OneAll/OAException.h; sourceTree = "<group>"; };
+		1E32998E1961B6BC008896A8 /* OAException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAException.m; path = ../../OneAll/OneAll/OAException.m; sourceTree = "<group>"; };
+		1E32999E1961C7CF008896A8 /* OAWebLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OAWebLoginViewController.xib; path = ../../OneAll/OneAll/OAWebLoginViewController.xib; sourceTree = "<group>"; };
+		1E329A001961D37E008896A8 /* OneAllResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OneAllResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E329A031961D380008896A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E329A111961E2A2008896A8 /* OABundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OABundle.h; path = ../../OneAll/OneAll/OABundle.h; sourceTree = "<group>"; };
+		1E329A121961E2A2008896A8 /* OABundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OABundle.m; path = ../../OneAll/OneAll/OABundle.m; sourceTree = "<group>"; };
+		1E426A1A19E56769005BD882 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		1E426A1C19E56770005BD882 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		1E53CF7619648C2B00E04D68 /* OAUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAUser.h; path = ../../OneAll/OneAll/OAUser.h; sourceTree = "<group>"; };
+		1E53CF7719648C2B00E04D68 /* OAUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAUser.m; path = ../../OneAll/OneAll/OAUser.m; sourceTree = "<group>"; };
+		1E53CFB3196491A300E04D68 /* OALog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OALog.h; path = ../../OneAll/OneAll/OALog.h; sourceTree = "<group>"; };
+		1ECA683B1965F71A0002CC92 /* OALoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OALoginViewController.h; path = ../../OneAll/OneAll/OALoginViewController.h; sourceTree = "<group>"; };
+		1ECA683C1965F71A0002CC92 /* OALoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OALoginViewController.m; path = ../../OneAll/OneAll/OALoginViewController.m; sourceTree = "<group>"; };
+		1ECA683D1965F71A0002CC92 /* OALoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OALoginViewController.xib; path = ../../OneAll/OneAll/OALoginViewController.xib; sourceTree = "<group>"; };
+		1ECA68401965F8430002CC92 /* OALoginViewProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OALoginViewProvider.h; path = ../../OneAll/OneAll/OALoginViewProvider.h; sourceTree = "<group>"; };
+		1ECA68411965F8430002CC92 /* OALoginViewProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OALoginViewProvider.m; path = ../../OneAll/OneAll/OALoginViewProvider.m; sourceTree = "<group>"; };
+		1ECA68431965FEA30002CC92 /* button-login-amazon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-amazon.png"; path = "../../OneAll/OneAll/resources/button-login-amazon.png"; sourceTree = "<group>"; };
+		1ECA68441965FEA30002CC92 /* button-login-blogger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-blogger.png"; path = "../../OneAll/OneAll/resources/button-login-blogger.png"; sourceTree = "<group>"; };
+		1ECA68451965FEA30002CC92 /* button-login-devianart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-devianart.png"; path = "../../OneAll/OneAll/resources/button-login-devianart.png"; sourceTree = "<group>"; };
+		1ECA68461965FEA30002CC92 /* button-login-facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-facebook.png"; path = "../../OneAll/OneAll/resources/button-login-facebook.png"; sourceTree = "<group>"; };
+		1ECA68471965FEA30002CC92 /* button-login-foursquare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-foursquare.png"; path = "../../OneAll/OneAll/resources/button-login-foursquare.png"; sourceTree = "<group>"; };
+		1ECA68481965FEA30002CC92 /* button-login-google.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-google.png"; path = "../../OneAll/OneAll/resources/button-login-google.png"; sourceTree = "<group>"; };
+		1ECA68491965FEA30002CC92 /* button-login-instagram.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-instagram.png"; path = "../../OneAll/OneAll/resources/button-login-instagram.png"; sourceTree = "<group>"; };
+		1ECA684A1965FEA30002CC92 /* button-login-linkedin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-linkedin.png"; path = "../../OneAll/OneAll/resources/button-login-linkedin.png"; sourceTree = "<group>"; };
+		1ECA684B1965FEA30002CC92 /* button-login-livejournal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-livejournal.png"; path = "../../OneAll/OneAll/resources/button-login-livejournal.png"; sourceTree = "<group>"; };
+		1ECA684C1965FEA30002CC92 /* button-login-mailru.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-mailru.png"; path = "../../OneAll/OneAll/resources/button-login-mailru.png"; sourceTree = "<group>"; };
+		1ECA684D1965FEA30002CC92 /* button-login-msn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-msn.png"; path = "../../OneAll/OneAll/resources/button-login-msn.png"; sourceTree = "<group>"; };
+		1ECA684E1965FEA30002CC92 /* button-login-myspace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-myspace.png"; path = "../../OneAll/OneAll/resources/button-login-myspace.png"; sourceTree = "<group>"; };
+		1ECA684F1965FEA30002CC92 /* button-login-odnoklassniki.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-odnoklassniki.png"; path = "../../OneAll/OneAll/resources/button-login-odnoklassniki.png"; sourceTree = "<group>"; };
+		1ECA68501965FEA30002CC92 /* button-login-openid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-openid.png"; path = "../../OneAll/OneAll/resources/button-login-openid.png"; sourceTree = "<group>"; };
+		1ECA68511965FEA30002CC92 /* button-login-paypal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-paypal.png"; path = "../../OneAll/OneAll/resources/button-login-paypal.png"; sourceTree = "<group>"; };
+		1ECA68521965FEA30002CC92 /* button-login-reddit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-reddit.png"; path = "../../OneAll/OneAll/resources/button-login-reddit.png"; sourceTree = "<group>"; };
+		1ECA68531965FEA30002CC92 /* button-login-stackexchange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-stackexchange.png"; path = "../../OneAll/OneAll/resources/button-login-stackexchange.png"; sourceTree = "<group>"; };
+		1ECA68541965FEA30002CC92 /* button-login-steam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-steam.png"; path = "../../OneAll/OneAll/resources/button-login-steam.png"; sourceTree = "<group>"; };
+		1ECA68551965FEA30002CC92 /* button-login-twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-twitter.png"; path = "../../OneAll/OneAll/resources/button-login-twitter.png"; sourceTree = "<group>"; };
+		1ECA68561965FEA30002CC92 /* button-login-vimeo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-vimeo.png"; path = "../../OneAll/OneAll/resources/button-login-vimeo.png"; sourceTree = "<group>"; };
+		1ECA68571965FEA30002CC92 /* button-login-vkontakte.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-vkontakte.png"; path = "../../OneAll/OneAll/resources/button-login-vkontakte.png"; sourceTree = "<group>"; };
+		1ECA68581965FEA30002CC92 /* button-login-windowslive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-windowslive.png"; path = "../../OneAll/OneAll/resources/button-login-windowslive.png"; sourceTree = "<group>"; };
+		1ECA68591965FEA30002CC92 /* button-login-wordpress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-wordpress.png"; path = "../../OneAll/OneAll/resources/button-login-wordpress.png"; sourceTree = "<group>"; };
+		1ECA685A1965FEA30002CC92 /* button-login-yahoo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-yahoo.png"; path = "../../OneAll/OneAll/resources/button-login-yahoo.png"; sourceTree = "<group>"; };
+		1ECA685B1965FEA30002CC92 /* button-login-youtube.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-youtube.png"; path = "../../OneAll/OneAll/resources/button-login-youtube.png"; sourceTree = "<group>"; };
+		1EDF4CB91963D4AA00C014EB /* OAProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAProvider.h; path = ../../OneAll/OneAll/OAProvider.h; sourceTree = "<group>"; };
+		1EDF4CBA1963D4AA00C014EB /* OAProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAProvider.m; path = ../../OneAll/OneAll/OAProvider.m; sourceTree = "<group>"; };
+		1EDF4CC41963F49C00C014EB /* OAGlobals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OAGlobals.h; path = ../../OneAll/OneAll/OAGlobals.h; sourceTree = "<group>"; };
+		1EDF4CC51963F4C300C014EB /* OAGlobals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAGlobals.m; path = ../../OneAll/OneAll/OAGlobals.m; sourceTree = "<group>"; };
+		1EDF4CC71963FD7300C014EB /* OAError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OAError.h; sourceTree = "<group>"; };
+		1EDF4CC81963FD7F00C014EB /* OAError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAError.m; sourceTree = "<group>"; };
+		1EDF4CCA1964029500C014EB /* OAServerApiConnectionGet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAServerApiConnectionGet.h; path = ../../OneAll/OneAll/OAServerApiConnectionGet.h; sourceTree = "<group>"; };
+		1EDF4CCB1964029500C014EB /* OAServerApiConnectionGet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAServerApiConnectionGet.m; path = ../../OneAll/OneAll/OAServerApiConnectionGet.m; sourceTree = "<group>"; };
+		1EDF4CCD196402F200C014EB /* OAServerApiBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAServerApiBase.h; path = ../../OneAll/OneAll/OAServerApiBase.h; sourceTree = "<group>"; };
+		1EDF4CCE196402F200C014EB /* OAServerApiBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAServerApiBase.m; path = ../../OneAll/OneAll/OAServerApiBase.m; sourceTree = "<group>"; };
+		1EDF4CD0196403F000C014EB /* NSString+ULREncode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+ULREncode.h"; path = "../../OneAll/OneAll/NSString+ULREncode.h"; sourceTree = "<group>"; };
+		1EDF4CD1196403F000C014EB /* NSString+ULREncode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+ULREncode.m"; path = "../../OneAll/OneAll/NSString+ULREncode.m"; sourceTree = "<group>"; };
+		1EFE9ABA19953241002BEE89 /* OAFacebookLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAFacebookLogin.h; path = ../../OneAll/OneAll/OAFacebookLogin.h; sourceTree = "<group>"; };
+		1EFE9ABB19953241002BEE89 /* OAFacebookLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAFacebookLogin.m; path = ../../OneAll/OneAll/OAFacebookLogin.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1E3299541961AAE0008896A8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E426A1D19E56770005BD882 /* Accounts.framework in Frameworks */,
+				1E426A1B19E56769005BD882 /* Social.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E3299FD1961D37E008896A8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1C56E5E2EEAC3A3A0BC9824A /* ABOAuthCore */ = {
+			isa = PBXGroup;
+			children = (
+				1C56E100B35FC17395DFE082 /* OAuthCore.h */,
+				1C56E2CCF2E6DE68BF5136A4 /* OAuthCore.m */,
+				1C56E6A08AC95DE088127D78 /* NSData+Base64.h */,
+				1C56EECA77F933D0442AA62C /* NSData+Base64.m */,
+				1C56E9E5976B01A1448A7C84 /* OAuth+Additions.h */,
+				1C56E9D08CDA366F50D315D3 /* OAuth+Additions.m */,
+			);
+			name = ABOAuthCore;
+			path = Vendor/ABOAuthCore;
+			sourceTree = "<group>";
+		};
+		1C56EAC20CB4295C39AD91E4 /* TWReverseAuth */ = {
+			isa = PBXGroup;
+			children = (
+				1C56E7FA2C2568AC283EAB47 /* TWTAPIManager.h */,
+				1C56E74180A680EF96103FC2 /* TWTAPIManager.m */,
+				1C56ED8C430E53EBD65D2ED4 /* TWTSignedRequest.h */,
+				1C56E7B35EE5510A1268D120 /* TWTSignedRequest.m */,
+				1C56EBE458DF4324D1E70449 /* TWTViewController.h */,
+				1C56E1848C826DA2AA14B033 /* TWTViewController.m */,
+			);
+			name = TWReverseAuth;
+			path = Vendor/TWReverseAuth;
+			sourceTree = "<group>";
+		};
+		1E32994E1961AAE0008896A8 = {
+			isa = PBXGroup;
+			children = (
+				1EFE9AB719952ED3002BEE89 /* Frameworks */,
+				1E3299591961AAE1008896A8 /* OneAll */,
+				1E329A011961D380008896A8 /* OneAllResources */,
+				1E3299581961AAE1008896A8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1E3299581961AAE1008896A8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1E3299571961AAE1008896A8 /* libOneAll.a */,
+				1E329A001961D37E008896A8 /* OneAllResources.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1E3299591961AAE1008896A8 /* OneAll */ = {
+			isa = PBXGroup;
+			children = (
+				1EDF4CD0196403F000C014EB /* NSString+ULREncode.h */,
+				1EDF4CD1196403F000C014EB /* NSString+ULREncode.m */,
+				1E329A111961E2A2008896A8 /* OABundle.h */,
+				1E329A121961E2A2008896A8 /* OABundle.m */,
+				1EDF4CC71963FD7300C014EB /* OAError.h */,
+				1EDF4CC81963FD7F00C014EB /* OAError.m */,
+				1E32998D1961B6BC008896A8 /* OAException.h */,
+				1E32998E1961B6BC008896A8 /* OAException.m */,
+				1EFE9ABA19953241002BEE89 /* OAFacebookLogin.h */,
+				1EFE9ABB19953241002BEE89 /* OAFacebookLogin.m */,
+				1EDF4CC41963F49C00C014EB /* OAGlobals.h */,
+				1EDF4CC51963F4C300C014EB /* OAGlobals.m */,
+				1C56EAF0A89F083D85420CB9 /* OAIdentity.h */,
+				1C56E9AD08CF2F90147ED7C1 /* OAIdentity.m */,
+				1E53CFB3196491A300E04D68 /* OALog.h */,
+				1ECA683B1965F71A0002CC92 /* OALoginViewController.h */,
+				1ECA683C1965F71A0002CC92 /* OALoginViewController.m */,
+				1ECA683D1965F71A0002CC92 /* OALoginViewController.xib */,
+				1ECA68401965F8430002CC92 /* OALoginViewProvider.h */,
+				1ECA68411965F8430002CC92 /* OALoginViewProvider.m */,
+				1E3299711961AB36008896A8 /* OAManager.h */,
+				1E3299721961AB36008896A8 /* OAManager.m */,
+				1C56E9A91F45F7C0122FA766 /* OAMessagePostResult.h */,
+				1EDF4CB91963D4AA00C014EB /* OAProvider.h */,
+				1EDF4CBA1963D4AA00C014EB /* OAProvider.m */,
+				1EDF4CCD196402F200C014EB /* OAServerApiBase.h */,
+				1EDF4CCE196402F200C014EB /* OAServerApiBase.m */,
+				1EDF4CCA1964029500C014EB /* OAServerApiConnectionGet.h */,
+				1EDF4CCB1964029500C014EB /* OAServerApiConnectionGet.m */,
+				1C56E1FB98CC088B35363235 /* OAServerApiMessagePost.h */,
+				1C56E747CAEB1A60B0F66127 /* OAServerApiMessagePost.m */,
+				1E32998A1961B5D8008896A8 /* OASettings.h */,
+				1E32998B1961B5D8008896A8 /* OASettings.m */,
+				1E53CF7619648C2B00E04D68 /* OAUser.h */,
+				1E53CF7719648C2B00E04D68 /* OAUser.m */,
+				1C56E110FA94C637CD102E74 /* OAUserParser.h */,
+				1C56E4AA51BC83CAC336B439 /* OAUserParser.m */,
+				1E3299831961B26D008896A8 /* OAWebLoginViewController.h */,
+				1E3299841961B26D008896A8 /* OAWebLoginViewController.m */,
+				1E32999E1961C7CF008896A8 /* OAWebLoginViewController.xib */,
+				1E32995A1961AAE1008896A8 /* OneAll.h */,
+				1E32997A1961AB42008896A8 /* resources */,
+				1C56EFDC73AF1A2B22BC8369 /* OAServerApiUsersLoginNative.m */,
+				1C56E6513FF73AEDD86C2A51 /* OAServerApiUsersLoginNative.h */,
+				1C56E29784F99AC0341C5FF4 /* OALog.m */,
+				1C56EA31173DF0A11D865557 /* OATwitterLogin.m */,
+				1C56E934A4E82F425B471B8D /* OATwitterLogin.h */,
+				1C56E770F10B3CA9BD1340F0 /* OANetworkActivityIndicatorControl.m */,
+				1C56EEA6E9BDE5F3244E0F3C /* OANetworkActivityIndicatorControl.h */,
+				1C56ED169291222079CA3D4A /* OAMessagePostResult.m */,
+			);
+			path = OneAll;
+			sourceTree = "<group>";
+		};
+		1E32997A1961AB42008896A8 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				1E32997B1961AB4B008896A8 /* images */,
+			);
+			name = resources;
+			sourceTree = "<group>";
+		};
+		1E32997B1961AB4B008896A8 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				1E3299781961AB3F008896A8 /* button-close.png */,
+				1E3299791961AB3F008896A8 /* button-close@2x.png */,
+				1ECA68431965FEA30002CC92 /* button-login-amazon.png */,
+				1ECA68441965FEA30002CC92 /* button-login-blogger.png */,
+				1ECA68451965FEA30002CC92 /* button-login-devianart.png */,
+				1E315A311969E29D00B66501 /* button-login-disqus.png */,
+				1ECA68461965FEA30002CC92 /* button-login-facebook.png */,
+				1ECA68471965FEA30002CC92 /* button-login-foursquare.png */,
+				1E315A321969E29D00B66501 /* button-login-github.png */,
+				1ECA68481965FEA30002CC92 /* button-login-google.png */,
+				1ECA68491965FEA30002CC92 /* button-login-instagram.png */,
+				1ECA684A1965FEA30002CC92 /* button-login-linkedin.png */,
+				1ECA684B1965FEA30002CC92 /* button-login-livejournal.png */,
+				1ECA684C1965FEA30002CC92 /* button-login-mailru.png */,
+				1ECA684D1965FEA30002CC92 /* button-login-msn.png */,
+				1ECA684E1965FEA30002CC92 /* button-login-myspace.png */,
+				1ECA684F1965FEA30002CC92 /* button-login-odnoklassniki.png */,
+				1ECA68501965FEA30002CC92 /* button-login-openid.png */,
+				1ECA68511965FEA30002CC92 /* button-login-paypal.png */,
+				1ECA68521965FEA30002CC92 /* button-login-reddit.png */,
+				1E315A331969E29D00B66501 /* button-login-skyrock.png */,
+				1ECA68531965FEA30002CC92 /* button-login-stackexchange.png */,
+				1ECA68541965FEA30002CC92 /* button-login-steam.png */,
+				1E315A341969E29D00B66501 /* button-login-twitch.png */,
+				1ECA68551965FEA30002CC92 /* button-login-twitter.png */,
+				1ECA68561965FEA30002CC92 /* button-login-vimeo.png */,
+				1ECA68571965FEA30002CC92 /* button-login-vkontakte.png */,
+				1ECA68581965FEA30002CC92 /* button-login-windowslive.png */,
+				1ECA68591965FEA30002CC92 /* button-login-wordpress.png */,
+				1ECA685A1965FEA30002CC92 /* button-login-yahoo.png */,
+				1ECA685B1965FEA30002CC92 /* button-login-youtube.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		1E329A011961D380008896A8 /* OneAllResources */ = {
+			isa = PBXGroup;
+			children = (
+				1E329A021961D380008896A8 /* Supporting Files */,
+			);
+			path = OneAllResources;
+			sourceTree = "<group>";
+		};
+		1E329A021961D380008896A8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1E329A031961D380008896A8 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1EFE9AB719952ED3002BEE89 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1E426A1C19E56770005BD882 /* Accounts.framework */,
+				1E426A1A19E56769005BD882 /* Social.framework */,
+				1C56EAC20CB4295C39AD91E4 /* TWReverseAuth */,
+				1C56E5E2EEAC3A3A0BC9824A /* ABOAuthCore */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1E3299561961AAE0008896A8 /* OneAll */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1E32996B1961AAE1008896A8 /* Build configuration list for PBXNativeTarget "OneAll" */;
+			buildPhases = (
+				1E3299531961AAE0008896A8 /* Sources */,
+				1E3299541961AAE0008896A8 /* Frameworks */,
+				1E3299551961AAE0008896A8 /* CopyFiles */,
+				1E3299901961C65A008896A8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1EA2CFB11A0832DA00B538D8 /* PBXTargetDependency */,
+			);
+			name = OneAll;
+			productName = OneAll;
+			productReference = 1E3299571961AAE1008896A8 /* libOneAll.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		1E3299FF1961D37E008896A8 /* OneAllResources */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1E329A041961D380008896A8 /* Build configuration list for PBXNativeTarget "OneAllResources" */;
+			buildPhases = (
+				1E3299FC1961D37E008896A8 /* Sources */,
+				1E3299FD1961D37E008896A8 /* Frameworks */,
+				1E3299FE1961D37E008896A8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OneAllResources;
+			productName = OneAllResources;
+			productReference = 1E329A001961D37E008896A8 /* OneAllResources.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1E32994F1961AAE0008896A8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = urk;
+				TargetAttributes = {
+					1E3299561961AAE0008896A8 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					1E3299FF1961D37E008896A8 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+				};
+			};
+			buildConfigurationList = 1E3299521961AAE0008896A8 /* Build configuration list for PBXProject "oneall" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1E32994E1961AAE0008896A8;
+			productRefGroup = 1E3299581961AAE1008896A8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1E3299561961AAE0008896A8 /* OneAll */,
+				1E3299FF1961D37E008896A8 /* OneAllResources */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1E3299901961C65A008896A8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E315A371969E29D00B66501 /* button-login-skyrock.png in Resources */,
+				1E315A351969E29D00B66501 /* button-login-disqus.png in Resources */,
+				1ECA686F1965FEA30002CC92 /* button-login-vimeo.png in Resources */,
+				1ECA68691965FEA30002CC92 /* button-login-openid.png in Resources */,
+				1E32999F1961C7CF008896A8 /* OAWebLoginViewController.xib in Resources */,
+				1ECA68661965FEA30002CC92 /* button-login-msn.png in Resources */,
+				1ECA68701965FEA30002CC92 /* button-login-vkontakte.png in Resources */,
+				1ECA68601965FEA30002CC92 /* button-login-foursquare.png in Resources */,
+				1ECA686C1965FEA30002CC92 /* button-login-stackexchange.png in Resources */,
+				1ECA686E1965FEA30002CC92 /* button-login-twitter.png in Resources */,
+				1ECA68681965FEA30002CC92 /* button-login-odnoklassniki.png in Resources */,
+				1E3299911961C664008896A8 /* button-close.png in Resources */,
+				1ECA685D1965FEA30002CC92 /* button-login-blogger.png in Resources */,
+				1ECA683F1965F71A0002CC92 /* OALoginViewController.xib in Resources */,
+				1ECA68651965FEA30002CC92 /* button-login-mailru.png in Resources */,
+				1E315A381969E29D00B66501 /* button-login-twitch.png in Resources */,
+				1ECA685C1965FEA30002CC92 /* button-login-amazon.png in Resources */,
+				1ECA686A1965FEA30002CC92 /* button-login-paypal.png in Resources */,
+				1ECA68721965FEA30002CC92 /* button-login-wordpress.png in Resources */,
+				1ECA68731965FEA30002CC92 /* button-login-yahoo.png in Resources */,
+				1ECA68611965FEA30002CC92 /* button-login-google.png in Resources */,
+				1ECA685F1965FEA30002CC92 /* button-login-facebook.png in Resources */,
+				1ECA68621965FEA30002CC92 /* button-login-instagram.png in Resources */,
+				1ECA68641965FEA30002CC92 /* button-login-livejournal.png in Resources */,
+				1ECA68711965FEA30002CC92 /* button-login-windowslive.png in Resources */,
+				1ECA68741965FEA30002CC92 /* button-login-youtube.png in Resources */,
+				1ECA68671965FEA30002CC92 /* button-login-myspace.png in Resources */,
+				1ECA68631965FEA30002CC92 /* button-login-linkedin.png in Resources */,
+				1ECA686B1965FEA30002CC92 /* button-login-reddit.png in Resources */,
+				1ECA685E1965FEA30002CC92 /* button-login-devianart.png in Resources */,
+				1E315A361969E29D00B66501 /* button-login-github.png in Resources */,
+				1ECA686D1965FEA30002CC92 /* button-login-steam.png in Resources */,
+				1E3299921961C664008896A8 /* button-close@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E3299FE1961D37E008896A8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E315A3B1969E33B00B66501 /* button-login-disqus.png in Resources */,
+				1E315A3C1969E33B00B66501 /* button-login-github.png in Resources */,
+				1E315A3D1969E33B00B66501 /* button-login-skyrock.png in Resources */,
+				1E315A3E1969E33B00B66501 /* button-login-twitch.png in Resources */,
+				1E315A161969E0AD00B66501 /* button-login-amazon.png in Resources */,
+				1E315A171969E0AD00B66501 /* button-login-blogger.png in Resources */,
+				1E315A181969E0AD00B66501 /* button-login-devianart.png in Resources */,
+				1E315A191969E0AD00B66501 /* button-login-facebook.png in Resources */,
+				1E315A1A1969E0AD00B66501 /* button-login-foursquare.png in Resources */,
+				1E315A1B1969E0AD00B66501 /* button-login-google.png in Resources */,
+				1E315A1C1969E0AD00B66501 /* button-login-instagram.png in Resources */,
+				1E315A1D1969E0AD00B66501 /* button-login-linkedin.png in Resources */,
+				1E315A1E1969E0AD00B66501 /* button-login-livejournal.png in Resources */,
+				1E315A1F1969E0AD00B66501 /* button-login-mailru.png in Resources */,
+				1E315A201969E0AD00B66501 /* button-login-msn.png in Resources */,
+				1E315A211969E0AD00B66501 /* button-login-myspace.png in Resources */,
+				1E315A221969E0AD00B66501 /* button-login-odnoklassniki.png in Resources */,
+				1E315A231969E0AD00B66501 /* button-login-openid.png in Resources */,
+				1E315A241969E0AD00B66501 /* button-login-paypal.png in Resources */,
+				1E315A251969E0AD00B66501 /* button-login-reddit.png in Resources */,
+				1E315A261969E0AD00B66501 /* button-login-stackexchange.png in Resources */,
+				1E315A271969E0AD00B66501 /* button-login-steam.png in Resources */,
+				1E315A281969E0AD00B66501 /* button-login-twitter.png in Resources */,
+				1E315A291969E0AD00B66501 /* button-login-vimeo.png in Resources */,
+				1E315A2A1969E0AD00B66501 /* button-login-vkontakte.png in Resources */,
+				1E315A2B1969E0AD00B66501 /* button-login-windowslive.png in Resources */,
+				1E315A2C1969E0AD00B66501 /* button-login-wordpress.png in Resources */,
+				1E315A2D1969E0AD00B66501 /* button-login-yahoo.png in Resources */,
+				1E315A2E1969E0AD00B66501 /* button-login-youtube.png in Resources */,
+				1ECA68751966011F0002CC92 /* OALoginViewController.xib in Resources */,
+				1E89495D1961E91500B3880A /* OAWebLoginViewController.xib in Resources */,
+				1E89495E1961E91500B3880A /* button-close.png in Resources */,
+				1E89495F1961E91500B3880A /* button-close@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1E3299531961AAE0008896A8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1ECA68421965F8430002CC92 /* OALoginViewProvider.m in Sources */,
+				1EDF4CD2196403F000C014EB /* NSString+ULREncode.m in Sources */,
+				1E329A131961E2A2008896A8 /* OABundle.m in Sources */,
+				1E32998C1961B5D8008896A8 /* OASettings.m in Sources */,
+				1EDF4CCF196402F200C014EB /* OAServerApiBase.m in Sources */,
+				1E53CF7819648C2B00E04D68 /* OAUser.m in Sources */,
+				1EDF4CBB1963D4AA00C014EB /* OAProvider.m in Sources */,
+				1E3299761961AB36008896A8 /* OAManager.m in Sources */,
+				1EDF4CC61963F4C300C014EB /* OAGlobals.m in Sources */,
+				1EDF4CC91963FD7F00C014EB /* OAError.m in Sources */,
+				1E3299861961B26D008896A8 /* OAWebLoginViewController.m in Sources */,
+				1ECA683E1965F71A0002CC92 /* OALoginViewController.m in Sources */,
+				1E32998F1961B6BC008896A8 /* OAException.m in Sources */,
+				1EDF4CCC1964029500C014EB /* OAServerApiConnectionGet.m in Sources */,
+				1C56E92CF60427CCE893FCB9 /* OAUserParser.m in Sources */,
+				1EFE9ABC19953241002BEE89 /* OAFacebookLogin.m in Sources */,
+				1C56ED7FEAD586B7222976BE /* OAServerApiMessagePost.m in Sources */,
+				1C56E12F46E1A73093692F87 /* OAIdentity.m in Sources */,
+				1C56EDBC6F83301FE30C8C30 /* OAServerApiUsersLoginNative.m in Sources */,
+				1C56EB4FB4E7BD8361D5C72F /* OALog.m in Sources */,
+				1C56EF6225BF5506294371CD /* TWTAPIManager.m in Sources */,
+				1C56EEBF2C0A40EE5CF3FF19 /* TWTSignedRequest.m in Sources */,
+				1C56EEA9C47A6A6C26A27102 /* OAuthCore.m in Sources */,
+				1C56ECDA08A26675C256AE29 /* NSData+Base64.m in Sources */,
+				1C56EC6AD00C110BBDC64E9A /* OAuth+Additions.m in Sources */,
+				1C56EB66BD63B4A880FB48DE /* OATwitterLogin.m in Sources */,
+				1C56ECC6F360753F89ADE0A1 /* OANetworkActivityIndicatorControl.m in Sources */,
+				1C56EC8EF4498F9585C1A78D /* OAMessagePostResult.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E3299FC1961D37E008896A8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1EA2CFB11A0832DA00B538D8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1E3299FF1961D37E008896A8 /* OneAllResources */;
+			targetProxy = 1EA2CFB01A0832DA00B538D8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1E3299691961AAE1008896A8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Uri Kogan (7WU6YU4977)";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				METAL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "-DLE_DEBUG_LOGS=0";
+				OTHER_LDFLAGS = "-all_load";
+				PROVISIONING_PROFILE = "98d01ac2-3725-4889-8879-219f6c84d074";
+				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Debug;
+		};
+		1E32996A1961AAE1008896A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Bazaart Ltd. (DPZ963XT95)";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				METAL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = "-DLE_DEBUG_LOGS=0";
+				OTHER_LDFLAGS = "-all_load";
+				PROVISIONING_PROFILE = "f7a2d770-2351-4b4b-a769-0b38fb47de96";
+				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1E32996C1961AAE1008896A8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "-all_load";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Vendor/FacebookHeaders";
+			};
+			name = Debug;
+		};
+		1E32996D1961AAE1008896A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "-all_load";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Vendor/FacebookHeaders";
+			};
+			name = Release;
+		};
+		1E329A051961D380008896A8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = OneAllResources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				METAL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		1E329A061961D380008896A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				INFOPLIST_FILE = OneAllResources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				METAL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1E3299521961AAE0008896A8 /* Build configuration list for PBXProject "oneall" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E3299691961AAE1008896A8 /* Debug */,
+				1E32996A1961AAE1008896A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1E32996B1961AAE1008896A8 /* Build configuration list for PBXNativeTarget "OneAll" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E32996C1961AAE1008896A8 /* Debug */,
+				1E32996D1961AAE1008896A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1E329A041961D380008896A8 /* Build configuration list for PBXNativeTarget "OneAllResources" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E329A051961D380008896A8 /* Debug */,
+				1E329A061961D380008896A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1E32994F1961AAE0008896A8 /* Project object */;
+}

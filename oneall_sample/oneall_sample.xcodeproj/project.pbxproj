@@ -1,0 +1,425 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1E100EF71995518E005B7C70 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E100EF61995518E005B7C70 /* FacebookSDK.framework */; };
+		1E2FDC0B197C5381005BA5DC /* OAShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E2FDC09197C5381005BA5DC /* OAShareViewController.m */; };
+		1E2FDC0C197C5381005BA5DC /* OAShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E2FDC0A197C5381005BA5DC /* OAShareViewController.xib */; };
+		1E315A151969DF2D00B66501 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E315A141969DF2D00B66501 /* Images.xcassets */; };
+		1E3298D41961A0E5008896A8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3298D31961A0E5008896A8 /* main.m */; };
+		1E3298D71961A0E5008896A8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3298D61961A0E5008896A8 /* AppDelegate.m */; };
+		1E32992A1961A27F008896A8 /* OAMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3299281961A27F008896A8 /* OAMainViewController.m */; };
+		1E32992B1961A27F008896A8 /* OAMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E3299291961A27F008896A8 /* OAMainViewController.xib */; };
+		1E3299ED1961D2A2008896A8 /* libOneAll.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E3299EA1961D25C008896A8 /* libOneAll.a */; };
+		1E3C51981A0796490050F4AE /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1E3C51971A0796490050F4AE /* Settings.bundle */; };
+		1E53CFB919649BB400E04D68 /* button-login-facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E53CFB719649BB400E04D68 /* button-login-facebook.png */; };
+		1E53CFBA19649BB400E04D68 /* button-login-foursquare.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E53CFB819649BB400E04D68 /* button-login-foursquare.png */; };
+		1E53CFBC19649D5800E04D68 /* button-login-google.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E53CFBB19649D5800E04D68 /* button-login-google.png */; };
+		1E53CFBE19649F5500E04D68 /* button-login-mailru.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E53CFBD19649F5500E04D68 /* button-login-mailru.png */; };
+		1E53CFC019649FF400E04D68 /* button-login-blogger.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E53CFBF19649FF400E04D68 /* button-login-blogger.png */; };
+		1E53CFC31964A0C200E04D68 /* button-login-wordpress.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E53CFC11964A0C200E04D68 /* button-login-wordpress.png */; };
+		1E53CFC41964A0C200E04D68 /* button-login-yahoo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E53CFC21964A0C200E04D68 /* button-login-yahoo.png */; };
+		1E9792A9196D78D00003654B /* OneAllResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1E329A091961D3A2008896A8 /* OneAllResources.bundle */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1E3299E91961D25C008896A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1E3299E41961D25C008896A8 /* oneall.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1E3299571961AAE1008896A8;
+			remoteInfo = OneAll;
+		};
+		1E329A081961D3A2008896A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1E3299E41961D25C008896A8 /* oneall.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1E329A001961D37E008896A8;
+			remoteInfo = OneAllResources;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1E100EF61995518E005B7C70 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		1E2FDC08197C5381005BA5DC /* OAShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAShareViewController.h; sourceTree = "<group>"; };
+		1E2FDC09197C5381005BA5DC /* OAShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAShareViewController.m; sourceTree = "<group>"; };
+		1E2FDC0A197C5381005BA5DC /* OAShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OAShareViewController.xib; sourceTree = "<group>"; };
+		1E315A141969DF2D00B66501 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		1E3298CE1961A0E5008896A8 /* OneAll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OneAll.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E3298D21961A0E5008896A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E3298D31961A0E5008896A8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1E3298D51961A0E5008896A8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		1E3298D61961A0E5008896A8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1E3299271961A27F008896A8 /* OAMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAMainViewController.h; sourceTree = "<group>"; };
+		1E3299281961A27F008896A8 /* OAMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAMainViewController.m; sourceTree = "<group>"; };
+		1E3299291961A27F008896A8 /* OAMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OAMainViewController.xib; sourceTree = "<group>"; };
+		1E3299E41961D25C008896A8 /* oneall.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = oneall.xcodeproj; path = ../oneall/oneall.xcodeproj; sourceTree = "<group>"; };
+		1E3C51971A0796490050F4AE /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		1E53CFB719649BB400E04D68 /* button-login-facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-login-facebook.png"; sourceTree = "<group>"; };
+		1E53CFB819649BB400E04D68 /* button-login-foursquare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-login-foursquare.png"; sourceTree = "<group>"; };
+		1E53CFBB19649D5800E04D68 /* button-login-google.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-login-google.png"; sourceTree = "<group>"; };
+		1E53CFBD19649F5500E04D68 /* button-login-mailru.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-login-mailru.png"; sourceTree = "<group>"; };
+		1E53CFBF19649FF400E04D68 /* button-login-blogger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-login-blogger.png"; sourceTree = "<group>"; };
+		1E53CFC11964A0C200E04D68 /* button-login-wordpress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-login-wordpress.png"; sourceTree = "<group>"; };
+		1E53CFC21964A0C200E04D68 /* button-login-yahoo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-login-yahoo.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1E3298CB1961A0E5008896A8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E3299ED1961D2A2008896A8 /* libOneAll.a in Frameworks */,
+				1E100EF71995518E005B7C70 /* FacebookSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1E3298C51961A0E5008896A8 = {
+			isa = PBXGroup;
+			children = (
+				1E3299E41961D25C008896A8 /* oneall.xcodeproj */,
+				1E3299241961A20E008896A8 /* Frameworks */,
+				1E3298D01961A0E5008896A8 /* oneall_sample */,
+				1E3298CF1961A0E5008896A8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1E3298CF1961A0E5008896A8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1E3298CE1961A0E5008896A8 /* OneAll.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1E3298D01961A0E5008896A8 /* oneall_sample */ = {
+			isa = PBXGroup;
+			children = (
+				1E3298D51961A0E5008896A8 /* AppDelegate.h */,
+				1E3298D61961A0E5008896A8 /* AppDelegate.m */,
+				1E315A141969DF2D00B66501 /* Images.xcassets */,
+				1E3299271961A27F008896A8 /* OAMainViewController.h */,
+				1E3299281961A27F008896A8 /* OAMainViewController.m */,
+				1E3299291961A27F008896A8 /* OAMainViewController.xib */,
+				1E2FDC08197C5381005BA5DC /* OAShareViewController.h */,
+				1E2FDC09197C5381005BA5DC /* OAShareViewController.m */,
+				1E2FDC0A197C5381005BA5DC /* OAShareViewController.xib */,
+				1E53CFB619649BB400E04D68 /* resources */,
+				1E3298D11961A0E5008896A8 /* Supporting Files */,
+				1E3C51971A0796490050F4AE /* Settings.bundle */,
+			);
+			path = oneall_sample;
+			sourceTree = "<group>";
+		};
+		1E3298D11961A0E5008896A8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1E3298D21961A0E5008896A8 /* Info.plist */,
+				1E3298D31961A0E5008896A8 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1E3299241961A20E008896A8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1E100EF61995518E005B7C70 /* FacebookSDK.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1E3299E51961D25C008896A8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1E3299EA1961D25C008896A8 /* libOneAll.a */,
+				1E329A091961D3A2008896A8 /* OneAllResources.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1E53CFB619649BB400E04D68 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				1E53CFBF19649FF400E04D68 /* button-login-blogger.png */,
+				1E53CFB719649BB400E04D68 /* button-login-facebook.png */,
+				1E53CFB819649BB400E04D68 /* button-login-foursquare.png */,
+				1E53CFBB19649D5800E04D68 /* button-login-google.png */,
+				1E53CFBD19649F5500E04D68 /* button-login-mailru.png */,
+				1E53CFC11964A0C200E04D68 /* button-login-wordpress.png */,
+				1E53CFC21964A0C200E04D68 /* button-login-yahoo.png */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1E3298CD1961A0E5008896A8 /* oneall_sample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1E3298EE1961A0E5008896A8 /* Build configuration list for PBXNativeTarget "oneall_sample" */;
+			buildPhases = (
+				1E3298CA1961A0E5008896A8 /* Sources */,
+				1E3298CB1961A0E5008896A8 /* Frameworks */,
+				1E3298CC1961A0E5008896A8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = oneall_sample;
+			productName = oneall_sample;
+			productReference = 1E3298CE1961A0E5008896A8 /* OneAll.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1E3298C61961A0E5008896A8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = urk;
+				TargetAttributes = {
+					1E3298CD1961A0E5008896A8 = {
+						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = DPZ963XT95;
+					};
+				};
+			};
+			buildConfigurationList = 1E3298C91961A0E5008896A8 /* Build configuration list for PBXProject "oneall_sample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1E3298C51961A0E5008896A8;
+			productRefGroup = 1E3298CF1961A0E5008896A8 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 1E3299E51961D25C008896A8 /* Products */;
+					ProjectRef = 1E3299E41961D25C008896A8 /* oneall.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				1E3298CD1961A0E5008896A8 /* oneall_sample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		1E3299EA1961D25C008896A8 /* libOneAll.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libOneAll.a;
+			remoteRef = 1E3299E91961D25C008896A8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		1E329A091961D3A2008896A8 /* OneAllResources.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OneAllResources.bundle;
+			remoteRef = 1E329A081961D3A2008896A8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1E3298CC1961A0E5008896A8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E53CFB919649BB400E04D68 /* button-login-facebook.png in Resources */,
+				1E315A151969DF2D00B66501 /* Images.xcassets in Resources */,
+				1E53CFC31964A0C200E04D68 /* button-login-wordpress.png in Resources */,
+				1E53CFBE19649F5500E04D68 /* button-login-mailru.png in Resources */,
+				1E3C51981A0796490050F4AE /* Settings.bundle in Resources */,
+				1E53CFC41964A0C200E04D68 /* button-login-yahoo.png in Resources */,
+				1E2FDC0C197C5381005BA5DC /* OAShareViewController.xib in Resources */,
+				1E53CFBA19649BB400E04D68 /* button-login-foursquare.png in Resources */,
+				1E32992B1961A27F008896A8 /* OAMainViewController.xib in Resources */,
+				1E53CFBC19649D5800E04D68 /* button-login-google.png in Resources */,
+				1E53CFC019649FF400E04D68 /* button-login-blogger.png in Resources */,
+				1E9792A9196D78D00003654B /* OneAllResources.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1E3298CA1961A0E5008896A8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E3298D71961A0E5008896A8 /* AppDelegate.m in Sources */,
+				1E3298D41961A0E5008896A8 /* main.m in Sources */,
+				1E2FDC0B197C5381005BA5DC /* OAShareViewController.m in Sources */,
+				1E32992A1961A27F008896A8 /* OAMainViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1E3298EC1961A0E5008896A8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				METAL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1E3298ED1961A0E5008896A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				METAL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1E3298EF1961A0E5008896A8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = oneall_sample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = OneAll;
+				PROVISIONING_PROFILE = "98d01ac2-3725-4889-8879-219f6c84d074";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/../oneall_sample\"/** \"${PROJECT_DIR}/../oneall_sample\"/** \"${PROJECT_DIR}/../oneall_sample\"/**";
+			};
+			name = Debug;
+		};
+		1E3298F01961A0E5008896A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = oneall_sample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = OneAll;
+				PROVISIONING_PROFILE = "f7a2d770-2351-4b4b-a769-0b38fb47de96";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/../oneall_sample\"/** \"${PROJECT_DIR}/../oneall_sample\"/** \"${PROJECT_DIR}/../oneall_sample\"/**";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1E3298C91961A0E5008896A8 /* Build configuration list for PBXProject "oneall_sample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E3298EC1961A0E5008896A8 /* Debug */,
+				1E3298ED1961A0E5008896A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1E3298EE1961A0E5008896A8 /* Build configuration list for PBXNativeTarget "oneall_sample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E3298EF1961A0E5008896A8 /* Debug */,
+				1E3298F01961A0E5008896A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1E3298C61961A0E5008896A8 /* Project object */;
+}

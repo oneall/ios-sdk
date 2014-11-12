@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>BB927115-D35C-4EB0-B450-378940DB3AB4</string>
+	<key>IDESourceControlProjectName</key>
+	<string>oneall</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D15CCC1967117DC4D434F697C31204BE40D7EEDC</key>
+		<string>bitbucket.org:UrK/oneall.git</string>
+		<key>E28E36D423EC87798E52E2BF482E9F7A1E6479D6</key>
+		<string>https://github.com/rs/SDWebImage.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>oneall.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D15CCC1967117DC4D434F697C31204BE40D7EEDC</key>
+		<string>..</string>
+		<key>E28E36D423EC87798E52E2BF482E9F7A1E6479D6</key>
+		<string>..oneall_sample/oneall_sample/externals/SDWebImage</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>bitbucket.org:UrK/oneall.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D15CCC1967117DC4D434F697C31204BE40D7EEDC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D15CCC1967117DC4D434F697C31204BE40D7EEDC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ios</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E28E36D423EC87798E52E2BF482E9F7A1E6479D6</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SDWebImage</string>
+		</dict>
+	</array>
+</dict>
+</plist>
