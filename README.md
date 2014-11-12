@@ -13,26 +13,26 @@ SDK allowing to authenticate and make posts on user's walls.
 
 ### Add the OneAll SDK to the Project
 Using Finder drag the OneAll.xcodeproj file into the XCode and place in your project:
-![XCode Setup](https://raw.github.com/oneall/ios-sdk/master/screenshots/install_drag_xcode.png)
+![XCode Setup](https://raw.githubusercontent.com/oneall/ios-sdk/master/screenshots/install_drag_xcode.png)
 
 ### Setup Header Paths
 Now select your project in project explorer and click “Build Settings”:
 
-![Build Settings](https://raw.github.com/oneall/ios-sdk/master/screenshots/install_build_settings.png)
+![Build Settings](https://raw.githubusercontent.com/oneall/ios-sdk/master/screenshots/install_build_settings.png)
 
 Make sure your target is selected on the left of the panel, then find “Header Search Paths” in the list of settings and add the folder in which the OneAll library is located. This would normally be the folder from which you dragged the `OneAll.xcodeproj` from:
 
-![Header Search Paths](https://raw.github.com/oneall/ios-sdk/master/screenshots/install_header_search_path.png)
+![Header Search Paths](https://raw.githubusercontent.com/oneall/ios-sdk/master/screenshots/install_header_search_path.png)
  
  ### Link the Library
  Now, go into “Build Phases”, expand “Link Binary With Libraries” section and click “+” in this section. Add the `libOneAll.a` from the top of the list: 
 
-![Link Library](https://raw.github.com/oneall/ios-sdk/master/screenshots/install_build_phases.png)
+![Link Library](https://raw.githubusercontent.com/oneall/ios-sdk/master/screenshots/install_build_phases.png)
 
 ### Add Resources
 While at the same screen, make sure the resources of the library are added to the final executable by dragging it from the project explorer into “Copy Bundle Resources” section:
 
-![Resources](https://raw.github.com/oneall/ios-sdk/master/screenshots/install_add_resources.png)
+![Resources](https://raw.githubusercontent.com/oneall/ios-sdk/master/screenshots/install_add_resources.png)
 
 ### Setup Source Files
 Import the SDK main include file at the top of AppDelegate.m:
@@ -80,7 +80,7 @@ Generally, network activity indicator should be controlled by the application. I
 ```
 The indicator will be activated whenever the SDK is communicating with servers.
 
-![Resources](https://raw.github.com/oneall/ios-sdk/master/screenshots/install_network_notification.png)
+![Resources](https://raw.githubusercontent.com/oneall/ios-sdk/master/screenshots/install_network_notification.png)
 
 ## Setting up Native Twitter Auth
 To use native Twitter Authentication, you have to setup the library with more settings. Replace the initialisation with the following call:
