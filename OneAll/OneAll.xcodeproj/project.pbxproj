@@ -696,7 +696,6 @@
 				OTHER_LDFLAGS = "-all_load";
 				PROVISIONING_PROFILE = "98d01ac2-3725-4889-8879-219f6c84d074";
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -734,7 +733,6 @@
 				OTHER_LDFLAGS = "-all_load";
 				PROVISIONING_PROFILE = "f7a2d770-2351-4b4b-a769-0b38fb47de96";
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

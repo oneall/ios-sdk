@@ -18,6 +18,7 @@
 
 @property (strong, nonatomic) UIView *dimView;
 @property (strong, nonatomic) NSURL *url;
+@property (nonatomic) BOOL lastLoginComplete;
 
 @end
 
@@ -58,6 +59,7 @@
 {
     [super viewDidLoad];
     self.webView.delegate = self;
+    self.lastLoginComplete = false;
     [self loadWebRequest];
 }
 
@@ -96,6 +98,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     {
         OALog(@"Skipping loading");
         [self.actionDelegate webLoginComplete:self withUrl:request.URL];
+        self.lastLoginComplete = true;
         return NO;
     }
     else
@@ -107,9 +110,15 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    OALog(@"Loading URL %@ failed: %@, %@", webView.request.URL, error.localizedDescription, error.userInfo);
-    [self.actionDelegate webLoginCancelled:self];
-    [[OANetworkActivityIndicatorControl sharedInstance] turnOff];
+    /* when the page loading is broken by webView:shouldStartLoadWithRequest:navigationType due to redirect to SDK
+     * custom scheme, this fail method is called also. Work around it by marking successful login and omitting its
+     * effects */
+    if (!self.lastLoginComplete)
+    {
+        OALog(@"Loading URL %@ failed: %@, %@", webView.request.URL, error.localizedDescription, error.userInfo);
+        [self.actionDelegate webLoginCancelled:self];
+        [[OANetworkActivityIndicatorControl sharedInstance] turnOff];
+    }
 }
 
 #pragma mark - Activity overlay handling

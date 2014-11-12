@@ -97,7 +97,13 @@ static NSString *const kCellIdentifier = @"OAMainSampleViewCell";
         [self userRetrieved:user new:newUser];
     };
     
-    void (^callbackFailure)(NSError *) = ^(NSError *error) { [dimView removeFromSuperview]; };
+    void (^callbackFailure)(NSError *) = ^(NSError *error) {
+        [dimView removeFromSuperview];
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops", @"")
+                                   message:NSLocalizedString(@"Something went wrong. Check your OneAll application settings and your connection.", @"")
+                                  delegate:nil
+                         cancelButtonTitle:NSLocalizedString(@"OK", @"") otherButtonTitles:nil] show];
+    };
     
     [[OAManager sharedInstance] loginWithSuccess:callbackSuccess andFailure:callbackFailure];
 }
