@@ -6,15 +6,16 @@
 //  Copyright (c) 2014 urk. All rights reserved.
 //
 #import "OALoginViewProvider.h"
+#import "OAProvider.h"
 
 @implementation OALoginViewProvider
 
-+ (instancetype)providerWithType:(OAProviderType)provider andName:(NSString *)name andImage:(NSString *)imageName
++ (instancetype)provider:(OAProvider *)provider image:(NSString *)imageName tag:(NSInteger)tag
 {
     OALoginViewProvider *rv = [[OALoginViewProvider alloc] init];
-    rv.name = name;
     rv.imageName = imageName;
-    rv.type = provider;
+    rv.provider = provider;
+    rv.tag = tag;
     return rv;
 }
 

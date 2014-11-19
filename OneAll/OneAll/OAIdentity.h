@@ -3,7 +3,7 @@
 // Copyright (c) 2014 urk. All rights reserved.
 //
 #import <Foundation/Foundation.h>
-#import "OAProvider.h"
+#import "OAProviderManager.h"
 
 /** email object which is a part of the OAIdentity object returned by OneAll server */
 @interface OAIdentityEmail : NSObject
@@ -15,7 +15,7 @@
 @interface OAIdentity : NSObject
 
 @property (strong, nonatomic) NSString *identityToken;
-@property (nonatomic) OAProviderType provider;
+@property (strong, nonatomic) NSString *provider;
 @property (strong, nonatomic) NSString *id;
 @property (strong, nonatomic) NSString *displayName;
 @property (strong, nonatomic) NSString *formattedName;

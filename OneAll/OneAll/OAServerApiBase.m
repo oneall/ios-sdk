@@ -8,6 +8,7 @@
 #import "OASettings.h"
 #import "OALog.h"
 #import "OANetworkActivityIndicatorControl.h"
+#import "OAGlobals.h"
 
 static NSString *const kConfigUser = @"apiBaseUser";
 static NSString *const kConfigApiKey = @"apiBaseKey";
@@ -110,6 +111,19 @@ NSString *const kHttpHeaderContentTypeImage = @"image/jpeg";
     return [NSString stringWithFormat:@"%@/%@", [OAServerApiBase apiServer], endpoint];
 }
 
++ (BOOL)parseBool:(id)val
+{
+    if (val == nil)
+    {
+        return false;
+    }
+    if ([val isKindOfClass:[NSNumber class]])
+    {
+        return [val boolValue];
+    }
+    return false;
+}
+
 #pragma mark - NSURLConnectionDelegate
 
 /* log the failed request */
@@ -145,8 +159,6 @@ NSString *const kHttpHeaderContentTypeImage = @"image/jpeg";
     NSError *error;
 
     [[OANetworkActivityIndicatorControl sharedInstance] turnOff];
-
-    OALog(@"Connection to %@ completed with status %ld", [[connection originalRequest] URL], (long)self.statusCode);
 
     OALog(@"Connection %@ completed after %lf with status %ld", connection.originalRequest.URL,
           [[NSDate date] timeIntervalSinceDate:_startTime], (long)self.statusCode);
@@ -208,7 +220,9 @@ NSString *const kHttpHeaderContentTypeImage = @"image/jpeg";
         url = [NSString stringWithFormat:@"%@?%@", url, queryString];
     }
 
-    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]
+                                                       cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                   timeoutInterval:kConnectionTimeout];
 
     [req setHTTPMethod:httpMethod];
 

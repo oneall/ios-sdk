@@ -17,6 +17,7 @@
 @property (nonatomic, weak) IBOutlet UITextField *labelText;
 @property (nonatomic, weak) IBOutlet UITextField *labelLinkName;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollViewContents;
+@property (weak, nonatomic) UIActivityIndicatorView *activityIndicator;
 
 @property (strong, nonatomic) OAUser *user;
 @property (weak, nonatomic) UIView *activityView;
@@ -76,13 +77,14 @@
         return;
     }
     [self.activityView removeFromSuperview];
+    [self.activityIndicator stopAnimating];
 }
 
 - (NSArray *)providersForUser:(OAUser *)user
 {
     NSMutableArray *rv = [NSMutableArray arrayWithCapacity:user.identities.count];
-    [user.identities enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [rv addObject:@(((OAIdentity *) obj).provider)];
+    [user.identities enumerateObjectsUsingBlock:^(OAIdentity *obj, NSUInteger idx, BOOL *stop) {
+        [rv addObject:obj.provider];
     }];
     return rv;
 }
@@ -105,12 +107,14 @@
 
     [dimView addSubview:av];
     av.center = dimView.center;
+    av.hidesWhenStopped = true;
 
     [av startAnimating];
 
     [self.view addSubview:av];
 
     self.activityView = dimView;
+    self.activityIndicator = av;
 }
 
 - (IBAction)handleButtonShare:(id)sender
@@ -141,7 +145,7 @@
                                                [self hideActivityView];
                                                if (failed)
                                                {
-                                                   [self shareFailure];
+                                                   [self shareFailure:error];
                                                }
                                                else
                                                {
@@ -150,25 +154,28 @@
                                            }];
     if (!res)
     {
-        [self shareFailure];
+        [self hideActivityView];
+        [self shareFailure:
+                [OAError errorWithMessage:NSLocalizedString(@"User not loogged in or no providers specified", @"")
+                                  andCode:OA_ERROR_MESSAGE_POST_FAIL]];
     }
 }
 
-- (void)shareFailure
+- (void)shareFailure:(NSError *)error
 {
-    [[[UIAlertView alloc] initWithTitle:@"Failed"
-                                message:@"Failed to share message"
+    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Ooops", @"")
+                                message:error.localizedDescription
                                delegate:nil
-                      cancelButtonTitle:@"OK"
+                      cancelButtonTitle:NSLocalizedString(@"OK", @"OK")
                       otherButtonTitles:nil] show];
 }
 
 - (void)shareSuccess
 {
-    [[[UIAlertView alloc] initWithTitle:@"Succeeded"
-                                message:@"Message shared successfully"
+    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Succeeded", @"")
+                                message:NSLocalizedString(@"Message shared successfully", @"")
                                delegate:nil
-                      cancelButtonTitle:@"OK"
+                      cancelButtonTitle:NSLocalizedString(@"OK", @"")
                       otherButtonTitles:nil] show];
 }
 

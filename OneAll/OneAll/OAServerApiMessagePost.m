@@ -66,6 +66,8 @@ static NSString *const kOAPublishAuthType = @"OneAllPublishToken";
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
+    OALog(@"Message posting failed: %@, %@", error, error.userInfo);
+
     [super connection:connection didFailWithError:error];
     if (self.callback)
     {
@@ -76,22 +78,25 @@ static NSString *const kOAPublishAuthType = @"OneAllPublishToken";
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    OALog(@"Message posting finished with status %d", (int)self.statusCode);
+
     [super connectionDidFinishLoading:connection];
 
     OAMessagePostResult *result = [self parseResponse:self.response[@"result"][@"data"][@"sharing_message"]];
 
     BOOL success = (self.statusCode == HTTP_STATUS_CODE_OK || self.statusCode == HTTP_STATUS_CODE_MULTI_STATUS);
 
-    NSError *err;
+    OAError *err;
 
     if (!success)
     {
-        err = [OAError errorWithMessage:@"At least one provider failed" andCode:OA_ERROR_AUTH_FAIL];
+        err = [OAError errorWithMessage:self.response[@"request"][@"status"][@"info"]
+                                andCode:OA_ERROR_MESSAGE_POST_FAIL];
     }
 
     if (self.callback)
     {
-        self.callback(!success, result, [OAError errorWithError:err]);
+        self.callback(!success, result, err);
         self.callback = nil;
     }
 }
@@ -106,7 +111,7 @@ static NSString *const kOAPublishAuthType = @"OneAllPublishToken";
     result.code = [pub[@"status"][@"code"] integerValue];
     result.success = [result.flag isEqualToString:@"success"] && result.code == HTTP_STATUS_CODE_OK;
     result.message = pub[@"status"][@"message"];
-    result.provider = [[OAProvider sharedInstance] providerWithName:pub[@"provider"]];
+    result.provider = pub[@"provider"];
     return result;
 }
 
@@ -184,24 +189,12 @@ static NSString *const kOAPublishAuthType = @"OneAllPublishToken";
 
     NSDictionary *paramDict = @{ @"request": @{
         @"message": @{
-            @"providers": [self serializeProviders:providers],
+            @"providers": providers,
             @"parts": contentsDictionary
         }
     }};
 
     return paramDict;
-}
-
-/* convert all the providers into their string representations understandable by the OA server */
-- (NSArray *)serializeProviders:(NSArray *)providers
-{
-    NSMutableArray *array = [NSMutableArray arrayWithCapacity:[providers count]];
-    [providers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        OAProviderType pt = (OAProviderType) [obj integerValue];
-        NSString *strProv = [[OAProvider sharedInstance] providerName:pt];
-        [array addObject:strProv];
-    }];
-    return array;
 }
 
 @end

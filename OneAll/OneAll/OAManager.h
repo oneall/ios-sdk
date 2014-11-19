@@ -7,7 +7,7 @@
 //
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "OAProvider.h"
+#import "OAProviderManager.h"
 #import "OAUser.h"
 #import "OAIdentity.h"
 #import "OAMessagePostResult.h"
@@ -108,8 +108,11 @@ typedef void (^OALoginCallbackFailure)(NSError *);
  * @param success success callback method
  *
  * @param failure failure callback method
+ *
+ * @return `true` if the login has been started successfully, `false` if the provider does not exist or if the provider
+ *  is not configured and should be setup before use.
  */
-- (void)loginWithProvider:(OAProviderType)provider
+- (BOOL)loginWithProvider:(NSString *)provider
                   success:(OALoginCallbackSuccess)success
                   failure:(OALoginCallbackFailure)failure;
 
@@ -182,5 +185,12 @@ typedef void (^OALoginCallbackFailure)(NSError *);
                publishToken:(NSString *)publishToken
                 toProviders:(NSArray *)providers
                    callback:(OAMessagePostCallback)complete;
+
+/**
+ *  get list of providers supported by the SDK
+ *
+ * @return array of provider types supported
+ */
+- (NSArray *)providers;
 
 @end

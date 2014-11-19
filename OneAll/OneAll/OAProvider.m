@@ -1,80 +1,69 @@
 //
-//  OAProvider.m
-//  oneall
-//
-//  Created by Uri Kogan on 7/2/14.
-//  Copyright (c) 2014 urk. All rights reserved.
+// Created by Uri Kogan on 19/11/14.
+// Copyright (c) 2014 urk. All rights reserved.
 //
 #import "OAProvider.h"
 
-@interface OAProvider ()
-@property (strong, nonatomic) NSDictionary *dict;
-@property (strong, nonatomic) NSDictionary *inverseDict;
-@end
+static NSString *const kEncFieldType = @"kEncFieldType";
+static NSString *const kEncFieldName = @"kEncFieldName";
+static NSString *const kEncFieldUserInputRequired = @"kEncFieldUserInputRequired";
+static NSString *const kEncFieldUserInputTitle = @"kEncFieldUserInputTitle";
+static NSString *const kEncFieldIsConfigured = @"kEncFieldIsConfigured";
+static NSString *const kEncFieldIsConfigurationRequired = @"kEncFieldIsConfigurationRequired";
 
 @implementation OAProvider
 
-- (id)init
+- (void)encodeWithCoder:(NSCoder *)coder
 {
-    self = [super init];
-    if (!self)
+    [coder encodeObject:self.type forKey:kEncFieldType];
+    [coder encodeObject:self.name forKey:kEncFieldName];
+    [coder encodeBool:self.userInputRequired forKey:kEncFieldUserInputRequired];
+    [coder encodeBool:self.isConfigured forKey:kEncFieldIsConfigured];
+    [coder encodeBool:self.isConfigurationRequired forKey:kEncFieldIsConfigurationRequired];
+    [coder encodeObject:self.userInputTitle forKey:kEncFieldUserInputTitle];
+}
+
+- (id)initWithCoder:(NSCoder *)coder
+{
+    self = [self init];
+    if (self)
     {
-        return nil;
+        _type = [coder decodeObjectForKey:kEncFieldType];
+        _name = [coder decodeObjectForKey:kEncFieldName];
+        _userInputRequired = [coder decodeBoolForKey:kEncFieldUserInputRequired];
+        _isConfigured = [coder decodeBoolForKey:kEncFieldIsConfigured];
+        _isConfigurationRequired = [coder decodeBoolForKey:kEncFieldIsConfigurationRequired];
+        _userInputTitle = [coder decodeObjectForKey:kEncFieldUserInputTitle];
     }
-
-    _dict = @{
-              @(OA_PROVIDER_AMAZON): @"amazon",
-              @(OA_PROVIDER_BLOGGER): @"blogger",
-              @(OA_PROVIDER_DISQUS): @"disqus",
-              @(OA_PROVIDER_FACEBOOK): @"facebook",
-              @(OA_PROVIDER_FOURSQUARE): @"foursquare",
-              @(OA_PROVIDER_GITHUB): @"github",
-              @(OA_PROVIDER_GOOGLE): @"google",
-              @(OA_PROVIDER_INSTAGRAM): @"instagram",
-              @(OA_PROVIDER_LINKEDIN): @"linkedin",
-              @(OA_PROVIDER_LIVEJOURNAL): @"livejournal",
-              @(OA_PROVIDER_MAILRU): @"mailru",
-              @(OA_PROVIDER_ODNOKLASSNIKI): @"odnoklassniki",
-              @(OA_PROVIDER_OPENID): @"openid",
-              @(OA_PROVIDER_PAYPAL): @"paypal",
-              @(OA_PROVIDER_REDDIT): @"reddit",
-              @(OA_PROVIDER_SKYROCK): @"skyrock",
-              @(OA_PROVIDER_STACKEXCHANGE): @"stackexchange",
-              @(OA_PROVIDER_STEAM): @"steam",
-              @(OA_PROVIDER_TWITCH): @"twitch",
-              @(OA_PROVIDER_TWITTER): @"twitter",
-              @(OA_PROVIDER_VIMEO): @"vimeo",
-              @(OA_PROVIDER_VKONTAKTE): @"vkontakte",
-              @(OA_PROVIDER_WINDOWSLIVE): @"windowslive",
-              @(OA_PROVIDER_WORDPRESS): @"wordpress",
-              @(OA_PROVIDER_YAHOO): @"yahoo",
-              @(OA_PROVIDER_YOUTUBE): @"youtube"
-             };
-
-    _inverseDict = [NSDictionary dictionaryWithObjects:[_dict allKeys] forKeys:[_dict allValues]];
-
     return self;
 }
 
-+ (instancetype)sharedInstance
++ (instancetype)providerType:(NSString *)type
+                        name:(NSString *)name
+                isConfigured:(BOOL)isConfigured
+     isConfigurationRequired:(BOOL)isConfigurationRequired
+           userInputRequired:(BOOL)userInputRequired
+              userInputTitle:(NSString *)userInputTitle
 {
-    static OAProvider *_sharedInstance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _sharedInstance = [[OAProvider alloc] init];
-    });
-
-    return _sharedInstance;
+    OAProvider *rv = [[OAProvider alloc] init];
+    rv.type = type;
+    rv.name = name;
+    rv.userInputRequired = userInputRequired;
+    rv.userInputTitle = userInputTitle;
+    rv.isConfigured = isConfigured;
+    rv.isConfigurationRequired = isConfigurationRequired;
+    return rv;
 }
 
-- (NSString *)providerName:(OAProviderType)provider
+- (NSString *)description
 {
-    return self.dict[@(provider)];
-}
-
-- (OAProviderType)providerWithName:(NSString *)providerName
-{
-    return (OAProviderType) [self.inverseDict[providerName] integerValue];
+    return [NSString stringWithFormat:@"<%@: %@, name=%@, config=%d/%d%@>",
+                                      NSStringFromClass(self.class),
+                                      self.type,
+                                      self.name,
+                                      self.isConfigured,
+                                      self.isConfigurationRequired,
+                                      self.userInputRequired ? [NSString stringWithFormat:@", %@", self.userInputTitle] : nil];
 }
 
 @end

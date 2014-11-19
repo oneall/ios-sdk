@@ -17,8 +17,16 @@
 #import "OALog.h"
 #import "OATwitterLogin.h"
 #import "OANetworkActivityIndicatorControl.h"
+#import "OAProvider.h"
 
-@interface OAManager () <OAWebLoginDelegate, OALoginControllerDelegate>
+/* special provider type: Facebook. it requires special attention when logging in using native SDK */
+static NSString *const kOaProviderFacebook = @"facebook";
+
+/* special provider type: Twitter. it requires special attention when logging in using native SDK */
+static NSString *const kOaProviderTwitter = @"twitter";
+
+
+@interface OAManager () <OAWebLoginDelegate, OALoginControllerDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) OALoginCallbackFailure callbackFailure;
 @property (strong, nonatomic) OALoginCallbackSuccess callbackSuccess;
@@ -29,6 +37,9 @@
 /* OneAll system uses nonce to identify sessions. after initial login, this services as a cookie to allow the server
  * to connect between the session opened and the user logged in. */
 @property (strong, nonatomic) NSString *lastNonce;
+
+/** last selected login provider */
+@property (strong, nonatomic) OAProvider *selectedProvider;
 
 @end
 
@@ -50,20 +61,34 @@
 
 #pragma mark - Interface methods
 
-- (void)loginWithProvider:(OAProviderType)provider
+- (BOOL)loginWithProvider:(NSString *)provider
                   success:(OALoginCallbackSuccess)success
                   failure:(OALoginCallbackFailure)failure
 {
-    OALog(@"Login with provider: %@", [[OAProvider sharedInstance] providerName:provider]);
+    self.selectedProvider = [[OAProviderManager sharedInstance] providerWithType:provider];
+
+    if (self.selectedProvider == nil)
+    {
+        OALog(@"Invalid provider type: %@", provider);
+        return false;
+    }
+
+    if (self.selectedProvider.isConfigurationRequired && !self.selectedProvider.isConfigured)
+    {
+        OALog(@"Provider %@ not configured", provider);
+        return false;
+    }
+
+    OALog(@"Login with provider: %@", self.selectedProvider.type);
     self.callbackFailure = failure;
     self.callbackSuccess = success;
 
     self.lastNonce = [[NSUUID UUID] UUIDString];
-    
+
     BOOL nativeLoginSuccessful = false;
 
     /* for Twitter/Facebook, try to use native SDK's and fall back to web login in case of failure */
-    if (provider == OA_PROVIDER_FACEBOOK && [[OAFacebookLogin sharedInstance] enabled])
+    if ([provider isEqualToString:kOaProviderFacebook] && [[OAFacebookLogin sharedInstance] enabled])
     {
         nativeLoginSuccessful = [[OAFacebookLogin sharedInstance] loginSuccess:^(NSString *sessionToken)
                               {
@@ -74,7 +99,7 @@
                                   [self facebookLoginFailed:error userMessage:userMessage];
                               }];
     }
-    else if (provider == OA_PROVIDER_TWITTER && [[OATwitterLogin sharedInstance] canBeUsed])
+    else if ([provider isEqualToString:kOaProviderTwitter] && [[OATwitterLogin sharedInstance] canBeUsed])
     {
         nativeLoginSuccessful = [[OATwitterLogin sharedInstance] login:^(NSString *token, NSString *secret)
         {
@@ -84,8 +109,10 @@
 
     if (!nativeLoginSuccessful)
     {
-        [self webLoginWithProvider:provider];
+        [self webLoginWithProvider];
     }
+
+    return true;
 }
 
 - (void)setupWithSubdomain:(NSString *)subdomain
@@ -112,6 +139,9 @@
 
     /* initialize Twitter settings */
     [[OATwitterLogin sharedInstance] setConsumerKey:twitterConsumerKey andSecret:twitterSecret];
+
+    /* load provder names from the server */
+    [[OAProviderManager sharedInstance] refreshProviderNamesInBackgroundWithSubdomain:subdomain];
 }
 
 - (void)setNetworkActivityIndicatorControlledByOa:(BOOL)oaControl
@@ -199,18 +229,49 @@
                                            }];
 }
 
+- (NSArray *)providers
+{
+    NSMutableArray *rv = [NSMutableArray arrayWithCapacity:[[[OAManager sharedInstance] providers] count]];
+    [[[OAManager sharedInstance] providers] enumerateObjectsUsingBlock:^(OAProvider *obj, NSUInteger idx, BOOL *stop)
+    {
+        [rv addObject:obj.type];
+    }];
+    return rv;
+}
+
 #pragma mark - OAWebLoginDelegate
 
 - (void)webLoginCancelled:(id)sender
 {
     OALog(@"Web login cancelled");
-    [sender dismissViewControllerAnimated:YES completion:nil];
-    if (self.callbackFailure)
+    void (^cancelHandler)() = ^{
+        if (self.callbackFailure)
+        {
+            self.callbackFailure([OAError errorWithMessage:@"Cancelled" andCode:OA_ERROR_CANCELLED]);
+            self.callbackFailure = nil;
+            self.callbackSuccess = nil;
+        }
+    };
+    if (sender != nil)
     {
-        self.callbackFailure([OAError errorWithMessage:@"Cancelled" andCode:OA_ERROR_CANCELLED]);
-        self.callbackFailure = nil;
-        self.callbackSuccess = nil;
+        [sender dismissViewControllerAnimated:YES completion:cancelHandler];
     }
+    else
+    {
+        cancelHandler();
+    }
+}
+
+- (void)webLoginFailed:(id)sender error:(NSError *)error
+{
+    [sender dismissViewControllerAnimated:true completion:^{
+        if (self.callbackFailure)
+        {
+            self.callbackFailure(error);
+            self.callbackFailure = nil;
+            self.callbackSuccess = nil;
+        }
+    }];
 }
 
 /* in case of successful login connection/user information has to be retrieved, which will include information about the
@@ -249,14 +310,54 @@
     }
 }
 
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ([@"OK" isEqualToString:[alertView buttonTitleAtIndex:buttonIndex]])
+    {
+        NSString *loginData = [alertView textFieldAtIndex:0].text;
+        [self webLoginWithLoginData:loginData];
+    }
+    else
+    {
+        [self webLoginCancelled:nil];
+    }
+}
+
 #pragma mark - Utilities
 
 /* start login with specified provider */
-- (void)webLoginWithProvider:(OAProviderType)provider
+- (void)webLoginWithProvider
 {
-    NSURL *url = [self apiUrlForProvider:provider withNonce:self.lastNonce];
+    if (self.selectedProvider.userInputRequired)
+    {
+        NSString *message =
+                [NSString stringWithFormat:NSLocalizedString(@"Please, enter your %@ %@ to login with", @""),
+                                           self.selectedProvider.name,
+                                           self.selectedProvider.userInputTitle];
 
-    OALog(@"Web login with provider %@ and url: %@", [[OAProvider sharedInstance] providerName:provider], url);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:self.selectedProvider.name
+                                                        message:message
+                                                       delegate:self
+                                              cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
+                                              otherButtonTitles:NSLocalizedString(@"OK", @""), nil];
+
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [alert show];
+    }
+    else
+    {
+        [self webLoginWithLoginData:nil];
+    }
+}
+
+/* start login with specified provider */
+- (void)webLoginWithLoginData:(NSString *)loginData
+{
+    NSURL *url = [self apiUrlForProvider:self.selectedProvider.type withNonce:self.lastNonce loginData:loginData];
+
+    OALog(@"Web login with provider %@ and url: %@", self.selectedProvider.type, url);
 
     UIViewController *vc = [OAWebLoginViewController webLoginWithDelegate:self andUrl:url];
 
@@ -297,7 +398,7 @@
 {
     OALog(@"Failed to login with native Facebook authentication");
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self webLoginWithProvider:OA_PROVIDER_FACEBOOK];
+        [self webLoginWithProvider];
     });
 }
 
@@ -307,7 +408,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         if (!token)
         {
-            [self webLoginWithProvider:OA_PROVIDER_TWITTER];
+            [self webLoginWithProvider];
             return;
         }
 
@@ -353,14 +454,26 @@
 }
 
 /* create authentication URL for specified provider type */
-- (NSURL *)apiUrlForProvider:(OAProviderType)provider withNonce:(NSString *)nonce
+- (NSURL *)apiUrlForProvider:(NSString *)providerType withNonce:(NSString *)nonce loginData:(NSString *)loginData
 {
     NSString *url = [NSString stringWithFormat:
                      @"https://%@.api.oneall.com/socialize/connect/mobile/%@/?nonce=%@&callback_uri=oneall://%@",
                      [OASettings sharedInstance].subdomain,
-                     [[OAProvider sharedInstance] providerName:provider],
+                     providerType,
                      nonce,
-                     [[OAProvider sharedInstance] providerName:provider]];
+                    providerType];
+
+    if (loginData != nil)
+    {
+        NSString *encodedLoginData = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
+                NULL,
+                (CFStringRef)loginData,
+                NULL,
+                (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+                kCFStringEncodingUTF8));
+
+        url = [url stringByAppendingFormat:@"&login_data=%@", encodedLoginData];
+    }
 
     return [NSURL URLWithString:url];
 }
@@ -369,11 +482,11 @@
 
 /* implementation of OALoginControllerDelegate: called when the user selected one of providers in own view controller
  * with providers selector */
-- (void)oaLoginController:(id)sender selectedMethod:(OAProviderType)provider
+- (void)oaLoginController:(id)sender selectedMethod:(OAProvider *)provider
 {
-    OALog(@"Logging in with provider: %@", [[OAProvider sharedInstance] providerName:provider]);
+    OALog(@"Logging in with provider: %@", provider.name);
     [sender dismissViewControllerAnimated:YES completion:^{
-        [self loginWithProvider:provider success:self.callbackSuccess failure:self.callbackFailure];
+        [self loginWithProvider:provider.type success:self.callbackSuccess failure:self.callbackFailure];
     }];
 }
 

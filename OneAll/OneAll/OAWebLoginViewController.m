@@ -10,6 +10,7 @@
 #import "OAGlobals.h"
 #import "OALog.h"
 #import "OANetworkActivityIndicatorControl.h"
+#import "OAError.h"
 
 @interface OAWebLoginViewController () <UIWebViewDelegate>
 
@@ -19,6 +20,7 @@
 @property (strong, nonatomic) UIView *dimView;
 @property (strong, nonatomic) NSURL *url;
 @property (nonatomic) BOOL lastLoginComplete;
+@property (strong) NSTimer *timeoutTimer;
 
 @end
 
@@ -71,7 +73,11 @@
 - (void)loadWebRequest
 {
     OALog(@"Loading web request %@", self.url);
-    NSURLRequest *req = [NSURLRequest requestWithURL:self.url];
+
+    NSURLRequest *req = [[NSURLRequest alloc] initWithURL:self.url
+                                              cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                          timeoutInterval:kConnectionTimeout];
+
     [self.webView loadRequest:req];
     [[OANetworkActivityIndicatorControl sharedInstance] turnOn];
 }
@@ -82,6 +88,7 @@
 {
     OALog(@"Page loading complete: %@", webView.request.URL);
     [self hideActivityOverlay];
+    [self.timeoutTimer invalidate];
     [[OANetworkActivityIndicatorControl sharedInstance] turnOff];
 }
 
@@ -108,6 +115,24 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     }
 }
 
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    [self.timeoutTimer invalidate];
+    self.timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:kConnectionTimeout
+                                                         target:self
+                                                       selector:@selector(webTimeout)
+                                                       userInfo:nil
+                                                        repeats:false];
+}
+
+- (void)webTimeout
+{
+    self.lastLoginComplete = true;
+    [self.webView stopLoading];
+    [self.actionDelegate webLoginFailed:self
+                                  error:[OAError errorWithMessage:@"Connection timed out" andCode:OA_ERROR_TIMEOUT]];
+}
+
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     /* when the page loading is broken by webView:shouldStartLoadWithRequest:navigationType due to redirect to SDK
@@ -116,7 +141,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     if (!self.lastLoginComplete)
     {
         OALog(@"Loading URL %@ failed: %@, %@", webView.request.URL, error.localizedDescription, error.userInfo);
-        [self.actionDelegate webLoginCancelled:self];
+        [self.actionDelegate webLoginFailed:self error:error];
         [[OANetworkActivityIndicatorControl sharedInstance] turnOff];
     }
 }

@@ -53,7 +53,7 @@
 
     OAIdentity *rv = [[OAIdentity alloc] init];
     rv.identityToken = dict[@"identity_token"];
-    rv.provider = [[OAProvider sharedInstance] providerWithName:dict[@"provider"]];
+    rv.provider = dict[@"provider"];
     rv.id = dict[@"id"];
     rv.displayName = dict[@"displayName"];
     rv.gender = dict[@"gender"];

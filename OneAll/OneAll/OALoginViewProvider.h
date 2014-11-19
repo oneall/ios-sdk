@@ -6,15 +6,15 @@
 //  Copyright (c) 2014 urk. All rights reserved.
 //
 #import <Foundation/Foundation.h>
-#import "OAProvider.h"
+#import "OAProviderManager.h"
 
 /** simple data holder with provider type, name, and corresponding provider icon */
 @interface OALoginViewProvider : NSObject
 
-@property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *imageName;
-@property (nonatomic) OAProviderType type;
+@property (strong, nonatomic) OAProvider *provider;
+@property (nonatomic) NSInteger tag;
 
-+ (instancetype)providerWithType:(OAProviderType)provider andName:(NSString *)name andImage:(NSString *)imageName;
++ (instancetype)provider:(OAProvider *)provider image:(NSString *)imageName tag:(NSInteger)tag;
 
 @end

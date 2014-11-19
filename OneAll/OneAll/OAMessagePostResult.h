@@ -3,7 +3,7 @@
 // Copyright (c) 2014 urk. All rights reserved.
 //
 #import <Foundation/Foundation.h>
-#import "OAProvider.h"
+#import "OAProviderManager.h"
 #import "OAError.h"
 
 /** result of message posing for single provider */
@@ -12,7 +12,7 @@
 @property (strong, nonatomic) NSString *flag;
 @property (nonatomic) NSInteger code;
 @property (strong, nonatomic) NSString *message;
-@property (nonatomic) OAProviderType provider;
+@property (strong, nonatomic) NSString *provider;
 @end
 
 /** result of message posting. Contains results for multiple providers as well as original returned dictionary */

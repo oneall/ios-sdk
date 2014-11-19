@@ -9,6 +9,7 @@
 #import "OALoginViewProvider.h"
 #import "OABundle.h"
 #import "OALog.h"
+#import "OAProvider.h"
 #import <QuartzCore/QuartzCore.h>
 
 static NSString *const kCellIdentifier = @"oaProvCell";
@@ -74,36 +75,77 @@ static const CGFloat kRowHeight = 55.f;
     static dispatch_once_t onceToken;
     static NSArray *prv;
     dispatch_once(&onceToken, ^{
-        prv = @[
-                [OALoginViewProvider providerWithType:OA_PROVIDER_AMAZON andName:@"Amazon" andImage:@"button-login-amazon"],
-                [OALoginViewProvider providerWithType:OA_PROVIDER_BLOGGER andName:@"Blogger" andImage:@"button-login-blogger"],
-                [OALoginViewProvider providerWithType:OA_PROVIDER_DISQUS andName:@"Disqus" andImage:@"button-login-disqus"],
-                [OALoginViewProvider providerWithType:OA_PROVIDER_FACEBOOK andName:@"Facebook" andImage:@"button-login-facebook"],
-                [OALoginViewProvider providerWithType:OA_PROVIDER_FOURSQUARE andName:@"Foursquare" andImage:@"button-login-foursquare"],
-                [OALoginViewProvider providerWithType:OA_PROVIDER_GITHUB andName:@"GitHub" andImage:@"button-login-github"],
-                [OALoginViewProvider providerWithType:OA_PROVIDER_GOOGLE andName:@"Google" andImage:@"button-login-google"],
-                [OALoginViewProvider providerWithType:OA_PROVIDER_INSTAGRAM andName:@"Instagram" andImage:@"button-login-instagram"],
-                [OALoginViewProvider providerWithType:OA_PROVIDER_LINKEDIN andName:@"LinkedIn" andImage:@"button-login-linkedin"],
-                [OALoginViewProvider providerWithType:OA_PROVIDER_LIVEJOURNAL andName:@"LiveJournal" andImage:@"button-login-livejournal"],
-                [OALoginViewProvider providerWithType:OA_PROVIDER_MAILRU andName:@"Mail.Ru" andImage:@"button-login-mailru"],
-                [OALoginViewProvider providerWithType:OA_PROVIDER_ODNOKLASSNIKI andName:@"Odnoklassniki" andImage:@"button-login-odnoklassniki"],
-                [OALoginViewProvider providerWithType:OA_PROVIDER_OPENID andName:@"OpenID" andImage:@"button-login-openid"],
-                [OALoginViewProvider providerWithType:OA_PROVIDER_PAYPAL andName:@"PayPal" andImage:@"button-login-paypal"],
-                [OALoginViewProvider providerWithType:OA_PROVIDER_REDDIT andName:@"Reddit" andImage:@"button-login-reddit"],
-                [OALoginViewProvider providerWithType:OA_PROVIDER_SKYROCK andName:@"SkyRock" andImage:@"button-login-skyrock"],
-                [OALoginViewProvider providerWithType:OA_PROVIDER_STACKEXCHANGE andName:@"StackExchange" andImage:@"button-login-stackexchange"],
-                [OALoginViewProvider providerWithType:OA_PROVIDER_STEAM andName:@"Steam" andImage:@"button-login-steam"],
-                [OALoginViewProvider providerWithType:OA_PROVIDER_TWITCH andName:@"Twitch" andImage:@"button-login-twitch"],
-                [OALoginViewProvider providerWithType:OA_PROVIDER_TWITTER andName:@"Twitter" andImage:@"button-login-twitter"],
-                [OALoginViewProvider providerWithType:OA_PROVIDER_VIMEO andName:@"Vimeo" andImage:@"button-login-vimeo"],
-                [OALoginViewProvider providerWithType:OA_PROVIDER_VKONTAKTE andName:@"VKontakte" andImage:@"button-login-vkontakte"],
-                [OALoginViewProvider providerWithType:OA_PROVIDER_WINDOWSLIVE andName:@"Windows Live" andImage:@"button-login-windowslive"],
-                [OALoginViewProvider providerWithType:OA_PROVIDER_WORDPRESS andName:@"Wordpress" andImage:@"button-login-wordpress"],
-                [OALoginViewProvider providerWithType:OA_PROVIDER_YAHOO andName:@"Yahoo!" andImage:@"button-login-yahoo"],
-                [OALoginViewProvider providerWithType:OA_PROVIDER_YOUTUBE andName:@"YouTube" andImage:@"button-login-youtube"]
-                ];
+        NSArray *allProviders = @[
+                @"amazon",
+                @"blogger",
+                @"disqus",
+                @"facebook",
+                @"foursquare",
+                @"github",
+                @"google",
+                @"instagram",
+                @"linkedin",
+                @"livejournal",
+                @"mailru",
+                @"odnoklassniki",
+                @"openid",
+                @"paypal",
+                @"reddit",
+                @"skyrock",
+                @"stackexchange",
+                @"steam",
+                @"twitch",
+                @"twitter",
+                @"vimeo",
+                @"vkontakte",
+                @"windowslive",
+                @"wordpress",
+                @"yahoo",
+                @"youtube"];
+        NSMutableArray *tarr = [NSMutableArray array];
+        [allProviders enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
+        {
+            OAProvider *p = [[OAProviderManager sharedInstance] providerWithType:obj];
+            if (!p.isConfigurationRequired || p.isConfigured)
+            {
+                [tarr addObject:[OALoginViewProvider provider:p image:[self imageNameForProviderType:p.type] tag:idx]];
+
+            }
+        }];
+        prv = [NSArray arrayWithArray:tarr];
     });
     return prv;
+}
+
++ (NSString *)imageNameForProviderType:(NSString *)providerType
+{
+    if ([providerType isEqualToString:@"amazon"]) return @"button-login-amazon";
+    if ([providerType isEqualToString:@"blogger"]) return @"button-login-blogger";
+    if ([providerType isEqualToString:@"disqus"]) return @"button-login-disqus";
+    if ([providerType isEqualToString:@"facebook"]) return @"button-login-facebook";
+    if ([providerType isEqualToString:@"foursquare"]) return @"button-login-foursquare";
+    if ([providerType isEqualToString:@"github"]) return @"button-login-github";
+    if ([providerType isEqualToString:@"google"]) return @"button-login-google";
+    if ([providerType isEqualToString:@"instagram"]) return @"button-login-instagram";
+    if ([providerType isEqualToString:@"linkedin"]) return @"button-login-linkedin";
+    if ([providerType isEqualToString:@"livejournal"]) return @"button-login-livejournal";
+    if ([providerType isEqualToString:@"mailru"]) return @"button-login-mailru";
+    if ([providerType isEqualToString:@"odnoklassniki"]) return @"button-login-odnoklassniki";
+    if ([providerType isEqualToString:@"openid"]) return @"button-login-openid";
+    if ([providerType isEqualToString:@"paypal"]) return @"button-login-paypal";
+    if ([providerType isEqualToString:@"reddit"]) return @"button-login-reddit";
+    if ([providerType isEqualToString:@"skyrock"]) return @"button-login-skyrock";
+    if ([providerType isEqualToString:@"stackexchange"]) return @"button-login-stackexchange";
+    if ([providerType isEqualToString:@"steam"]) return @"button-login-steam";
+    if ([providerType isEqualToString:@"twitch"]) return @"button-login-twitch";
+    if ([providerType isEqualToString:@"twitter"]) return @"button-login-twitter";
+    if ([providerType isEqualToString:@"vimeo"]) return @"button-login-vimeo";
+    if ([providerType isEqualToString:@"vkontakte"]) return @"button-login-vkontakte";
+    if ([providerType isEqualToString:@"windowslive"]) return @"button-login-windowslive";
+    if ([providerType isEqualToString:@"wordpress"]) return @"button-login-wordpress";
+    if ([providerType isEqualToString:@"yahoo"]) return @"button-login-yahoo";
+    if ([providerType isEqualToString:@"youtube"]) return @"button-login-youtube";
+    return nil;
 }
 
 /* setting up the newly created cell */
@@ -112,8 +154,20 @@ static const CGFloat kRowHeight = 55.f;
     OALoginViewProvider *prov = [OALoginViewController providers][(NSUInteger) indexPath.row];
 
     cell.imageView.image = [OABundle imageNamed:prov.imageName];
-    cell.textLabel.text = prov.name;
-    cell.tag = prov.type;
+    cell.textLabel.text = prov.provider.name;
+    cell.tag = prov.tag;
+}
+
+- (OALoginViewProvider *)findProviderWithTag:(NSInteger)tag
+{
+    for (OALoginViewProvider *lp in [OALoginViewController providers])
+    {
+        if (lp.tag == tag)
+        {
+            return lp;
+        }
+    }
+    return nil;
 }
 
 #pragma mark - UI handlers
@@ -134,8 +188,12 @@ static const CGFloat kRowHeight = 55.f;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    OALog(@"Selected provider at index %@ with tag %d", indexPath, (int)cell.tag);
-    [self.actionDelegate oaLoginController:self selectedMethod:(OAProviderType) cell.tag];
+
+    OALoginViewProvider *provider = [self findProviderWithTag:cell.tag];
+
+    OALog(@"Selected provider at index %@: %@", indexPath, provider.provider.type);
+
+    [self.actionDelegate oaLoginController:self selectedMethod:provider.provider];
 }
 
 #pragma mark - UITableViewDataSource

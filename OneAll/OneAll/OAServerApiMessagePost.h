@@ -4,7 +4,7 @@
 //
 #import <Foundation/Foundation.h>
 #import "OAServerApiBase.h"
-#import "OAProvider.h"
+#import "OAProviderManager.h"
 #import "OAError.h"
 #import "OAMessagePostResult.h"
 
@@ -31,7 +31,7 @@
  *
  * @param publishToken publish token received during connection information retrieval
  *
- * @param providers array of OAProviderType boxed objects. e.g. @[@(OA_PROVIDER_GITHUB), @(OA_PROVIDER_PAYPAL)]
+ * @param providers array of provider types
  *
  * @param complete callback to use on operation completion. Parameter passed to this callback will include detailed
  * information about success of posting for every provider specified in the request.

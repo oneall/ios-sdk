@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		1C56E12F46E1A73093692F87 /* OAIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C56E9AD08CF2F90147ED7C1 /* OAIdentity.m */; };
 		1C56E4411AD1D2FEDE5CFEE3 /* OAIdentity.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1C56EAF0A89F083D85420CB9 /* OAIdentity.h */; };
+		1C56E57F4161DC51CD35A45B /* OAProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C56E05C64DA2159901B0FD5 /* OAProvider.m */; };
 		1C56E92CF60427CCE893FCB9 /* OAUserParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C56E4AA51BC83CAC336B439 /* OAUserParser.m */; };
+		1C56E9EED400F4AF5D04D6AF /* OAServerApiProviders.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C56E63F82B9112ACD54293D /* OAServerApiProviders.m */; };
 		1C56EB4FB4E7BD8361D5C72F /* OALog.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C56E29784F99AC0341C5FF4 /* OALog.m */; };
 		1C56EB66BD63B4A880FB48DE /* OATwitterLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C56EA31173DF0A11D865557 /* OATwitterLogin.m */; };
 		1C56EC6AD00C110BBDC64E9A /* OAuth+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C56E9D08CDA366F50D315D3 /* OAuth+Additions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -104,9 +106,9 @@
 		1ECA68731965FEA30002CC92 /* button-login-yahoo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA685A1965FEA30002CC92 /* button-login-yahoo.png */; };
 		1ECA68741965FEA30002CC92 /* button-login-youtube.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA685B1965FEA30002CC92 /* button-login-youtube.png */; };
 		1ECA68751966011F0002CC92 /* OALoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1ECA683D1965F71A0002CC92 /* OALoginViewController.xib */; };
-		1EDF4CBB1963D4AA00C014EB /* OAProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EDF4CBA1963D4AA00C014EB /* OAProvider.m */; };
+		1EDF4CBB1963D4AA00C014EB /* OAProviderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EDF4CBA1963D4AA00C014EB /* OAProviderManager.m */; };
 		1EDF4CBE1963D7DE00C014EB /* OAException.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1E32998D1961B6BC008896A8 /* OAException.h */; };
-		1EDF4CBF1963D7DE00C014EB /* OAProvider.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1EDF4CB91963D4AA00C014EB /* OAProvider.h */; };
+		1EDF4CBF1963D7DE00C014EB /* OAProviderManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1EDF4CB91963D4AA00C014EB /* OAProviderManager.h */; };
 		1EDF4CC61963F4C300C014EB /* OAGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EDF4CC51963F4C300C014EB /* OAGlobals.m */; };
 		1EDF4CC91963FD7F00C014EB /* OAError.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EDF4CC81963FD7F00C014EB /* OAError.m */; };
 		1EDF4CCC1964029500C014EB /* OAServerApiConnectionGet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EDF4CCB1964029500C014EB /* OAServerApiConnectionGet.m */; };
@@ -135,7 +137,7 @@
 				1EC701F31976737B00E9768E /* OAMessagePostResult.h in CopyFiles */,
 				1E53CF7919648C4800E04D68 /* OAUser.h in CopyFiles */,
 				1EDF4CBE1963D7DE00C014EB /* OAException.h in CopyFiles */,
-				1EDF4CBF1963D7DE00C014EB /* OAProvider.h in CopyFiles */,
+				1EDF4CBF1963D7DE00C014EB /* OAProviderManager.h in CopyFiles */,
 				1E3299871961B3AC008896A8 /* button-close.png in CopyFiles */,
 				1E3299881961B3AC008896A8 /* button-close@2x.png in CopyFiles */,
 				1E32997F1961AC90008896A8 /* OAManager.h in CopyFiles */,
@@ -148,13 +150,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1C56E05C64DA2159901B0FD5 /* OAProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAProvider.m; sourceTree = "<group>"; };
 		1C56E100B35FC17395DFE082 /* OAuthCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthCore.h; sourceTree = "<group>"; };
 		1C56E110FA94C637CD102E74 /* OAUserParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAUserParser.h; sourceTree = "<group>"; };
 		1C56E1848C826DA2AA14B033 /* TWTViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTViewController.m; sourceTree = "<group>"; };
 		1C56E1FB98CC088B35363235 /* OAServerApiMessagePost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAServerApiMessagePost.h; sourceTree = "<group>"; };
 		1C56E29784F99AC0341C5FF4 /* OALog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OALog.m; sourceTree = "<group>"; };
 		1C56E2CCF2E6DE68BF5136A4 /* OAuthCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthCore.m; sourceTree = "<group>"; };
+		1C56E493EA422443712F966C /* OAServerApiProviders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAServerApiProviders.h; sourceTree = "<group>"; };
 		1C56E4AA51BC83CAC336B439 /* OAUserParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAUserParser.m; sourceTree = "<group>"; };
+		1C56E63F82B9112ACD54293D /* OAServerApiProviders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAServerApiProviders.m; sourceTree = "<group>"; };
 		1C56E6513FF73AEDD86C2A51 /* OAServerApiUsersLoginNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAServerApiUsersLoginNative.h; sourceTree = "<group>"; };
 		1C56E6A08AC95DE088127D78 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
 		1C56E74180A680EF96103FC2 /* TWTAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTAPIManager.m; sourceTree = "<group>"; };
@@ -174,6 +179,7 @@
 		1C56ED8C430E53EBD65D2ED4 /* TWTSignedRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTSignedRequest.h; sourceTree = "<group>"; };
 		1C56EEA6E9BDE5F3244E0F3C /* OANetworkActivityIndicatorControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OANetworkActivityIndicatorControl.h; sourceTree = "<group>"; };
 		1C56EECA77F933D0442AA62C /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		1C56EEFB0223E24B1E6C5444 /* OAProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAProvider.h; sourceTree = "<group>"; };
 		1C56EFDC73AF1A2B22BC8369 /* OAServerApiUsersLoginNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAServerApiUsersLoginNative.m; sourceTree = "<group>"; };
 		1E315A311969E29D00B66501 /* button-login-disqus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-disqus.png"; path = "../../OneAll/OneAll/resources/button-login-disqus.png"; sourceTree = "<group>"; };
 		1E315A321969E29D00B66501 /* button-login-github.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-github.png"; path = "../../OneAll/OneAll/resources/button-login-github.png"; sourceTree = "<group>"; };
@@ -231,8 +237,8 @@
 		1ECA68591965FEA30002CC92 /* button-login-wordpress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-wordpress.png"; path = "../../OneAll/OneAll/resources/button-login-wordpress.png"; sourceTree = "<group>"; };
 		1ECA685A1965FEA30002CC92 /* button-login-yahoo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-yahoo.png"; path = "../../OneAll/OneAll/resources/button-login-yahoo.png"; sourceTree = "<group>"; };
 		1ECA685B1965FEA30002CC92 /* button-login-youtube.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-login-youtube.png"; path = "../../OneAll/OneAll/resources/button-login-youtube.png"; sourceTree = "<group>"; };
-		1EDF4CB91963D4AA00C014EB /* OAProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAProvider.h; path = ../../OneAll/OneAll/OAProvider.h; sourceTree = "<group>"; };
-		1EDF4CBA1963D4AA00C014EB /* OAProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAProvider.m; path = ../../OneAll/OneAll/OAProvider.m; sourceTree = "<group>"; };
+		1EDF4CB91963D4AA00C014EB /* OAProviderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAProviderManager.h; sourceTree = "<group>"; };
+		1EDF4CBA1963D4AA00C014EB /* OAProviderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAProviderManager.m; sourceTree = "<group>"; };
 		1EDF4CC41963F49C00C014EB /* OAGlobals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OAGlobals.h; path = ../../OneAll/OneAll/OAGlobals.h; sourceTree = "<group>"; };
 		1EDF4CC51963F4C300C014EB /* OAGlobals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAGlobals.m; path = ../../OneAll/OneAll/OAGlobals.m; sourceTree = "<group>"; };
 		1EDF4CC71963FD7300C014EB /* OAError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OAError.h; sourceTree = "<group>"; };
@@ -340,8 +346,8 @@
 				1E3299711961AB36008896A8 /* OAManager.h */,
 				1E3299721961AB36008896A8 /* OAManager.m */,
 				1C56E9A91F45F7C0122FA766 /* OAMessagePostResult.h */,
-				1EDF4CB91963D4AA00C014EB /* OAProvider.h */,
-				1EDF4CBA1963D4AA00C014EB /* OAProvider.m */,
+				1EDF4CB91963D4AA00C014EB /* OAProviderManager.h */,
+				1EDF4CBA1963D4AA00C014EB /* OAProviderManager.m */,
 				1EDF4CCD196402F200C014EB /* OAServerApiBase.h */,
 				1EDF4CCE196402F200C014EB /* OAServerApiBase.m */,
 				1EDF4CCA1964029500C014EB /* OAServerApiConnectionGet.h */,
@@ -367,6 +373,10 @@
 				1C56E770F10B3CA9BD1340F0 /* OANetworkActivityIndicatorControl.m */,
 				1C56EEA6E9BDE5F3244E0F3C /* OANetworkActivityIndicatorControl.h */,
 				1C56ED169291222079CA3D4A /* OAMessagePostResult.m */,
+				1C56E63F82B9112ACD54293D /* OAServerApiProviders.m */,
+				1C56E493EA422443712F966C /* OAServerApiProviders.h */,
+				1C56E05C64DA2159901B0FD5 /* OAProvider.m */,
+				1C56EEFB0223E24B1E6C5444 /* OAProvider.h */,
 			);
 			path = OneAll;
 			sourceTree = "<group>";
@@ -500,7 +510,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1E3299521961AAE0008896A8 /* Build configuration list for PBXProject "oneall" */;
+			buildConfigurationList = 1E3299521961AAE0008896A8 /* Build configuration list for PBXProject "OneAll" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -612,7 +622,7 @@
 				1E32998C1961B5D8008896A8 /* OASettings.m in Sources */,
 				1EDF4CCF196402F200C014EB /* OAServerApiBase.m in Sources */,
 				1E53CF7819648C2B00E04D68 /* OAUser.m in Sources */,
-				1EDF4CBB1963D4AA00C014EB /* OAProvider.m in Sources */,
+				1EDF4CBB1963D4AA00C014EB /* OAProviderManager.m in Sources */,
 				1E3299761961AB36008896A8 /* OAManager.m in Sources */,
 				1EDF4CC61963F4C300C014EB /* OAGlobals.m in Sources */,
 				1EDF4CC91963FD7F00C014EB /* OAError.m in Sources */,
@@ -634,6 +644,8 @@
 				1C56EB66BD63B4A880FB48DE /* OATwitterLogin.m in Sources */,
 				1C56ECC6F360753F89ADE0A1 /* OANetworkActivityIndicatorControl.m in Sources */,
 				1C56EC8EF4498F9585C1A78D /* OAMessagePostResult.m in Sources */,
+				1C56E9EED400F4AF5D04D6AF /* OAServerApiProviders.m in Sources */,
+				1C56E57F4161DC51CD35A45B /* OAProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -696,6 +708,7 @@
 				OTHER_LDFLAGS = "-all_load";
 				PROVISIONING_PROFILE = "98d01ac2-3725-4889-8879-219f6c84d074";
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -733,6 +746,7 @@
 				OTHER_LDFLAGS = "-all_load";
 				PROVISIONING_PROFILE = "f7a2d770-2351-4b4b-a769-0b38fb47de96";
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -809,7 +823,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1E3299521961AAE0008896A8 /* Build configuration list for PBXProject "oneall" */ = {
+		1E3299521961AAE0008896A8 /* Build configuration list for PBXProject "OneAll" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1E3299691961AAE1008896A8 /* Debug */,

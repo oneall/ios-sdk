@@ -33,7 +33,7 @@
                                       self.success ? @"YES" : @"NO",
                                       self.flag,
                                       (int)self.code,
-                                      [[OAProvider sharedInstance] providerName:self.provider],
+                                      self.provider,
                                       self.message];
 }
 

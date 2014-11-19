@@ -9,6 +9,11 @@
 #import <OneAll/OAManager.h>
 #import "OAShareViewController.h"
 
+
+static NSString *const kProviderFacebook = @"facebook";
+static NSString *const kProviderGoogle = @"google";
+static NSString *const kProviderFoursquare = @"foursquare";
+
 static NSString *const kCellIdentifier = @"OAMainSampleViewCell";
 
 @interface OAMainViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -71,7 +76,7 @@ static NSString *const kCellIdentifier = @"OAMainSampleViewCell";
     return dv;
 }
 
-- (void)initiateLoginWithProvider:(OAProviderType)provider
+- (void)initiateLoginWithProvider:(NSString *)provider
 {
     self.viewUser.hidden = YES;
 
@@ -84,7 +89,10 @@ static NSString *const kCellIdentifier = @"OAMainSampleViewCell";
 
     [[OAManager sharedInstance] loginWithProvider:provider
                                           success:successHandler
-                                          failure:^(NSError *error) { [dimView removeFromSuperview]; }];
+                                          failure:^(NSError *error) {
+                                              [dimView removeFromSuperview];
+                                              [self showErrorAlert:error];
+                                          }];
 }
 
 - (void)openProviderSelector
@@ -99,13 +107,22 @@ static NSString *const kCellIdentifier = @"OAMainSampleViewCell";
     
     void (^callbackFailure)(NSError *) = ^(NSError *error) {
         [dimView removeFromSuperview];
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops", @"")
-                                   message:NSLocalizedString(@"Something went wrong. Check your OneAll application settings and your connection.", @"")
-                                  delegate:nil
-                         cancelButtonTitle:NSLocalizedString(@"OK", @"") otherButtonTitles:nil] show];
+        [self showErrorAlert:error];
     };
     
     [[OAManager sharedInstance] loginWithSuccess:callbackSuccess andFailure:callbackFailure];
+}
+
+- (void)showErrorAlert:(NSError *)error
+{
+    if (error.code == OA_ERROR_CANCELLED)
+    {
+        return;
+    }
+    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Oops", @"")
+                                message:error.localizedDescription
+                               delegate:nil
+                      cancelButtonTitle:NSLocalizedString(@"OK", @"") otherButtonTitles:nil] show];
 }
 
 - (void)handleButtonShare:(id)sender
@@ -178,13 +195,13 @@ static NSString *const kCellIdentifier = @"OAMainSampleViewCell";
     switch (indexPath.row)
     {
         case 0:
-            [self initiateLoginWithProvider:OA_PROVIDER_FACEBOOK];
+            [self initiateLoginWithProvider:kProviderFacebook];
             break;
         case 1:
-            [self initiateLoginWithProvider:OA_PROVIDER_GOOGLE];
+            [self initiateLoginWithProvider:kProviderGoogle];
             break;
         case 2:
-            [self initiateLoginWithProvider:OA_PROVIDER_FOURSQUARE];
+            [self initiateLoginWithProvider:kProviderFoursquare];
             break;
         case 3:
             [self openProviderSelector];

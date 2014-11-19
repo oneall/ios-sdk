@@ -34,6 +34,9 @@ extern NSString *const kHttpHeaderAuthorization;
 /** username used for the request */
 @property (strong, nonatomic) NSString *username;
 
+/** parse boolean from object */
++ (BOOL)parseBool:(id)val;
+
 /** create basic connection */
 - (BOOL)createConnectionForEndpoint:(NSString *)endpoint
                          withMethod:(NSString *)httpMethod

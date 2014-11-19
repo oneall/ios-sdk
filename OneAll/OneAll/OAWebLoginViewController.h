@@ -26,6 +26,15 @@
 */
 - (void)webLoginComplete:(id)sender withUrl:(NSURL *)url;
 
+/**
+* login completed failed
+*
+* @param sender sender of the event `OAWebLoginViewController` object
+*
+* @param error connection error
+*/
+- (void)webLoginFailed:(id)sender error:(NSError *)error;
+
 @end
 
 @interface OAWebLoginViewController : UIViewController

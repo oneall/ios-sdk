@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 urk. All rights reserved.
 //
 #import <UIKit/UIKit.h>
-#import "OAProvider.h"
+#import "OAProviderManager.h"
 
 /** protocol used to call back the user on GUI events: closing the window, tapping on one of authentication schemes */
 @protocol OALoginControllerDelegate <NSObject>
@@ -17,7 +17,7 @@
 *
 * @param provider selected authentication provider
 */
-- (void)oaLoginController:(id)sender selectedMethod:(OAProviderType)provider;
+- (void)oaLoginController:(id)sender selectedMethod:(OAProvider *)provider;
 
 /** called on user cancelling authentication, for example by tapping "Cancel" button
  * @param sender sender of this event: will be generally set to current view controller object

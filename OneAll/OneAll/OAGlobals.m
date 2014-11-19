@@ -9,3 +9,4 @@
 #import "OAGlobals.h"
 
 NSString *const kCustomUrlScheme = @"oneall";
+const NSInteger kConnectionTimeout = 30;
