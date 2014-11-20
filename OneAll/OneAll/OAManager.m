@@ -314,9 +314,10 @@ static NSString *const kOaProviderTwitter = @"twitter";
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if ([@"OK" isEqualToString:[alertView buttonTitleAtIndex:buttonIndex]])
-    {
-        NSString *loginData = [alertView textFieldAtIndex:0].text;
+    NSString *loginData = [alertView textFieldAtIndex:0].text;
+    if ([@"OK" isEqualToString:[alertView buttonTitleAtIndex:buttonIndex]] &&
+            [[loginData stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] > 0)
+        {
         [self webLoginWithLoginData:loginData];
     }
     else
