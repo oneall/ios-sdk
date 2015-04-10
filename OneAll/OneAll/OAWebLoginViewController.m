@@ -101,7 +101,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 {
     OALog(@"Loading URL %@", request.URL);
 
-    if ([[[request URL] scheme]isEqualToString:kCustomUrlScheme])
+    if ([[[request URL] scheme] isEqualToString:kCustomUrlScheme])
     {
         OALog(@"Skipping loading");
         [self.actionDelegate webLoginComplete:self withUrl:request.URL];

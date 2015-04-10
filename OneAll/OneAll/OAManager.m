@@ -231,8 +231,9 @@ static NSString *const kOaProviderTwitter = @"twitter";
 
 - (NSArray *)providers
 {
-    NSMutableArray *rv = [NSMutableArray arrayWithCapacity:[[[OAManager sharedInstance] providers] count]];
-    [[[OAManager sharedInstance] providers] enumerateObjectsUsingBlock:^(OAProvider *obj, NSUInteger idx, BOOL *stop)
+    NSArray *objProviders = [[OAProviderManager sharedInstance] providers];
+    NSMutableArray *rv = [NSMutableArray arrayWithCapacity:[objProviders count]];
+    [objProviders enumerateObjectsUsingBlock:^(OAProvider *obj, NSUInteger idx, BOOL *stop)
     {
         [rv addObject:obj.type];
     }];

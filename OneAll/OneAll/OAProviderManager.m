@@ -88,7 +88,7 @@ static NSString *const kCachedProviderNamesFielName = @"providers.plist";
         }
         self.providers = providers;
 
-        OALog(@"Read %d providers from the server", self.providers.count);
+        OALog(@"Read %d providers from the server", (int)self.providers.count);
 
         [NSKeyedArchiver archiveRootObject:self.providers toFile:[self cachedProvidersFilePath]];
     }];

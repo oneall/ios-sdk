@@ -63,7 +63,7 @@ static NSString *const kEncFieldIsConfigurationRequired = @"kEncFieldIsConfigura
                                       self.name,
                                       self.isConfigured,
                                       self.isConfigurationRequired,
-                                      self.userInputRequired ? [NSString stringWithFormat:@", %@", self.userInputTitle] : nil];
+                                      self.userInputRequired ? [NSString stringWithFormat:@", %@", self.userInputTitle] : @""];
 }
 
 @end

@@ -190,7 +190,7 @@
 				TargetAttributes = {
 					1E3298CD1961A0E5008896A8 = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = DPZ963XT95;
+						DevelopmentTeam = 5YYRY52JVA;
 					};
 				};
 			};
@@ -370,7 +370,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = OneAll;
-				PROVISIONING_PROFILE = "98d01ac2-3725-4889-8879-219f6c84d074";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/../oneall_sample\"/** \"${PROJECT_DIR}/../oneall_sample\"/** \"${PROJECT_DIR}/../oneall_sample\"/**";
 			};
 			name = Debug;
@@ -380,8 +380,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -393,7 +393,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = OneAll;
-				PROVISIONING_PROFILE = "f7a2d770-2351-4b4b-a769-0b38fb47de96";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/../oneall_sample\"/** \"${PROJECT_DIR}/../oneall_sample\"/** \"${PROJECT_DIR}/../oneall_sample\"/**";
 			};
 			name = Release;
