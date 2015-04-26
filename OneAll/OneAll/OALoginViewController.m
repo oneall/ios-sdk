@@ -106,7 +106,7 @@ static const CGFloat kRowHeight = 55.f;
         [allProviders enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
         {
             OAProvider *p = [[OAProviderManager sharedInstance] providerWithType:obj];
-            if (!p.isConfigurationRequired || p.isConfigured)
+            if (p != nil && (!p.isConfigurationRequired || p.isConfigured))
             {
                 [tarr addObject:[OALoginViewProvider provider:p image:[self imageNameForProviderType:p.type] tag:idx]];
 
