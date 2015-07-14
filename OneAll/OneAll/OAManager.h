@@ -12,8 +12,8 @@
 #import "OAIdentity.h"
 #import "OAMessagePostResult.h"
 
-typedef void (^OALoginCallbackSuccess)(OAUser *, BOOL newUser);
-typedef void (^OALoginCallbackFailure)(NSError *);
+typedef void (^OALoginCallbackSuccess)(OAUser *user, BOOL newUser);
+typedef void (^OALoginCallbackFailure)(NSError *error);
 
 /**
  * OAManager is the central point of access to OneAll library. In order to activate the library, the following steps
@@ -116,7 +116,46 @@ typedef void (^OALoginCallbackFailure)(NSError *);
                   success:(OALoginCallbackSuccess)success
                   failure:(OALoginCallbackFailure)failure;
 
-/** login using own provider selector (OALoginViewController).
+
+/** use social link feature to link existing user to speicified provider
+ *
+ * @param provider provider type to link the user to
+ *
+ * @param userToken token of the user to link to new provider; the value is obtained from @c OAUser.userToken after 
+ *  succcessful login
+ *
+ * @param success success callback method
+ *
+ * @param failure failure callback method
+ *
+ * @return `true` if the link has been started successfully, `false` if the provider does not exist or if the provider
+ *  is not configured and should be setup before use.
+ */
+- (BOOL)linkUser:(NSString *)userToken
+        provider:(NSString *)provider
+         success:(OALoginCallbackSuccess)success
+         failure:(OALoginCallbackFailure)failure;
+
+/** use social link feature to unlink existing user from specified provider
+ *
+ * @param provider provider type to link the user to
+ *
+ * @param userToken token of the user to unlink from provider; the value is obtained from @c OAUser.userToken after
+ *  succcessful login
+ *
+ * @param success success callback method
+ *
+ * @param failure failure callback method
+ *
+ * @return `true` if the unlink has been started successfully, `false` if the provider does not exist or if the provider
+ *  is not configured and should be setup before use.
+ */
+- (BOOL)unlinkUser:(NSString *)userToken
+          provider:(NSString *)provider
+           success:(OALoginCallbackSuccess)success
+           failure:(OALoginCallbackFailure)failure;
+
+/** login using own provider selector @c OALoginViewController
  *
  * The method will show a view with the selection of all possible providers. If the user has selected one of the
  * providers, login attempt will be performed and the result will be passed to the caller usong one of the callback
@@ -128,20 +167,81 @@ typedef void (^OALoginCallbackFailure)(NSError *);
  */
 - (void)loginWithSuccess:(OALoginCallbackSuccess)success andFailure:(OALoginCallbackFailure)failure;
 
+/** use social link to login the user into new social provider while linking identities
+ *
+ * the method operates like regular @c loginWithSuccess:andFailure but links the user to new social provider.
+ *
+ * @param userToken token of the user to unlink from provider; the value is obtained from @c OAUser.userToken after
+ *  succcessful login
+ *
+ * @param success success callback method
+ *
+ * @param failure failure callback method
+ */
+- (void)linkUser:(NSString *)userToken success:(OALoginCallbackSuccess)success failure:(OALoginCallbackFailure)failure;
+
+/** logout the user and unlink from social provider that will be selected for unlink.
+ *
+ * @param userToken token of the user to unlink from selected social provider
+ *
+ * @param success success callback method
+ *
+ * @param failure failure callback method
+ */
+- (void)unlinkUser:(NSString *)userToken
+           success:(OALoginCallbackSuccess)success
+           failure:(OALoginCallbackFailure)failure;
+
 /** login using own provider selector (OALoginViewController).
-*
-* The method will show a view with the selection of all possible providers. If the user has selected one of the
-* providers, login attempt will be performed and the result will be passed to the caller usong one of the callback
-* methods.
-* The view shown will be presented with presentViewController on the provided parent view controller
-*
-* @param success success callback method
-*
-* @param failure failure callback method
-*/
+ *
+ * The method will show a view with the selection of all possible providers. If the user has selected one of the
+ * providers, login attempt will be performed and the result will be passed to the caller usong one of the callback
+ * methods.
+ * The view shown will be presented with presentViewController on the provided parent view controller
+ *
+ * @param parentVc parent view controller used for GUI operations
+ *
+ * @param success success callback method
+ *
+ * @param failure failure callback method
+ */
 - (void)loginWithParentController:(UIViewController *)parentVc
                        andSuccess:(OALoginCallbackSuccess)success
                        andFailure:(OALoginCallbackFailure)failure;
+
+/** use social link to login the user into new social provider while linking identities
+ *
+ * the method operates like regular @c loginWithSuccess:andFailure but links the user to new social provider.
+ *
+ * @param userToken token of the user to unlink from provider; the value is obtained from @c OAUser.userToken after
+ *  succcessful login
+ *
+ * @param parentVc parent view controller used for GUI operations
+ *
+ * @param success success callback method
+ *
+ * @param failure failure callback method
+ */
+- (void)linkUser:(NSString *)userToken
+parentViewController:(UIViewController *)parentVc
+         success:(OALoginCallbackSuccess)success
+         failure:(OALoginCallbackFailure)failure;
+
+/** logout the user and unlink from social provider that will be selected for unlink.
+ *
+ * @param userToken token of the user to unlink from selected social provider
+ *
+ * @param parentVc parent view controller used for GUI operations
+ *
+ * @param success success callback method
+ *
+ * @param failure failure callback method
+ */
+- (void)unlinkUser:(NSString *)userToken
+parentViewController:(UIViewController *)parentVc
+           success:(OALoginCallbackSuccess)success
+           failure:(OALoginCallbackFailure)failure;
+
 
 /** post to user's wall on all the specified providers.
  *

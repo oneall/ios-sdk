@@ -18,6 +18,8 @@
 #import "OATwitterLogin.h"
 #import "OANetworkActivityIndicatorControl.h"
 #import "OAProvider.h"
+#import "NSString+ULREncode.h"
+#import "OACommonTypes.h"
 
 /* special provider type: Facebook. it requires special attention when logging in using native SDK */
 static NSString *const kOaProviderFacebook = @"facebook";
@@ -25,6 +27,8 @@ static NSString *const kOaProviderFacebook = @"facebook";
 /* special provider type: Twitter. it requires special attention when logging in using native SDK */
 static NSString *const kOaProviderTwitter = @"twitter";
 
+/* query parameter added to callback URL to identify current action */
+static NSString *const kUrlQueryParamSdkAction = @"sdk_action";
 
 @interface OAManager () <OAWebLoginDelegate, OALoginControllerDelegate, UIAlertViewDelegate>
 
@@ -65,58 +69,43 @@ static NSString *const kOaProviderTwitter = @"twitter";
                   success:(OALoginCallbackSuccess)success
                   failure:(OALoginCallbackFailure)failure
 {
-    self.selectedProvider = [[OAProviderManager sharedInstance] providerWithType:provider];
+    OALog(@"");
+    return [self internalLoginWithProvider:provider
+                       andSocialLinkAction:OASocialLinkActionNone
+                             andLinkedUser:nil
+                                   success:success
+                                   failure:failure];
+}
 
-    if (self.selectedProvider == nil)
-    {
-        OALog(@"Invalid provider type: %@", provider);
-        return false;
-    }
+- (BOOL)linkUser:(NSString *)userToken
+        provider:(NSString *)provider
+         success:(OALoginCallbackSuccess)success
+         failure:(OALoginCallbackFailure)failure
+{
+    OALog(@"");
+    return [self internalLoginWithProvider:provider
+                       andSocialLinkAction:OASocialLinkActionLink
+                             andLinkedUser:userToken
+                                   success:success
+                                   failure:failure];
+}
 
-    if (self.selectedProvider.isConfigurationRequired && !self.selectedProvider.isConfigured)
-    {
-        OALog(@"Provider %@ not configured", provider);
-        return false;
-    }
-
-    OALog(@"Login with provider: %@", self.selectedProvider.type);
-    self.callbackFailure = failure;
-    self.callbackSuccess = success;
-
-    self.lastNonce = [[NSUUID UUID] UUIDString];
-
-    BOOL nativeLoginSuccessful = false;
-
-    /* for Twitter/Facebook, try to use native SDK's and fall back to web login in case of failure */
-    if ([provider isEqualToString:kOaProviderFacebook] && [[OAFacebookLogin sharedInstance] enabled])
-    {
-        nativeLoginSuccessful = [[OAFacebookLogin sharedInstance] loginSuccess:^(NSString *sessionToken)
-                              {
-                                  [self facebookLoginSucceeded:sessionToken];
-                              }
-                                                                    failure:^(NSError *error, NSString *userMessage)
-                              {
-                                  [self facebookLoginFailed:error userMessage:userMessage];
-                              }];
-    }
-    else if ([provider isEqualToString:kOaProviderTwitter] && [[OATwitterLogin sharedInstance] canBeUsed])
-    {
-        nativeLoginSuccessful = [[OATwitterLogin sharedInstance] login:^(NSString *token, NSString *secret)
-        {
-            [self twitterLoginDoneWithToken:token secret:secret];
-        }];
-    }
-
-    if (!nativeLoginSuccessful)
-    {
-        [self webLoginWithProvider];
-    }
-
-    return true;
+- (BOOL)unlinkUser:(NSString *)userToken
+          provider:(NSString *)provider
+           success:(OALoginCallbackSuccess)success
+           failure:(OALoginCallbackFailure)failure
+{
+    OALog(@"");
+    return [self internalLoginWithProvider:provider
+                       andSocialLinkAction:OASocialLinkActionUnlink
+                             andLinkedUser:userToken
+                                   success:success
+                                   failure:failure];
 }
 
 - (void)setupWithSubdomain:(NSString *)subdomain
 {
+    OALog(@"");
     [self setupWithSubdomain:subdomain facebookAppId:nil twitterConsumerKey:nil twitterSecret:nil];
 }
 
@@ -146,6 +135,7 @@ static NSString *const kOaProviderTwitter = @"twitter";
 
 - (void)setNetworkActivityIndicatorControlledByOa:(BOOL)oaControl
 {
+    OALog(@"");
     if (oaControl)
     {
         [[OANetworkActivityIndicatorControl sharedInstance] takeControl];
@@ -171,18 +161,68 @@ static NSString *const kOaProviderTwitter = @"twitter";
 
 - (void)loginWithSuccess:(OALoginCallbackSuccess)success andFailure:(OALoginCallbackFailure)failure
 {
+    OALog(@"");
     self.callbackFailure = failure;
     self.callbackSuccess = success;
     [OALoginViewController showWithDelegate:self];
+}
+
+- (void)linkUser:(NSString *)userToken success:(OALoginCallbackSuccess)success failure:(OALoginCallbackFailure)failure
+{
+    OALog(@"");
+    self.callbackFailure = failure;
+    self.callbackSuccess = success;
+    OALoginViewController *lvc = [OALoginViewController showWithDelegate:self];
+    lvc.userToken = userToken;
+    lvc.action = OASocialLinkActionLink;
+}
+
+- (void)unlinkUser:(NSString *)userToken
+           success:(OALoginCallbackSuccess)success
+           failure:(OALoginCallbackFailure)failure
+{
+    OALog(@"");
+    self.callbackFailure = failure;
+    self.callbackSuccess = success;
+    OALoginViewController *lvc = [OALoginViewController showWithDelegate:self];
+    lvc.userToken = userToken;
+    lvc.action = OASocialLinkActionUnlink;
 }
 
 - (void)loginWithParentController:(UIViewController *)parentVc
                        andSuccess:(OALoginCallbackSuccess)success
                        andFailure:(OALoginCallbackFailure)failure
 {
+    OALog(@"");
     self.callbackFailure = failure;
     self.callbackSuccess = success;
     [OALoginViewController showInContainer:parentVc withDelegate:self];
+}
+
+- (void)linkUser:(NSString *)userToken
+parentViewController:(UIViewController *)parentVc
+         success:(OALoginCallbackSuccess)success
+         failure:(OALoginCallbackFailure)failure
+{
+    OALog(@"");
+    self.callbackFailure = failure;
+    self.callbackSuccess = success;
+    OALoginViewController *lvc = [OALoginViewController showInContainer:parentVc withDelegate:self];
+    lvc.userToken = userToken;
+    lvc.action = OASocialLinkActionLink;
+}
+
+- (void)unlinkUser:(NSString *)userToken
+parentViewController:(UIViewController *)parentVc
+           success:(OALoginCallbackSuccess)success
+           failure:(OALoginCallbackFailure)failure
+{
+    OALog(@"");
+    self.callbackFailure = failure;
+    self.callbackSuccess = success;
+    OALoginViewController *lvc = [OALoginViewController showInContainer:parentVc withDelegate:self];
+    lvc.userToken = userToken;
+    lvc.action = OASocialLinkActionUnlink;
 }
 
 - (BOOL)postMessageWithText:(NSString *)text
@@ -231,6 +271,7 @@ static NSString *const kOaProviderTwitter = @"twitter";
 
 - (NSArray *)providers
 {
+    OALog(@"");
     NSArray *objProviders = [[OAProviderManager sharedInstance] providers];
     NSMutableArray *rv = [NSMutableArray arrayWithCapacity:[objProviders count]];
     [objProviders enumerateObjectsUsingBlock:^(OAProvider *obj, NSUInteger idx, BOOL *stop)
@@ -281,7 +322,23 @@ static NSString *const kOaProviderTwitter = @"twitter";
 - (void)webLoginComplete:(id)sender withUrl:(NSURL *)url
 {
     OALog(@"Web login complete with URL %@", url);
+    
+    /* in case of unlinking, we are done */
+    if ([self parseSdkActionFromUrl:url] == OASocialLinkActionUnlink)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [sender dismissViewControllerAnimated:YES completion:nil];
+        });
+        if (self.callbackSuccess != nil)
+        {
+            self.callbackSuccess(nil, false);
+            self.callbackSuccess = nil;
+            self.callbackFailure = nil;
+        }
+        return;
+    }
 
+    /* any other action except for unlink */
     NSString *token = [self parseConnectionTokenFromUrl:url];
 
     self.apiConnectionGet = [[OAServerApiConnectionGet alloc] init];
@@ -290,14 +347,24 @@ static NSString *const kOaProviderTwitter = @"twitter";
         dispatch_async(dispatch_get_main_queue(), ^{
             [sender dismissViewControllerAnimated:YES completion:nil];
         });
-
-        OAUser *user = [OAUserParser parseUser:ud];
-        if (self.callbackSuccess)
-        {
-            self.callbackSuccess(user, false);
-            self.callbackSuccess = nil;
-            self.callbackFailure = nil;
+        
+        if (ud != nil && err == nil) {
+            OAUser *user = [OAUserParser parseUser:ud];
+            if (self.callbackSuccess)
+            {
+                self.callbackSuccess(user, false);
+                self.callbackSuccess = nil;
+                self.callbackFailure = nil;
+            }
         }
+        else {
+            if (self.callbackFailure) {
+                self.callbackFailure(err);
+                self.callbackFailure = nil;
+                self.callbackSuccess = nil;
+            }
+        }
+
     };
 
     BOOL res =
@@ -311,27 +378,10 @@ static NSString *const kOaProviderTwitter = @"twitter";
     }
 }
 
-#pragma mark - UIAlertViewDelegate
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    NSString *loginData = [alertView textFieldAtIndex:0].text;
-    NSString *okButtonText = NSLocalizedString(@"OK", @"");
-    if ([okButtonText isEqualToString:[alertView buttonTitleAtIndex:buttonIndex]] &&
-            [[loginData stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] > 0)
-        {
-        [self webLoginWithLoginData:loginData];
-    }
-    else
-    {
-        [self webLoginCancelled:nil];
-    }
-}
-
 #pragma mark - Utilities
 
 /* start login with specified provider */
-- (void)webLoginWithProvider
+- (void)webLoginWithSocialLinkAction:(OASocialLinkAction)action userToken:(NSString *)linkedUserToken
 {
     if (self.selectedProvider.userInputRequired)
     {
@@ -339,26 +389,57 @@ static NSString *const kOaProviderTwitter = @"twitter";
                 [NSString stringWithFormat:NSLocalizedString(@"Please, enter your %@ %@ to login with", @""),
                                            self.selectedProvider.name,
                                            self.selectedProvider.userInputTitle];
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:self.selectedProvider.name
+                                                                       message:message
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            textField.placeholder = self.selectedProvider.userInputTitle;
+        }];
+        
+        [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"")
+                                                  style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction *alertAction)
+                          {
+                              NSString *userText = [alert.textFields[0] text];
+                              if ([userText length] > 0)
+                              {
+                                  [self webLoginWithLoginData:userText
+                                             socialLinkAction:action
+                                                   linkedUser:linkedUserToken];
+                              }
+                              else
+                              {
+                                  [self webLoginCancelled:nil];
+                              }
+                          }]];
 
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:self.selectedProvider.name
-                                                        message:message
-                                                       delegate:self
-                                              cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
-                                              otherButtonTitles:NSLocalizedString(@"OK", @""), nil];
+        [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"")
+                                                  style:UIAlertActionStyleCancel
+                                                handler:^(UIAlertAction *action) {
+                                                    [self webLoginCancelled:nil];
+                                                }]];
 
-        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-        [alert show];
+        [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alert
+                                                                                         animated:NO
+                                                                                       completion:nil];
     }
     else
     {
-        [self webLoginWithLoginData:nil];
+        [self webLoginWithLoginData:nil socialLinkAction:action linkedUser:linkedUserToken];
     }
 }
 
 /* start login with specified provider */
 - (void)webLoginWithLoginData:(NSString *)loginData
+             socialLinkAction:(OASocialLinkAction)action
+                   linkedUser:(NSString *)linkedUserToken
 {
-    NSURL *url = [self apiUrlForProvider:self.selectedProvider.type withNonce:self.lastNonce loginData:loginData];
+    NSURL *url = [self apiUrlForProvider:self.selectedProvider.type
+                               withNonce:self.lastNonce
+                               loginData:loginData
+                        socialLinkAction:action
+                               userToken:linkedUserToken];
 
     OALog(@"Web login with provider %@ and url: %@", self.selectedProvider.type, url);
 
@@ -371,22 +452,36 @@ static NSString *const kOaProviderTwitter = @"twitter";
 /* callback of successful facebook login: continues to information retrieval from OneAll server before completing login
  * operation */
 - (void)facebookLoginSucceeded:(NSString *)sessionToken
+              socialLinkAction:(OASocialLinkAction)action
+                    linkedUser:(NSString *)linkedUserToken
 {
     OALog(@"Facebook login succeeded with token %@", sessionToken);
-
+    
     self.apiConnectionNative = [[OAServerApiUsersLoginNative alloc] init];
 
+    __weak OAManager *_wSelf = self;
     OAServerApiUsersLoginNativeCallback apiCompleteBlock = ^(NSDictionary *ud, BOOL newUser, NSError *err) {
         OAUser *user = [OAUserParser parseUser:ud];
-        if (self.callbackSuccess)
+        if (_wSelf.callbackSuccess)
         {
-            self.callbackSuccess(user, newUser);
-            self.callbackSuccess = nil;
-            self.callbackFailure = nil;
+            _wSelf.callbackSuccess(user, newUser);
+            _wSelf.callbackSuccess = nil;
+            _wSelf.callbackFailure = nil;
         }
     };
 
-    BOOL res = [self.apiConnectionNative getInfoWithFacebookToken:sessionToken andComplete:apiCompleteBlock];
+    BOOL res;
+
+    if (action == OASocialLinkActionUnlink) {
+        res = [self.apiConnectionNative unlinkWithFacebookToken:sessionToken
+                                                      userToken:linkedUserToken
+                                                       complete:apiCompleteBlock];
+    }
+    else {
+        res = [self.apiConnectionNative getInfoWithFacebookToken:sessionToken
+                                                       userToken:linkedUserToken
+                                                        complete:apiCompleteBlock];
+    }
 
     if (!res && self.callbackFailure)
     {
@@ -397,37 +492,57 @@ static NSString *const kOaProviderTwitter = @"twitter";
 }
 
 /** in case of failure to login with native Facebook login, fall back to original OneAll based web window */
-- (void)facebookLoginFailed:(NSError *)error userMessage:(NSString *)userMessage
+- (void)facebookLoginFailed:(NSError *)error
+                userMessage:(NSString *)userMessage
+           socialLinkAction:(OASocialLinkAction)action
+                 linkedUser:(NSString *)linkedUserToken
 {
     OALog(@"Failed to login with native Facebook authentication");
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self webLoginWithProvider];
+        [self webLoginWithSocialLinkAction:action userToken:linkedUserToken];
     });
 }
 
-- (void)twitterLoginDoneWithToken:(NSString *)token secret:(NSString *)secret
+- (void)twitterLoginDoneWithToken:(NSString *)token
+                           secret:(NSString *)secret
+                 socialLinkAction:(OASocialLinkAction)action
+                       linkedUser:(NSString *)linkedUserToken
 {
     OALog(@"Twitter login done with token: %@ and secret: %@", token, secret);
     dispatch_async(dispatch_get_main_queue(), ^{
         if (!token)
         {
-            [self webLoginWithProvider];
+            [self webLoginWithSocialLinkAction:action userToken:linkedUserToken];
             return;
         }
 
         self.apiConnectionNative = [[OAServerApiUsersLoginNative alloc] init];
 
+        __weak OAManager *_wSelf = self;
         OAServerApiUsersLoginNativeCallback apiCompleteBlock = ^(NSDictionary *ud, BOOL newUser, NSError *err) {
             OAUser *user = [OAUserParser parseUser:ud];
-            if (self.callbackSuccess)
+            if (_wSelf.callbackSuccess)
             {
-                self.callbackSuccess(user, newUser);
-                self.callbackSuccess = nil;
-                self.callbackFailure = nil;
+                _wSelf.callbackSuccess(user, newUser);
+                _wSelf.callbackSuccess = nil;
+                _wSelf.callbackFailure = nil;
             }
         };
 
-        BOOL res = [self.apiConnectionNative getInfoWithTwitterToken:token secret:secret complete:apiCompleteBlock];
+        BOOL res;
+        
+        if (action == OASocialLinkActionUnlink) {
+            res = [self.apiConnectionNative unlinkWithTwitterToken:token
+                                                            secret:secret
+                                                         userToken:linkedUserToken
+                                                          complete:apiCompleteBlock];
+        }
+        else {
+            res = [self.apiConnectionNative getInfoWithTwitterToken:token
+                                                             secret:secret
+                                                          userToken:linkedUserToken
+                                                           complete:apiCompleteBlock];
+        }
 
         if (!res && self.callbackFailure)
         {
@@ -438,58 +553,169 @@ static NSString *const kOaProviderTwitter = @"twitter";
     });
 }
 
-- (NSString *)parseConnectionTokenFromUrl:(NSURL *)url
+- (NSString *)parseQueryParam:(NSString *)name fromUrl:(NSURL *)url
 {
     NSError *error;
-    NSRegularExpression *rex = [NSRegularExpression regularExpressionWithPattern:@".*connection_token=([^&]+).*"
+    NSString *rexString = [NSString stringWithFormat:@".*%@=([^&]+).*", name];
+    NSRegularExpression *rex = [NSRegularExpression regularExpressionWithPattern:rexString
                                                                          options:0
                                                                            error:&error];
-
+    
     NSTextCheckingResult *match = [rex firstMatchInString:url.query options:0 range:NSMakeRange(0, url.query.length)];
     if (!match)
     {
         return nil;
     }
-
+    
     NSRange range = [match rangeAtIndex:1];
-
+    
     return [url.query substringWithRange:range];
 }
 
-/* create authentication URL for specified provider type */
-- (NSURL *)apiUrlForProvider:(NSString *)providerType withNonce:(NSString *)nonce loginData:(NSString *)loginData
+- (NSString *)parseConnectionTokenFromUrl:(NSURL *)url
 {
+    return [self parseQueryParam:@"connection_token" fromUrl:url];
+}
+
+- (OASocialLinkAction)parseSdkActionFromUrl:(NSURL *)url
+{
+    NSString *val = [self parseQueryParam:kUrlQueryParamSdkAction fromUrl:url];
+    if ([val length] > 0)
+    {
+        NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];
+        nf.numberStyle = NSNumberFormatterDecimalStyle;
+        return (OASocialLinkAction) [[nf numberFromString:val] integerValue];
+    }
+    return OASocialLinkActionNone;
+}
+
+/* create authentication URL for specified provider type */
+- (NSURL *)apiUrlForProvider:(NSString *)providerType
+                   withNonce:(NSString *)nonce
+                   loginData:(NSString *)loginData
+            socialLinkAction:(OASocialLinkAction)action
+                   userToken:(NSString *)userToken
+{
+    NSString *callbackUri =
+    [NSString stringWithFormat:@"oneall://%@%%3f%@=%d", providerType, kUrlQueryParamSdkAction, (int)action];
+    
     NSString *url = [NSString stringWithFormat:
-                     @"https://%@.api.oneall.com/socialize/connect/mobile/%@/?nonce=%@&callback_uri=oneall://%@",
+                     @"https://%@.api.oneall.com/socialize/connect/mobile/%@/?nonce=%@&callback_uri=%@",
                      [OASettings sharedInstance].subdomain,
                      providerType,
                      nonce,
-                    providerType];
-
+                     callbackUri];
+    if (userToken != nil && action != OASocialLinkActionNone)
+    {
+        url = [url stringByAppendingFormat:@"&service=social_link&action=%@&user_token=%@",
+               (action == OASocialLinkActionLink) ? @"link_identity" : @"unlink_identity",
+               [userToken urlEncodeUsingEncoding:NSUTF8StringEncoding]];
+    }
+    
     if (loginData != nil)
     {
-        NSString *encodedLoginData = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
-                NULL,
-                (CFStringRef)loginData,
-                NULL,
-                (CFStringRef)@"!*'();:@&=+$,/?%#[]",
-                kCFStringEncodingUTF8));
-
-        url = [url stringByAppendingFormat:@"&login_data=%@", encodedLoginData];
+        url = [url stringByAppendingFormat:@"&login_data=%@", [loginData urlEncodeUsingEncoding:NSUTF8StringEncoding]];
     }
-
+    
     return [NSURL URLWithString:url];
 }
+
+- (BOOL)internalLoginWithProvider:(NSString *)provider
+              andSocialLinkAction:(OASocialLinkAction)action
+                    andLinkedUser:(NSString *)userToken
+                          success:(OALoginCallbackSuccess)success
+                          failure:(OALoginCallbackFailure)failure
+{
+    self.selectedProvider = [[OAProviderManager sharedInstance] providerWithType:provider];
+    
+    if (self.selectedProvider == nil)
+    {
+        OALog(@"Invalid provider type: %@", provider);
+        return false;
+    }
+    
+    if (self.selectedProvider.isConfigurationRequired && !self.selectedProvider.isConfigured)
+    {
+        OALog(@"Provider %@ not configured", provider);
+        return false;
+    }
+    
+    OALog(@"Login with provider: %@", self.selectedProvider.type);
+    self.callbackFailure = failure;
+    self.callbackSuccess = success;
+    
+    self.lastNonce = [[NSUUID UUID] UUIDString];
+    
+    BOOL nativeLoginSuccessful = false;
+    
+    /* for Twitter/Facebook, try to use native SDK's and fall back to web login in case of failure */
+    if ([provider isEqualToString:kOaProviderFacebook] && [[OAFacebookLogin sharedInstance] enabled])
+    {
+        void (^fbSuccessHandler)(NSString *) = ^(NSString *sessionToken) {
+            [self facebookLoginSucceeded:sessionToken
+                        socialLinkAction:action
+                              linkedUser:userToken];
+        };
+        
+        void (^fbFailureHandler)(NSError *,NSString *) = ^(NSError *error, NSString *userMessage)
+        {
+            [self facebookLoginFailed:error userMessage:userMessage
+                     socialLinkAction:action
+                           linkedUser:userToken];
+        };
+        
+        nativeLoginSuccessful = [[OAFacebookLogin sharedInstance] loginSuccess:fbSuccessHandler
+                                                                       failure:fbFailureHandler];
+    }
+    else if ([provider isEqualToString:kOaProviderTwitter] && [[OATwitterLogin sharedInstance] canBeUsed])
+    {
+        nativeLoginSuccessful = [[OATwitterLogin sharedInstance] login:^(NSString *token, NSString *secret)
+                                 {
+                                     [self twitterLoginDoneWithToken:token
+                                                              secret:secret
+                                                    socialLinkAction:action
+                                                          linkedUser:userToken];
+                                 }];
+    }
+    
+    if (!nativeLoginSuccessful)
+    {
+        [self webLoginWithSocialLinkAction:action userToken:userToken];
+    }
+    
+    return true;
+}
+
 
 #pragma mark - OALoginControllerDelegate
 
 /* implementation of OALoginControllerDelegate: called when the user selected one of providers in own view controller
  * with providers selector */
-- (void)oaLoginController:(id)sender selectedMethod:(OAProvider *)provider
+- (void)oaLoginController:(OALoginViewController *)sender selectedMethod:(OAProvider *)provider
 {
     OALog(@"Logging in with provider: %@", provider.name);
+    
     [sender dismissViewControllerAnimated:YES completion:^{
-        [self loginWithProvider:provider.type success:self.callbackSuccess failure:self.callbackFailure];
+        switch (sender.action)
+        {
+            case OASocialLinkActionLink:
+                [self linkUser:sender.userToken
+                      provider:provider.type
+                       success:self.callbackSuccess
+                       failure:self.callbackFailure];
+                break;
+            case OASocialLinkActionUnlink:
+                [self unlinkUser:sender.userToken
+                        provider:provider.type
+                         success:self.callbackSuccess
+                         failure:self.callbackFailure];
+                break;
+            default:
+                [self loginWithProvider:provider.type
+                                success:self.callbackSuccess
+                                failure:self.callbackFailure];
+                break;
+        }
     }];
 }
 

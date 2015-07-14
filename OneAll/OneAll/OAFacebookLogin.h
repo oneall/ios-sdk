@@ -38,10 +38,7 @@ typedef void (^OAFacebookLoginFailureCallback)(NSError *error, NSString *userMes
 - (BOOL)loginSuccess:(OAFacebookLoginSuccessCallback)successCallback
              failure:(OAFacebookLoginFailureCallback)failureCallback;
 
-/** method should be called on application start
- *
- * @param facebookAppId appId of Facebook application
- */
+/** method should be called on application start */
 - (void)openFbSession;
 
 /** method that should be called from during UIApplication launch with URL:

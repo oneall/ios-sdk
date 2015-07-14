@@ -25,12 +25,16 @@ typedef void (^OAServerApiUsersLoginNativeCallback)(NSDictionary *userDict, BOOL
  * @param token access token received from Facebook SDK. Can be retrieved using:
  * `[[[FBSession activeSession] accessTokenData] accessToken]`
  *
+ * @param userToken [optional] if not @c nil will be added into the API request
+ *
  * @param callback completion block called after operation has been either finished successfully or failed
  *
  * @return `false` if the request could not be created and no callback will be called, `true` on successful connection
  * initiation
  */
-- (BOOL)getInfoWithFacebookToken:(NSString *)token andComplete:(OAServerApiUsersLoginNativeCallback)callback;
+- (BOOL)getInfoWithFacebookToken:(NSString *)token
+                       userToken:(NSString *)userToken
+                        complete:(OAServerApiUsersLoginNativeCallback)callback;
 
 /**
  *  get user information with access token received from Twitter
@@ -38,6 +42,8 @@ typedef void (^OAServerApiUsersLoginNativeCallback)(NSDictionary *userDict, BOOL
  * @param token access token received from Twitter using reverse auth
  *
  * @param secret OAuth secret receivef form Twitter using reverse auth
+ *
+ * @param userToken [optional] if not @c nil will be added into the API request
  *
  * @param callback completion block called after operation has been either finished successfully or failed
  *
@@ -48,6 +54,42 @@ typedef void (^OAServerApiUsersLoginNativeCallback)(NSDictionary *userDict, BOOL
  */
 - (BOOL)getInfoWithTwitterToken:(NSString *)token
                          secret:(NSString *)secret
+                      userToken:(NSString *)userToken
                        complete:(OAServerApiUsersLoginNativeCallback)callback;
 
+/**
+ * make use of social unlink endpoint to detach Facebook user identity identified by Facebook token from OneAll user
+ *
+ * @param facebookToken Facebook token received as part of authentication
+ *
+ * @param userToken OneAll user token
+ *
+ * @param callback completion block called after operation has been either finished successfully or failed
+ *
+ * @return `false` if the request could not be created and no callback will be called, `true` on successful connection
+ * initiation
+ */
+- (BOOL)unlinkWithFacebookToken:(NSString *)facebookToken
+                      userToken:(NSString *)userToken
+                       complete:(OAServerApiUsersLoginNativeCallback)callback;
+
+/**
+ * make use of social unlink endpoint to detach Twotter user identity identified by Twitter token and secret
+ *  from OneAll user
+ *
+ * @param token Twitter token received as part of authentication
+ *
+ * @param secret Twitter user secret received as part of authentication
+ *
+ * @param userToken OneAll user token
+ *
+ * @param callback completion block called after operation has been either finished successfully or failed
+ *
+ * @return `false` if the request could not be created and no callback will be called, `true` on successful connection
+ * initiation
+ */
+- (BOOL)unlinkWithTwitterToken:(NSString *)token
+                        secret:(NSString *)secret
+                     userToken:(NSString *)userToken
+                      complete:(OAServerApiUsersLoginNativeCallback)callback;
 @end

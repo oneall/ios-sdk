@@ -17,7 +17,7 @@
  *
  * @param pictureUrl URL of the posted image [optional]
  *
- * @param videoURL URL of the posted video [optional]
+ * @param videoUrl URL of the posted video [optional]
  *
  * @param linkUrl URL appearing in the post [optional]
  *

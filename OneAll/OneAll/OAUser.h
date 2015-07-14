@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 urk. All rights reserved.
 //
 #import <Foundation/Foundation.h>
+#import "OAIdentity.h"
 
 /** publish token returned by OA server when reading connection information */
 @interface OAUserPublishToken : NSObject
@@ -33,6 +34,8 @@
 @property (strong, nonatomic) NSString *uuid;
 
 @property (strong, nonatomic) NSArray *identities;
+
+@property (strong, nonatomic) OAIdentity *identity;
 
 @property (strong, nonatomic) NSDictionary *managedObject;
 

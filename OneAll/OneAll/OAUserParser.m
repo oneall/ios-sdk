@@ -107,23 +107,24 @@
     user.uuid = dict[@"uuid"];
     user.userToken = dict[@"user_token"];
     user.publishToken = [self parsePublishToken:dict[@"publish_token"]];
-
-    if (dict[@"identity"])
+    
+    if (dict[@"identity"] && !dict[@"identities"])
     {
-        user.identities = @[[self parseIdentity:dict[@"identity"]]];
+        user.identity = [self parseIdentity:dict[@"identity"]];
+        user.identities = @[user.identity];
     }
     else
     {
         user.identities = [self parseIdentities:dict[@"identities"]];
+        user.identity = [self parseIdentity:dict[@"identity"]];
     }
 
-    if (user.identities && user.identities.count > 0)
+    if (user.identity)
     {
-        OAIdentity *identity = user.identities[0];
-        user.displayName = identity.displayName;
-        user.givenName = identity.givenName;
-        user.familyName = identity.familyName;
-        user.pictureUrl = identity.pictureUrl;
+        user.displayName = user.identity.displayName;
+        user.givenName = user.identity.givenName;
+        user.familyName = user.identity.familyName;
+        user.pictureUrl = user.identity.pictureUrl;
     }
 
     user.managedObject = dict;

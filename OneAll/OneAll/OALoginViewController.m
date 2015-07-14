@@ -44,7 +44,13 @@ static const CGFloat kRowHeight = 55.f;
  * library bundle and not the main one */
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    return [super initWithNibName:NSStringFromClass(self.class) bundle:[OABundle libraryResourcesBundle]];
+    self = [super initWithNibName:NSStringFromClass(self.class) bundle:[OABundle libraryResourcesBundle]];
+    if (self)
+    {
+        _userToken = nil;
+        _action = OASocialLinkActionNone;
+    }
+    return self;
 }
 
 - (id)initWithDelegate:(id<OALoginControllerDelegate>)delegate

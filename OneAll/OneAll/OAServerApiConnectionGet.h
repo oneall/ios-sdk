@@ -17,7 +17,7 @@ typedef void (^OAServerApiConnectionCallback)(NSDictionary *, NSError *);
 /**
  * get information about current connection after login using OA REST API
  *
- * @param toke token received during initial login
+ * @param token token received during initial login
  *
  * @param nonce same nonce string that was sent to the server during login
  *

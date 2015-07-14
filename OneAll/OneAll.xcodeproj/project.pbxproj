@@ -207,6 +207,7 @@
 		1E53CF7619648C2B00E04D68 /* OAUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAUser.h; path = ../../OneAll/OneAll/OAUser.h; sourceTree = "<group>"; };
 		1E53CF7719648C2B00E04D68 /* OAUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OAUser.m; path = ../../OneAll/OneAll/OAUser.m; sourceTree = "<group>"; };
 		1E53CFB3196491A300E04D68 /* OALog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OALog.h; path = ../../OneAll/OneAll/OALog.h; sourceTree = "<group>"; };
+		1E83527F1ADFB2400031AE74 /* OACommonTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OACommonTypes.h; path = ../../OneAll/OneAll/OACommonTypes.h; sourceTree = "<group>"; };
 		1ECA683B1965F71A0002CC92 /* OALoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OALoginViewController.h; path = ../../OneAll/OneAll/OALoginViewController.h; sourceTree = "<group>"; };
 		1ECA683C1965F71A0002CC92 /* OALoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OALoginViewController.m; path = ../../OneAll/OneAll/OALoginViewController.m; sourceTree = "<group>"; };
 		1ECA683D1965F71A0002CC92 /* OALoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OALoginViewController.xib; path = ../../OneAll/OneAll/OALoginViewController.xib; sourceTree = "<group>"; };
@@ -377,6 +378,7 @@
 				1C56E493EA422443712F966C /* OAServerApiProviders.h */,
 				1C56E05C64DA2159901B0FD5 /* OAProvider.m */,
 				1C56EEFB0223E24B1E6C5444 /* OAProvider.h */,
+				1E83527F1ADFB2400031AE74 /* OACommonTypes.h */,
 			);
 			path = OneAll;
 			sourceTree = "<group>";
@@ -510,7 +512,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1E3299521961AAE0008896A8 /* Build configuration list for PBXProject "OneAll" */;
+			buildConfigurationList = 1E3299521961AAE0008896A8 /* Build configuration list for PBXProject "oneall" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -678,6 +680,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
@@ -723,6 +726,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
@@ -754,6 +758,7 @@
 		1E32996C1961AAE1008896A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -770,6 +775,7 @@
 		1E32996D1961AAE1008896A8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -823,7 +829,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1E3299521961AAE0008896A8 /* Build configuration list for PBXProject "OneAll" */ = {
+		1E3299521961AAE0008896A8 /* Build configuration list for PBXProject "oneall" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1E3299691961AAE1008896A8 /* Debug */,

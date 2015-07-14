@@ -22,6 +22,10 @@ static NSString *const kCellIdentifier = @"OAMainSampleViewCell";
 @property (weak, nonatomic) IBOutlet UILabel *labelName;
 @property (weak, nonatomic) IBOutlet UIImageView *imageViewAvatar;
 @property (weak, nonatomic) IBOutlet UILabel *labelHello;
+@property (weak, nonatomic) IBOutlet UISwitch *switchSocialLinkEnable;
+@property (weak, nonatomic) IBOutlet UILabel *labelSocialLinkAction;
+@property (weak, nonatomic) IBOutlet UISwitch *switchSocialLinkAction;
+@property (weak, nonatomic) IBOutlet UIView *viewSocialLinkAction;
 
 @property (strong, nonatomic) OAUser *lastUser;
 
@@ -43,7 +47,8 @@ static NSString *const kCellIdentifier = @"OAMainSampleViewCell";
 {
     self.viewUser.hidden = NO;
 
-    self.labelHello.text = newUser ? @"Hello" : @"Welcome back";
+    self.labelHello.text = newUser ?
+    @"Hello" : [NSString stringWithFormat:@"Welcome back (%d)", (int)user.identities.count];
     
     if (user.displayName.length > 0)
     {
@@ -52,6 +57,10 @@ static NSString *const kCellIdentifier = @"OAMainSampleViewCell";
     else if (user.identities.count > 0)
     {
         self.labelName.text = [user.identities[0] formattedName];
+    }
+    else
+    {
+        self.labelName.text = @"";
     }
     
     self.imageViewAvatar.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:user.pictureUrl]];
@@ -86,13 +95,36 @@ static NSString *const kCellIdentifier = @"OAMainSampleViewCell";
         [dimView removeFromSuperview];
         [self userRetrieved:user new:newUser];
     };
-
-    [[OAManager sharedInstance] loginWithProvider:provider
-                                          success:successHandler
-                                          failure:^(NSError *error) {
-                                              [dimView removeFromSuperview];
-                                              [self showErrorAlert:error];
-                                          }];
+    
+    OALoginCallbackFailure failureHandler = ^(NSError *error) {
+        [dimView removeFromSuperview];
+        [self showErrorAlert:error];
+    };
+    
+    if (!self.switchSocialLinkEnable.isOn)
+    {
+        /* regular login */
+        [[OAManager sharedInstance] loginWithProvider:provider
+                                              success:successHandler
+                                              failure:failureHandler];
+    }
+    else if (self.switchSocialLinkAction.isOn)
+    {
+        /* link user to new social provider */
+        [[OAManager sharedInstance] linkUser:self.lastUser.userToken
+                                    provider:provider
+                                     success:successHandler
+                                     failure:failureHandler];
+    }
+    else
+    {
+        /* unlink user from speicified provider */
+        [[OAManager sharedInstance] unlinkUser:self.lastUser.userToken
+                                      provider:provider
+                                       success:successHandler
+                                       failure:failureHandler];
+    }
+    
 }
 
 - (void)openProviderSelector
@@ -110,7 +142,22 @@ static NSString *const kCellIdentifier = @"OAMainSampleViewCell";
         [self showErrorAlert:error];
     };
     
-    [[OAManager sharedInstance] loginWithSuccess:callbackSuccess andFailure:callbackFailure];
+    
+    if (!self.switchSocialLinkEnable.isOn)
+    {
+        /* regular login */
+        [[OAManager sharedInstance] loginWithSuccess:callbackSuccess andFailure:callbackFailure];
+    }
+    else if (self.switchSocialLinkAction.isOn)
+    {
+        /* link user to new social provider */
+        [[OAManager sharedInstance] linkUser:self.lastUser.userToken success:callbackSuccess failure:callbackFailure];
+    }
+    else
+    {
+        /* unlink user from speicified provider */
+        [[OAManager sharedInstance] unlinkUser:self.lastUser.userToken success:callbackSuccess failure:callbackFailure];
+    }
 }
 
 - (void)showErrorAlert:(NSError *)error
@@ -209,6 +256,31 @@ static NSString *const kCellIdentifier = @"OAMainSampleViewCell";
         default:
             break;
     }
+}
+
+#pragma mark - UI Helper elements
+
+- (IBAction)handleSwitchSocialLinkEnable:(UISwitch *)sw
+{
+    if (sw.isOn)
+    {
+        self.viewSocialLinkAction.hidden = false;
+        self.viewSocialLinkAction.alpha = 0;
+        [UIView animateWithDuration:0.3
+                         animations:^{ self.viewSocialLinkAction.alpha = 1.f; }];
+    }
+    else
+    {
+        self.viewSocialLinkAction.alpha = 1.f;
+        [UIView animateWithDuration:0.3
+                         animations:^{ self.viewSocialLinkAction.alpha = 0; }
+                         completion:^(BOOL finished) { self.viewSocialLinkAction.hidden = true; }];
+    }
+}
+
+- (IBAction)handleSocialSwitchLinkAction:(UISwitch *)sw
+{
+    self.labelSocialLinkAction.text = sw.isOn ? NSLocalizedString(@"Link", @"") : NSLocalizedString(@"Unlink", @"");
 }
 
 @end

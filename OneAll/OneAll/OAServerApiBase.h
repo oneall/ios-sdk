@@ -8,6 +8,7 @@
 #define HTTP_METHOD_POST @"POST"
 #define HTTP_METHOD_PUT @"PUT"
 #define HTTP_METHOD_PATCH @"PATCH"
+#define HTTP_METHOD_DELETE @"DELETE"
 
 /** standard HTTP status codes */
 typedef NS_ENUM(NSInteger, HttpStatusCode)

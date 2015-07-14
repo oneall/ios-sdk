@@ -7,6 +7,7 @@
 //
 #import <UIKit/UIKit.h>
 #import "OAProviderManager.h"
+#import "OACommonTypes.h"
 
 /** protocol used to call back the user on GUI events: closing the window, tapping on one of authentication schemes */
 @protocol OALoginControllerDelegate <NSObject>
@@ -28,6 +29,12 @@
 
 /** login view controller showing table of all possible authentication options */
 @interface OALoginViewController : UIViewController
+
+/** action stored as a part of this controller, used by the caller to pass information about social link */
+@property (nonatomic) OASocialLinkAction action;
+
+/** user token stored as a part of this controller, used by the caller to pass information about social link */
+@property (nonatomic, strong) NSString *userToken;
 
 /** view controller initialization
 *

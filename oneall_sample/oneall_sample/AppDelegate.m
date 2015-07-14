@@ -13,15 +13,34 @@ static NSString *const fbAppId = nil;
 static NSString *const twitterConsumerKey = nil;
 static NSString *const twitterConsumerSecret = nil;
 
+static NSString *const kOneAllSubdomain = nil;
+static NSString *const kFacebookAppId = nil;
+static NSString *const kTwitterConsumerKey = nil;
+static NSString *const kTwitterConsumerSecret = nil;
+static NSString *const kLeLogToken = @"241d9e8d-4054-431a-a600-27d36c49b107";
+
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    [[OAManager sharedInstance] setupWithSubdomain:@"demo"
-                                     facebookAppId:fbAppId
-                                twitterConsumerKey:twitterConsumerKey
-                                     twitterSecret:twitterConsumerSecret];
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [[LELog sharedInstance] setToken:kLeLogToken];
+    [[LELog sharedInstance] log:@"starting up"];
+
+    if (kOneAllSubdomain.length == 0) {
+        [NSException raise:NSGenericException
+                    format:@"Set kOneAllSubdomain constant to your application subdomain"
+                 arguments:nil];
+    }
+    if (kFacebookAppId.length == 0) {
+        [NSException raise:NSGenericException
+                    format:@"Set kFacebookAppId constant to your application subdomain"
+                 arguments:nil];
+    }
+
+    [[OAManager sharedInstance] setupWithSubdomain:kOneAllSubdomain
+                                     facebookAppId:kFacebookAppId
+                                twitterConsumerKey:kTwitterConsumerKey
+                                     twitterSecret:kTwitterConsumerSecret];
 
     [[OAManager sharedInstance] setNetworkActivityIndicatorControlledByOa:true];
 

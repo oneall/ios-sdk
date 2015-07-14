@@ -17,73 +17,34 @@ static NSString *const kNativeAuthApiEndpoint = @"users";
 
 #pragma mark - Interface methods
 
-- (BOOL)getInfoWithFacebookToken:(NSString *)token andComplete:(OAServerApiUsersLoginNativeCallback)callback
+- (BOOL)getInfoWithFacebookToken:(NSString *)token
+                       userToken:(NSString *)userToken
+                        complete:(OAServerApiUsersLoginNativeCallback)callback
 {
-    self.callback = callback;
-
-    NSString *ep =
-        [NSString stringWithFormat:@"%@.json", kNativeAuthApiEndpoint];
-
-    NSDictionary *dict = @{
-        @"request": @{
-            @"user": @{
-                @"action": @"import_from_access_token",
-                @"identity": @{
-                    @"source": @{
-                        @"key": @"facebook",
-                        @"access_token": @{
-                            @"key": token
-                        }
-                    }
-                }
-            }
-        }
-    };
-
-    OALog(@"Trying to login with Facebook with token %@", token);
-    return [self createConnectionForEndpoint:ep
-                                  withMethod:HTTP_METHOD_PUT
-                            andUrlParameters:nil
-                                   anonymous:false
-                                  andHeaders:nil
-                              andJsonPayload:dict
-                            andBinaryPayload:nil];
+    return [self getNativeInfoForPlatform:@"facebook" key:token secret:nil userToken:userToken complete:callback];
 }
 
 - (BOOL)getInfoWithTwitterToken:(NSString *)token
                          secret:(NSString *)secret
+                      userToken:(NSString *)userToken
                        complete:(OAServerApiUsersLoginNativeCallback)callback
 {
-    self.callback = callback;
+    return [self getNativeInfoForPlatform:@"twitter" key:token secret:secret userToken:userToken complete:callback];
+}
 
-    NSString *ep =
-        [NSString stringWithFormat:@"%@.json", kNativeAuthApiEndpoint];
+- (BOOL)unlinkWithFacebookToken:(NSString *)token
+                      userToken:(NSString *)userToken
+                       complete:(OAServerApiUsersLoginNativeCallback)callback
+{
+    return [self unlinkNativeInfoForPlatform:@"facebook" key:token secret:nil userToken:userToken complete:callback];
+}
 
-    NSDictionary *dict = @{
-        @"request": @{
-            @"user": @{
-                @"action": @"import_from_access_token",
-                @"identity": @{
-                    @"source": @{
-                        @"key": @"twitter",
-                        @"access_token": @{
-                            @"key": token,
-                            @"secret": secret
-                        }
-                    }
-                }
-            }
-        }
-    };
-
-    OALog(@"Trying to login with Twitter with token %@", token);
-    return [self createConnectionForEndpoint:ep
-                                  withMethod:HTTP_METHOD_PUT
-                            andUrlParameters:nil
-                                   anonymous:false
-                                  andHeaders:nil
-                              andJsonPayload:dict
-                            andBinaryPayload:nil];
+- (BOOL)unlinkWithTwitterToken:(NSString *)token
+                        secret:(NSString *)secret
+                     userToken:(NSString *)userToken
+                      complete:(OAServerApiUsersLoginNativeCallback)callback
+{
+    return [self unlinkNativeInfoForPlatform:@"twitter" key:token secret:secret userToken:userToken complete:callback];
 }
 
 #pragma mark - NSURLConnectionDataDelegate
@@ -132,6 +93,93 @@ static NSString *const kNativeAuthApiEndpoint = @"users";
         self.callback(user, (code == HTTP_STATUS_CODE_CREATED), error);
         self.callback = nil;
     }
+}
+
+#pragma mark - Utilities
+
+- (NSDictionary *)buildRequestPlatform:(NSString *)platform
+                                action:(NSString *)action
+                             userToken:(NSString *)userToken
+                                   key:(NSString *)key
+                                secret:(NSString *)secret {
+    
+    NSMutableDictionary *dict =
+    [@{
+      @"request": [@{
+              @"user": [@{
+                      @"action": action,
+                      @"identity": [@{
+                              @"source": [@{
+                                      @"key": platform,
+                                      @"access_token": [@{
+                                              @"key": key
+                                      } mutableCopy]
+                              } mutableCopy]
+                      } mutableCopy]
+              } mutableCopy]
+      } mutableCopy]
+    } mutableCopy];
+    
+    if (secret != nil) {
+        dict[@"request"][@"user"][@"identity"][@"source"][@"access_token"][@"secret"] = secret;
+    }
+    
+    if (userToken != nil && userToken != (id)[NSNull null])
+    {
+        dict[@"request"][@"user"][@"user_token"] = userToken;
+    }
+    
+    return dict;
+}
+
+- (BOOL)unlinkNativeInfoForPlatform:(NSString *)platform
+                                key:(NSString *)key
+                             secret:(NSString *)secret
+                          userToken:(NSString *)userToken
+                           complete:(OAServerApiUsersLoginNativeCallback)callback {
+    self.callback = callback;
+
+    NSString *ep = [NSString stringWithFormat:@"%@.json", kNativeAuthApiEndpoint];
+    
+    NSDictionary *dict = [self buildRequestPlatform:platform
+                                             action:@"delete_by_access_token"
+                                          userToken:userToken
+                                                key:key
+                                             secret:secret];
+    OALog(@"Trying to unlink user %@ from platform %@", userToken, platform);
+    return [self createConnectionForEndpoint:ep
+                                  withMethod:HTTP_METHOD_DELETE
+                            andUrlParameters:nil
+                                   anonymous:false
+                                  andHeaders:nil
+                              andJsonPayload:dict
+                            andBinaryPayload:nil];
+}
+
+- (BOOL)getNativeInfoForPlatform:(NSString *)platform
+                             key:(NSString *)key
+                          secret:(NSString *)secret
+                       userToken:(NSString *)userToken
+                        complete:(OAServerApiUsersLoginNativeCallback)callback
+{
+    self.callback = callback;
+    
+    NSString *ep = [NSString stringWithFormat:@"%@.json", kNativeAuthApiEndpoint];
+    
+    NSDictionary *dict = [self buildRequestPlatform:platform
+                                             action:@"import_from_access_token"
+                                          userToken:userToken
+                                                key:key
+                                             secret:secret];
+    
+    OALog(@"Trying to login native with with token %@", key);
+    return [self createConnectionForEndpoint:ep
+                                  withMethod:HTTP_METHOD_PUT
+                            andUrlParameters:nil
+                                   anonymous:false
+                                  andHeaders:nil
+                              andJsonPayload:dict
+                            andBinaryPayload:nil];
 }
 
 @end

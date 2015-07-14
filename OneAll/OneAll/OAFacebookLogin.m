@@ -77,11 +77,12 @@
         return false;
     }
 
-    return [fbSession openActiveSessionWithReadPermissions:@[@"public_profile"]
-                                              allowLoginUI:YES
-                                         completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
-                                             [self sessionStateChanged:session state:state error:error];
-                                         }];
+    [fbSession openActiveSessionWithReadPermissions:@[@"public_profile"]
+                                       allowLoginUI:YES
+                                  completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
+                                      [self sessionStateChanged:session state:state error:error];
+                                  }];
+    return true;
 }
 
 - (BOOL)handleOpenUrl:(NSURL *)url sourceApplication:(NSString *)sourceApplication
