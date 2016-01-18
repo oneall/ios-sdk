@@ -23,9 +23,6 @@ static NSString *const kLeLogToken = @"241d9e8d-4054-431a-a600-27d36c49b107";
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [[LELog sharedInstance] setToken:kLeLogToken];
-    [[LELog sharedInstance] log:@"starting up"];
-
     if (kOneAllSubdomain.length == 0) {
         [NSException raise:NSGenericException
                     format:@"Set kOneAllSubdomain constant to your application subdomain"
