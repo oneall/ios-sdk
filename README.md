@@ -64,6 +64,13 @@ Add a button on one of the forms and create an action for it in corresponding co
 
 You are all set! Running the project and tapping the new button you should see the login screen with all possible providers selection.
 
+### Build Settings
+
+If you receive an error like for example `Unrecognized selector sent to class 0x1ada5dae8` when trying to login with a social network, then please add the `-ObjC` flag in the build settings under `Other Linker Flags`.
+
+![enzmf](https://user-images.githubusercontent.com/1052414/29567332-24c7c14e-874d-11e7-942b-c291de57302e.jpg)
+
+
 # Usage
 ## Login Using Own Provider Selector
 Instead of using SDK’s own login screen you may design your own selector of provider types. In order to login using specific provider, use the following call (with Reddit authentication):
