@@ -6,7 +6,7 @@ SDK for using OneAll on iOS in order to allow users to login with 30+ social net
 
 ## Setting up XCode Project
 
-### Add the OneAll SDK to the Project
+### Add the OneAll SDK to your project
 Using Finder drag the OneAll.xcodeproj file into the XCode and place in your project:
 
 ![XCode Setup](https://raw.githubusercontent.com/oneall/ios-sdk/master/screenshots/install_drag_xcode.png)
