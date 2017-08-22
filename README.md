@@ -66,7 +66,7 @@ You are all set! Running the project and tapping the new button you should see t
 
 ### Build Settings
 
-If you receive an error like for example `Unrecognized selector sent to class 0x1ada5dae8` when trying to login with a social network, then please add the `-ObjC` flag in the build settings under `Other Linker Flags`.
+If you receive an error like for example `Unrecognized selector sent to class 0x1ada5dae8` when trying to login with a social network, then please add the `-ObjC` flag (note the captial C) in the build settings under `Other Linker Flags`. This must be set in the linker settings for the target using the library, not in the library itself. 
 
 ![enzmf](https://user-images.githubusercontent.com/1052414/29567332-24c7c14e-874d-11e7-942b-c291de57302e.jpg)
 
