@@ -1,13 +1,8 @@
-OneAll-iOS SDK
-===
+SDK for using OneAll on iOS in order to allow users to login with 30+ social networks and make posts on their walls.
 
-SDK allowing to authenticate and make posts on user's walls.
-
-#  Features
-- Login using OneAll authentication using UIWebView
+- Login using OneAll authentication using UIWebView )30+ Social Networks supported)
 - Login using OneAll by using native SDK for Facebook or Twitter (iOS6 and later)
-
-# Installation
+- Post on the user's social networks accounts
 
 ## Setting up XCode Project
 
@@ -71,8 +66,9 @@ If you receive an error like for example `Unrecognized selector sent to class 0x
 ![enzmf](https://user-images.githubusercontent.com/1052414/29567332-24c7c14e-874d-11e7-942b-c291de57302e.jpg)
 
 
-# Usage
-## Login Using Own Provider Selector
+
+## Usage
+### Login Using Own Provider Selector
 Instead of using SDK’s own login screen you may design your own selector of provider types. In order to login using specific provider, use the following call (with Reddit authentication):
 ``` objective-c
 [[OAManager sharedInstance] loginWithProvider:OA_PROVIDER_REDDIT
@@ -81,7 +77,8 @@ Instead of using SDK’s own login screen you may design your own selector of pr
 ```
 This will allow you to fully customise the appearance of the login window and just call the library to do an actual authentication.
 
-## Controlling Network Activity Indicator
+
+### Controlling Network Activity Indicator
 Generally, network activity indicator should be controlled by the application. If the application does not use, it may transfer the control of the indicator to the library by calling
 ``` objective-c
 [[OAManager sharedInstance] setNetworkActivityIndicatorControlledByOa:true];
@@ -90,7 +87,8 @@ The indicator will be activated whenever the SDK is communicating with servers.
 
 ![Resources](https://raw.githubusercontent.com/oneall/ios-sdk/master/screenshots/install_network_notification.png)
 
-## Setting up Native Twitter Auth
+
+### Setting up Native Twitter Auth
 To use native Twitter Authentication, you have to setup the library with more settings. Replace the initialisation with the following call:
 ``` objective-c
 - (BOOL)application:(UIApplication *)application
@@ -104,7 +102,8 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 ```
 Of course, replace `twitter_consumer_key` and `twitter_secret` with values from your Twitter application settings (https://apps.twitter.com). Now when trying to login, the SDK will attempt to login using native iOS Twitter authentication and if unavailable, fall back to regular web based login.
 
-## Setting up Native Facebook Auth
+
+### Setting up Native Facebook Auth
 First setup, your Facebook application according to Facebook’s Getting Started tutorial: https://developers.facebook.com/docs/ios/getting-started. Pay attention that you add your Facebook.framework
 To use native Twitter Authentication, you have to pass Facebook application ID to the initialisation code:
 ``` objective-c
@@ -137,7 +136,8 @@ In addition, take care of application returning from background by overriding `a
 ```
 Now when trying to login, the SDK will attempt to login using Facebook SDK using installed Facebook application and if unavailable, fall back to regular web based login.
 
-## Posting Message to User’s Wall
+
+### Posting Message to User’s Wall
 The SDK allows to post messages to user wall according to this guide: http://docs.oneall.com/api/resources/users/write-to-users-wall/ in order to make the post, `OAManager` exposes the following:
 ``` objective-c
 [[OAManager sharedInstance] postMessageWithText:@”Lorem Ipsum”
@@ -156,7 +156,7 @@ The SDK allows to post messages to user wall according to this guide: http://doc
                    }];
 ```
 
-# License
+## License
 The sample project (but not the SDK) includes Facebook SDK which is distributed under Apache MIT licese
 
 [@urk](http://twitter.com/UrK)
