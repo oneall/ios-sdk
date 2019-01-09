@@ -2,7 +2,6 @@ SDK for using OneAll on iOS in order to allow users to login with 30+ social net
 
 - Login using OneAll authentication using UIWebView (30+ Social Networks supported)
 - Login using OneAll by using the native Facebook or Twitter SDKs (iOS6 and later)
-- Post on the user's social networks accounts
 
 ## Setting up XCode Project
 
