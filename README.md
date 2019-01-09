@@ -27,7 +27,7 @@ Make sure your target is selected on the left of the panel, then find “Header 
 ![Link Library](https://raw.githubusercontent.com/oneall/ios-sdk/master/screenshots/install_build_phases.png)
 
 ### Add Resources
-While at the same screen, make sure the resources of the library are added to the final executable by dragging it from the project explorer into “Copy Bundle Resources” section:
+While at the same screen, make sure the resources of the library are added to the final executable by dragging them from the project explorer to the “Copy Bundle Resources” section:
 
 ![Resources](https://raw.githubusercontent.com/oneall/ios-sdk/master/screenshots/install_add_resources.png)
 
@@ -38,7 +38,7 @@ Import the SDK main include file at the top of AppDelegate.m.
 #import <OneAll/OneAll.h>
 ```
 
-In your AppDelegate.m file, add the following initialization code to `application:didFinishLaunchingWithOptions`.
+In your AppDelegate.m file, add the following initialization code to `application:didFinishLaunchingWithOptions`:
 ``` objective-c
 - (BOOL)application:(UIApplication *)application
      didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -46,9 +46,9 @@ In your AppDelegate.m file, add the following initialization code to `applicatio
      [[OAManager sharedInstance] setupWithSubdomain:@"your-oneall-subdomain"];
  }
 ```
-Make sure to replace *your-oneall-subdomain* by your own OneAll subdomain.
+**Make sure to replace *your-oneall-subdomain* by your own OneAll subdomain.**  
 
-Add a button on one of the forms and create an action for it in corresponding the controller. 
+Add a button to one of the forms and create an action for it in the corresponding controller.  
 In this handler add the following code:
 ``` objective-c
 [[OAManager sharedInstance] loginWithSuccess:^(OAUser *user) {
@@ -70,8 +70,10 @@ If you receive an error like for example `Unrecognized selector sent to class 0x
 
 
 ## Usage
-### Login Using Own Provider Selector
-Instead of using SDK’s own login screen you may design your own selector of provider types. In order to login using specific provider, use the following call (with Reddit authentication):
+### Trigger the login with a specific social network
+Instead of using the SDK’s social network selection screen, you can design your own selection and trigger
+the login with a specific social network by using the following call (in this example Reddit) : 
+
 ``` objective-c
 [[OAManager sharedInstance] loginWithProvider:OA_PROVIDER_REDDIT
                                       success:^{ NSLog(@”Login succeeded”); }
@@ -81,16 +83,17 @@ This will allow you to fully customise the appearance of the login window and ju
 
 
 ### Controlling Network Activity Indicator
-Generally, network activity indicator should be controlled by the application. If the application does not use, it may transfer the control of the indicator to the library by calling
+Generally speaking, the network activity indicator should be controlled by the application. 
+If the application does not use it, it may transfer the control of the indicator to the library by calling:
 ``` objective-c
 [[OAManager sharedInstance] setNetworkActivityIndicatorControlledByOa:true];
 ```
-The indicator will be activated whenever the SDK is communicating with servers.
+The indicator will then be activated whenever the SDK is communicating with servers.
 
 ![Resources](https://raw.githubusercontent.com/oneall/ios-sdk/master/screenshots/install_network_notification.png)
 
 
-### Setting up Native Twitter Auth
+### Setting up native Twitter login
 To use native Twitter Authentication, you have to setup the library with more settings. 
 
 - Replace the initialisation with the following call:
@@ -112,27 +115,28 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 You can find your twitter apps here:
 https://developer.twitter.com/en/apps
 
-Now when trying to login with Twitter. The SDK will attempt to login using native iOS Twitter authentication and if unavailable, fall back to regular web based login.
+Now try to login with Twitter. The SDK should attempt to login using native iOS Twitter authentication and if unavailable, fall back to the regular web based login.
 
 
-### Setting up Native Facebook Auth
+### Setting up native Facebook login
 First setup your Facebook application according to the Facebook tutorial available here:
 https://developers.facebook.com/docs/ios/getting-started. 
 
-Pay attention that you add your Facebook.framework,
-To use the native authentication, you have to pass your Facebook application ID to the initialisation code:
+Pay attention that you add your Facebook.framework.  
+
+- To use the native authentication, you have to pass your Facebook application ID to the initialisation code:
 ``` objective-c
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[OAManager sharedInstance] setupWithSubdomain:@"foo"
+    [[OAManager sharedInstance] setupWithSubdomain:@"your-oneall-subdomain"
                                      facebookAppId:@"11111111111"
                                 twitterConsumerKey:nil
                                      twitterSecret:nil];
 }
 ```
-Make sure to replace `your-oneall-subdomain` by your own OneAll subdomain.
-Make sure to replace `11111111111` by the identifier of your Facebook app.
+- Make sure to replace `your-oneall-subdomain` by your own OneAll subdomain.
+- Make sure to replace `11111111111` by the identifier of your Facebook app.
 
 Override `application:openURL:sourceApplication` and inform the manager about URL opening:
 ``` objective-c
@@ -152,29 +156,3 @@ In addition, take care of application returning from background by overriding `a
 }
 ```
 Now when trying to login, the SDK will attempt to login using Facebook SDK using installed Facebook application and if unavailable, fall back to regular web based login.
-
-
-### Posting Message to User’s Wall
-The SDK allows to post messages to user wall according to this guide: http://docs.oneall.com/api/resources/users/write-to-users-wall/ in order to make the post, `OAManager` exposes the following:
-``` objective-c
-[[OAManager sharedInstance] postMessageWithText:@”Lorem Ipsum”
-                 pictureUrl:[NSURL URLWithString:@”https://www.google.co.il/images/srpr/logo11w.png”
-                   videoUrl:nil
-                    linkUrl:[NSURL URLWithString:@”http://www.google.com”]
-                   linkName:@”Google”
-                linkCaption:nil
-            linkDescription:nil
-             enableTracking:true
-                  userToken:user.userToken
-               publishToken:user.publishToken.key
-                toProviders:@[@(OA_PROVIDER_FACEBOOK)]
-                   callback:^(BOOL failed, OAMessagePostResult *result, OAError *error) {
-                       NSLog(@”Message posted with status: %d”, (int)failed);
-                   }];
-```
-
-## License
-The sample project (but not the SDK) includes Facebook SDK which is distributed under Apache MIT licese
-
-[@urk](http://twitter.com/UrK)
-[OneAll](http://www.oneall.com)
