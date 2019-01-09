@@ -31,23 +31,24 @@ While at the same screen, make sure the resources of the library are added to th
 ![Resources](https://raw.githubusercontent.com/oneall/ios-sdk/master/screenshots/install_add_resources.png)
 
 ### Setup Source Files
-Import the SDK main include file at the top of AppDelegate.m:
+Import the SDK main include file at the top of AppDelegate.m.
 
 ``` objective-c
 #import <OneAll/OneAll.h>
 ```
 
-In your AppDelegate.m file, in `application:didFinishLaunchingWithOptions:` add the following initialization code:
+In your AppDelegate.m file, add the following initialization code to `application:didFinishLaunchingWithOptions`.
 ``` objective-c
 - (BOOL)application:(UIApplication *)application
      didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
  {
-     [[OAManager sharedInstance] setupWithSubdomain:@"foo"];
+     [[OAManager sharedInstance] setupWithSubdomain:@"your-oneall-subdomain"];
  }
 ```
-Of course, replace "foo" with your own OneAll application subdomain.
+Make sure to replace *your-oneall-subdomain* by your own OneAll subdomain.
 
-Add a button on one of the forms and create an action for it in corresponding controller. In this handler add the following code:
+Add a button on one of the forms and create an action for it in corresponding the controller. 
+In this handler add the following code:
 ``` objective-c
 [[OAManager sharedInstance] loginWithSuccess:^(OAUser *user) {
     NSLog(@"User logged in: %@", user);
@@ -57,7 +58,7 @@ Add a button on one of the forms and create an action for it in corresponding co
 }];
 ```
 
-You are all set! Running the project and tapping the new button you should see the login screen with all possible providers selection.
+You are all set! Now run the project and tap the new button. You should see the login screen with a selection of the social networks.
 
 ### Build Settings
 
@@ -89,35 +90,50 @@ The indicator will be activated whenever the SDK is communicating with servers.
 
 
 ### Setting up Native Twitter Auth
-To use native Twitter Authentication, you have to setup the library with more settings. Replace the initialisation with the following call:
+To use native Twitter Authentication, you have to setup the library with more settings. 
+
+- Replace the initialisation with the following call:
 ``` objective-c
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[OAManager sharedInstance] setupWithSubdomain:@"foo"
+    [[OAManager sharedInstance] setupWithSubdomain:@"your-oneall-subdomain"
                                      facebookAppId:nil
                                 twitterConsumerKey:@”twitter_consumer_key”
                                      twitterSecret:@”twitter_secret”];
 }
 ```
-Of course, replace `twitter_consumer_key` and `twitter_secret` with values from your Twitter application settings (https://apps.twitter.com). Now when trying to login, the SDK will attempt to login using native iOS Twitter authentication and if unavailable, fall back to regular web based login.
+
+- Make sure to replace `your-oneall-subdomain` by your own OneAll subdomain.
+- Make sure to replace `twitter_consumer_key` by the consumer key of of your Twitter app.
+- Make sure to replace `twitter_consumer_key` by the consumer secret.
+
+You can find your twitter apps here:
+https://developer.twitter.com/en/apps
+
+Now when trying to login with Twitter. The SDK will attempt to login using native iOS Twitter authentication and if unavailable, fall back to regular web based login.
 
 
 ### Setting up Native Facebook Auth
-First setup, your Facebook application according to Facebook’s Getting Started tutorial: https://developers.facebook.com/docs/ios/getting-started. Pay attention that you add your Facebook.framework
-To use native Twitter Authentication, you have to pass Facebook application ID to the initialisation code:
+First setup your Facebook application according to the Facebook tutorial available here:
+https://developers.facebook.com/docs/ios/getting-started. 
+
+Pay attention that you add your Facebook.framework,
+To use the native authentication, you have to pass your Facebook application ID to the initialisation code:
 ``` objective-c
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [[OAManager sharedInstance] setupWithSubdomain:@"foo"
-                                     facebookAppId:@”20531316728”
+                                     facebookAppId:@"11111111111"
                                 twitterConsumerKey:nil
                                      twitterSecret:nil];
 }
 ```
-Of course, replace the facebook id parameter with AppID of your Facebook app (https://developers.facebook.com/apps).
-Make sure URL’s are handled by the SDK too. Override application:openURL:sourceApplication: and inform the manager about URL opening:
+Make sure to replace `your-oneall-subdomain` by your own OneAll subdomain.
+Make sure to replace `11111111111` by the identifier of your Facebook app.
+
+Override `application:openURL:sourceApplication` and inform the manager about URL opening:
 ``` objective-c
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
