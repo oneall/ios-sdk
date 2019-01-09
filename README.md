@@ -21,8 +21,8 @@ Make sure your target is selected on the left of the panel, then find “Header 
 ![Header Search Paths](https://raw.githubusercontent.com/oneall/ios-sdk/master/screenshots/install_header_search_path.png)
 
 ### Link the Library
- Now, go into “Build Phases”, expand the “Link Binary With Libraries” section and click “+” in this section. 
- Add the `libOneAll.a` from the top of the list: 
+ Now, go into “Build Phases”, expand the “Link Binary With Libraries” section and click “+” in this section.   
+ The add the `libOneAll.a` from the top of the list: 
 
 ![Link Library](https://raw.githubusercontent.com/oneall/ios-sdk/master/screenshots/install_build_phases.png)
 
