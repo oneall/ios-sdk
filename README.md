@@ -12,7 +12,7 @@ Using Finder drag the OneAll.xcodeproj file into the XCode and place in your pro
 ![XCode Setup](https://raw.githubusercontent.com/oneall/ios-sdk/master/screenshots/install_drag_xcode.png)
 
 ### Setup Header Paths
-Now select your project in project explorer and click “Build Settings”:
+Select your project in the project explorer and click on “Build Settings”.
 
 ![Build Settings](https://raw.githubusercontent.com/oneall/ios-sdk/master/screenshots/install_build_settings.png)
 
@@ -21,7 +21,8 @@ Make sure your target is selected on the left of the panel, then find “Header 
 ![Header Search Paths](https://raw.githubusercontent.com/oneall/ios-sdk/master/screenshots/install_header_search_path.png)
 
 ### Link the Library
- Now, go into “Build Phases”, expand “Link Binary With Libraries” section and click “+” in this section. Add the `libOneAll.a` from the top of the list: 
+ Now, go into “Build Phases”, expand the “Link Binary With Libraries” section and click “+” in this section. 
+ Add the `libOneAll.a` from the top of the list: 
 
 ![Link Library](https://raw.githubusercontent.com/oneall/ios-sdk/master/screenshots/install_build_phases.png)
 
